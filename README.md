@@ -26,15 +26,16 @@ In Aora, users will take fitness clases from an instructor in a live feed wherev
 | `POST`     | `/private/class-details/:idClass`         | Manage schedule and unschedule. Renders `/private/class-details`form view. | {name, description, closure message, schedule, duration, class type, difficulty, url} |
 | `GET`      | `/private/class-schedule/add/:idClass`    | Add class to user's schedule                                 | {User.class: [ClassId]}`                                     |
 | `GET`      | `/private/class-schedule/delete/:idClass` | Delete class from user's schedule                            | {User.class: [ClassId]}`                                     |
-| `GET`      | `/signup`                                 | Renders `auth/signup` form view.                             |                                                              |
-| `POST`     | `/signup`                                 | Sends Sign Up info to the server and creates user in the DB. Renders `auth/signup` view. | {email, password, repeat password}                           |
-| `GET`      | `/login`                                  | Renders `auth/login` form view.                              |                                                              |
-| `POST`     | `/login`                                  | Sends Log In form data to the server and redirects to homepage. | {email, password}                                            |
-| `GET`      | `/logout`                                 | Logges user out and redirects to `login` view.               |                                                              |
+| `GET`      | `/auth/signup`                            | Renders `auth/signup` form view.                             |                                                              |
+| `POST`     | `/auth/signup`                            | Sends Sign Up info to the server and creates user in the DB. Renders `auth/signup` view. | {email, password, repeat password}                           |
+| `GET`      | `/auth/login`                             | Renders `auth/login` form view.                              |                                                              |
+| `POST`     | `/auth/login`                             | Sends Log In form data to the server and redirects to homepage. | {email, password}                                            |
+| `GET`      | `/auth/logout`                            | Logges user out and redirects to `login` view.               |                                                              |
 | `GET`      | `/private/profile/:userId`                | Private route. Renders `private/profile` view.               |                                                              |
 | `GET`      | `/private/edit-user/:userId`              | Private route. Renders `private/edit-user` form view.        |                                                              |
 | `POST`     | `/private/edit-user/:userId`              | Private route. Sends edit-profile info to server and updates user in DB and in `profile` view. | {[imageUrl], name, lastName, gender, e-mail, birthDate, city, country, password, type, height, weight, goal, body type} |
 | `GET`      | `/private/live-class/:classId`            | Renders the `/private/live-class`view class live feed.       |                                                              |
+| GET`       | `/private/progress`                       | Readers training progress for the user. Clasess attended     |                                                              |
 
 ## Models
 
