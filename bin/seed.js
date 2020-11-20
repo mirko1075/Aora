@@ -1,9 +1,8 @@
 const mongoose = require("mongoose");
-const class = require("./../models/User.model");
-const user = require("./../models/Class.model");
-const users = require("./users-mockup");
-const reviews = require("./classes-mockup");
-
+const User = require("./../models/User.model");
+const Class = require("./../models/Class.model");
+const usersArr = require("./user-mockup");
+const classesArr = require("./class-mockup");
 
 //Connection to DB parameters
 const DB_NAME = "AORA-DB";
@@ -28,29 +27,29 @@ mongoose
     console.log("Database dropped");
 
     // Create documents from ARRAY users
-    const pr = User.create(users);
+    const pr = User.create(usersArr);
     return pr;
   })
   .then((usersCreated) => {
     console.log(`Users ${usersCreated.length} created`);
     // Creating Classes
+    const trainersArr = usersCreated.filter((userObj) => {
+      if (userObj.userType == "trainer") {
+        return userObj;
+      }
+    });
+    // console.log("trainersArr", trainersArr);
 
-    const updatedClasses = Classes.map((classObj, i) => {
-      const user = usersCreated[i];
-      classObj.users = [user._id];
+    const updatedClasses = classesArr.map((classObj) => {
+      let randomNum = Math.floor(Math.random() * trainersArr.length);
+      // console.log("trainersArr.length", trainersArr.length);
+      // console.log("randomNum", randomNum);
+      // console.log("Random trainer:", trainersArr[randomNum]);
+      classObj.trainer = trainersArr[randomNum]._id;
       return classObj;
     });
-    const pr = class.create(updatedClasses);
+    const pr = Class.create(updatedClasses);
     return pr;
-  })
-  .then((createdClasses) => {
-    console.log(`Created ${createdClasses.length} Classes`);
-    const updatedReviews = reviews.map((reviewObj, i) => {
-      const class = createdClasses[i];
-      reviewObj.classId = [class._id];
-      return reviewObj;
-    });
-    mongoose.connection.close();
   })
   .then((createdClasses) => {
     console.log(`Created ${createdClasses.length} Classes`);
