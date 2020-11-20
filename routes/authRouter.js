@@ -81,10 +81,17 @@ authRouter.post('/login', (req, res, next) => {
 
         if (passwordCorrect) {
             req.session.currentUser = user;
-            res.redirect('/');
+            res.redirect('/private/home');
         } else {
             res.redirect('/auth/login');
         }
     })
+    
+})
+
+// GET > LOGOUT ROUTE
+authRouter.get('/logout', (req, res, next) => {
+    
+    res.render('Login');
 })
 module.exports = authRouter;

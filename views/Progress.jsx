@@ -2,10 +2,10 @@ const React = require("react");
 const Layout = require("./Layout");
 const Card = require("./components/Card");
 
-function Home() {
+function Progress() {
   return (
-    <Layout title="Home Page">
-      <h1>SPLASH</h1>
+    <Layout title="Progress">
+      <h1>PROGRESS</h1>
       <Card
         text="smaller component example"
         image="https://i.imgur.com/OH7dtc0.png"
@@ -18,4 +18,4 @@ function Home() {
   );
 }
 
-module.exports = Home;
+module.exports = Progress;
