@@ -1,12 +1,12 @@
 const React = require("react");
 const Layout = require("./Layout");
 
-function LiveClass () {
+function Class () {
     return(
         <Layout>
-            <h1>Go to LiveClass MF</h1>
+            <h1>Go to Class MF</h1>
         </Layout>
     )
 }
 
-module.exports = LiveClass;
+module.exports = Class;
