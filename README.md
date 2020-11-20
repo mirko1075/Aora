@@ -20,7 +20,8 @@ In Aora, users will take fitness clases from an instructor in a live feed wherev
 
 | **Method** | **Route**                                 | **Description**                                              | **Request - Body**                                           |
 | ---------- | ----------------------------------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| `GET`      | `/`                                       | Main page route. Renders home `index` view. With calendar.   |                                                              |
+| `GET`      | `/                                        | Main page route. Renders home `index` view. Splash           |                                                              |
+| `GET`      | /private/calendar                         |                                                              |                                                              |
 | `GET`      | `/private/my-schedule`                    | Renders `/private/my-schedule`form view                      |                                                              |
 | `GET`      | `/private/class-details/:idClass`         | Renders `/private/class-details`form view.                   |                                                              |
 | `POST`     | `/private/class-details/:idClass`         | Manage schedule and unschedule. Renders `/private/class-details`form view. | {name, description, closure message, schedule, duration, class type, difficulty, url} |
