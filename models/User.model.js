@@ -19,8 +19,9 @@ const userSchema = new Schema({
     userWeightGoal: Number,
     trainerBio: String,
     trainerRate: Number,
-    scheduledClasses: [{ type: Schema.Types.ObjectId, ref: ‘Class’ }]
+    scheduledClasses: [{ type: Schema.Types.ObjectId, ref: 'Class' }]
   });
 
   const User = mongoose.model("User", userSchema);
-  model.exports = userSchema
+  
+  module.exports = userSchema;
