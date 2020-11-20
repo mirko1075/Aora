@@ -45,7 +45,7 @@ USERS
   name: String,
   lastName: String,
   email: {type: String, unique: true },
-  gender: String,
+  gender: {String, enum: ["Male", "Female", "Other"]},
   birthDate: Date,
   city: String,
   country: String,
