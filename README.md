@@ -44,22 +44,22 @@ USERS
 {
   name: String,
   lastName: String,
-  email: {String, unique: true },
+  email: {type: String, unique: true },
   gender: String,
   birthDate: Date,
   city: String,
   country: String,
   password: String,
-  type: {String, enum:["U","T"]},
+  userType: {type: String, enum:["user","trainer"]},
   picUrl: String,
   userHeight: Number,
   userWeight: Number,
-  userGoal:   {String, default: "", enum: ["STRENGHT","WEIGHT LOSS", "MASS GAIN", "GENERAL HEALTH"]} ,
-  userBodyType:  {String, default: false, enum: ["Ectomorph", "Endomorph","Esomorph"]} ,
+  userGoal:   {type: String, default: "", enum: ["STRENGHT","WEIGHT LOSS", "MASS GAIN", "GENERAL HEALTH"]} ,
+  userBodyType:  {type: String, default: false, enum: ["Ectomorph", "Endomorph","Esomorph"]} ,
   userWeightGoal: Number,
   trainerBio: String,
   trainerRate: Number,
-  scheduledClasses: {[Schema.Types.ObjectId, ref: 'Class']}
+  scheduledClasses: [{ type: Schema.Types.ObjectId, ref: ‘Class’ }]
 }
 ```
 
@@ -67,16 +67,16 @@ CLASSES
 
 ```
 {
-  trainer_id:  {Schema.Types.ObjectId, ref: 'User' },
+  trainer:  {Schema.Types.ObjectId, ref: 'User' },
   name: {String, unique: true},
   description: String,
-  closure_message: String,
+  closureMessage: String,
   scheduled: Date,
   duration: Number,
-  class_type:  {String, enum:["Hiit", "Strenght", "Stretch"]} ,
-  difficulty: {String, enum: ["Hard", "Medium", "Easy"]},
+  classType:  {type:String, enum:["Hiit", "Strenght", "Stretch"]} ,
+  difficulty: {type:String, enum: ["Hard", "Medium", "Easy"]},
   url: String,
-  equipments: {[String, enum:["Yoga mat", "Dumbells", "Elastic band", "None"]]}
+  equipment: [{type:String, enum:["Yoga mat", "Dumbells", "Elastic band", "None"]}]
 }
 ```
 
