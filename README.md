@@ -44,25 +44,22 @@ USERS
 {
   name: String,
   lastName: String,
-  email: String, unique:true,
+  email: {type: String, unique: true },
   gender: String,
-  birthDate: type:Date,
-  city: type:String,
-  country: type:String,
-  password: type:String,
-  type: type:String, enum:[U,T]
-  picUrl: type:String,
-  userProfile: type: Schema.Types.ObjectId, ref: 'User_profile' , 
-  trainerProfile: type: Schema.Types.ObjectId, ref: 'trainer_profile' , 
-  userHeight: type:Number,
-  userWeight: type:Number,
-  userGoal:  type: String, default: false, enum: [STRENGHT,WEIGHT LOSS, MASS GAIN, GENERAL HEALTH]  ,
-  userBodyType:  type: String, default: false, enum: [U, T]  ,
+  birthDate: Date,
+  city: String,
+  country: String,
+  password: String,
+  userType: {type: String, enum:["user","trainer"]},
+  picUrl: String,
+  userHeight: Number,
+  userWeight: Number,
+  userGoal:   {type: String, default: "", enum: ["STRENGHT","WEIGHT LOSS", "MASS GAIN", "GENERAL HEALTH"]} ,
+  userBodyType:  {type: String, default: false, enum: ["Ectomorph", "Endomorph","Esomorph"]} ,
   userWeightGoal: Number,
-  trainerClassType:  [ type: Schema.Types.ObjectId, ref: 'Class' ],
-  trainerBio: type:String
-  trainerRate:	type:Number,
-  scheduledClasses: [Schema.Types.ObjectId, ref: 'Class' ]
+  trainerBio: String,
+  trainerRate: Number,
+  scheduledClasses: [{ type: Schema.Types.ObjectId, ref: ‘Class’ }]
 }
 ```
 
@@ -70,17 +67,16 @@ CLASSES
 
 ```
 {
-  trainer_id:  type: Schema.Types.ObjectId, ref: 'User' ,
-  name: type:String, unique: true,
-  description: type:String,
-  closure_message: type:String,
-  scheduled: type:Date,
-  duration: type:Number,
-  class_type:  type: Schema.Types.ObjectId, ref: 'Class_type' ,
-  difficulty: Type: String, enum: [Hard, Medium, Easy],
-  url: Type: String,
-  Type: String,
-  equipments: [String, enum:[Yoga mat, Dumbells, Elastic band, None]]
+  trainer:  {Schema.Types.ObjectId, ref: 'User' },
+  name: {String, unique: true},
+  description: String,
+  closureMessage: String,
+  scheduled: Date,
+  duration: Number,
+  classType:  {type:String, enum:["Hiit", "Strenght", "Stretch"]} ,
+  difficulty: {type:String, enum: ["Hard", "Medium", "Easy"]},
+  url: String,
+  equipment: [{type:String, enum:["Yoga mat", "Dumbells", "Elastic band", "None"]}]
 }
 ```
 
