@@ -35,6 +35,7 @@ In Aora, users will take fitness clases from an instructor in a live feed wherev
 | `GET`      | `/private/edit-user/:userId`              | Private route. Renders `private/edit-user` form view.        |                                                              |
 | `POST`     | `/private/edit-user/:userId`              | Private route. Sends edit-profile info to server and updates user in DB and in `profile` view. | {[imageUrl], name, lastName, gender, e-mail, birthDate, city, country, password, type, height, weight, goal, body type} |
 | `GET`      | `/private/live-class/:classId`            | Renders the `/private/live-class`view class live feed.       |                                                              |
+| GET`       | `/private/progress`                       | Readers training progress for the user. Clasess attended     |                                                              |
 
 ## Models
 
