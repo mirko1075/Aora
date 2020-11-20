@@ -18,18 +18,26 @@ authRouter.get('/signup', (req, res, next) => {
 
 // POST > SIGN UP ROUTE
 authRouter.post('/signup', (req, res, next) => {
-    const { username, password } = req.body;
+    const { email, password, repeat } = req.body;
 
-    if ( username === '' || password === '') {
-        const props = { errorMessage: 'Enter username and password'};
+    // POST > SIGN UP EMAIL AND PASSWORD
+    if ( email === '' || password === '' || repeat === '') {
+        const props = { errorMessage: 'Please complete form'};
+        res.render('Signup', props);
+        return;
+    }
+    if (password !== repeat) {
+        const props = { errorMessage: `Passwords don't match!`};
         res.render('Signup', props);
         return;
     }
     
-    User.findOne( { username: username })
+//email validation
+
+    User.findOne( { email: email })
     .then( (user) => {
         if (user) {
-            const props = { errorMessage: 'The username already exist'};
+            const props = { errorMessage: 'The email already exist'};
             res.render('Signup', props);
             return;
         }
@@ -37,7 +45,7 @@ authRouter.post('/signup', (req, res, next) => {
         const salt = bcrypt.genSaltSync( saltRound );
         const hashedPassword = bcrypt.hashSync( password, salt );
 
-        User.create( {username: username, password: hashedPassword })
+        User.create( {email: email, password: hashedPassword })
         .then( (createdUser) => {
             res.redirect('/');
 
@@ -54,18 +62,18 @@ authRouter.get('/login', (req, res, next) => {
 
 // POST > LOGIN ROUTE
 authRouter.post('/login', (req, res, next) => {
-    const {username, password} = req.body;
+    const {email, password} = req.body;
 
-    if (username === '' || password === '') {
-        const props = { errorMessage: 'Indicate username and password'}
+    if (email === '' || password === '') {
+        const props = { errorMessage: 'Indicate email and password'}
         res.render('Login', props);
         return;
     }
 
-    User.findOne( { username } )
+    User.findOne( { email } )
     .then( (user) => {
         if (!user) {
-            const props = {errorMessage: "The username doesn't exist"}
+            const props = {errorMessage: "The email doesn't exist"}
             res.render('Login', props);
             return;
         }
