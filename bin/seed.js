@@ -1,8 +1,8 @@
 const mongoose = require("mongoose");
 const class = require("./../models/User.model");
 const user = require("./../models/Class.model");
-const users = require("./users-mock-data");
-const reviews = require("./classes-mock-data");
+const users = require("./users-mockup");
+const reviews = require("./classes-mockup");
 
 
 //Connection to DB parameters

@@ -45,7 +45,7 @@ USERS
   name: String,
   lastName: String,
   email: {type: String, unique: true },
-  gender: String,
+  gender: {String, enum: ["Male", "Female", "Other"]},
   birthDate: Date,
   city: String,
   country: String,
@@ -67,7 +67,7 @@ CLASSES
 
 ```
 {
-  trainer:  {Schema.Types.ObjectId, ref: 'User' },
+  trainer: [{ type: Schema.Types.ObjectId, ref: "User" }],
   name: {String, unique: true},
   description: String,
   closureMessage: String,
