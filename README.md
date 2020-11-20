@@ -67,7 +67,7 @@ CLASSES
 
 ```
 {
-  trainer:  {Schema.Types.ObjectId, ref: 'User' },
+  trainer: [{ type: Schema.Types.ObjectId, ref: "User" }],
   name: {String, unique: true},
   description: String,
   closureMessage: String,
