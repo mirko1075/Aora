@@ -9,19 +9,26 @@ function calculateToday() {
 }
 
 function changeDay(day) {
+  day = day.slice(4, 8);
+  day = "day-" + day;
   console.log("Change the day to: " + day);
   const elementToShow = document.querySelector("#" + day);
-  const elementToShowId = elementToShow.id;
-  //   console.log("elementtoShow ID", elementToShow, elementToShowId);
-  hideAllDivs(elementToShowId);
-  elementToShow.style.display = "block";
+
+  if (elementToShow) {
+    const elementToShowId = elementToShow.id;
+    console.log("elementtoShow ID", elementToShow, elementToShowId);
+    hideAllDivs(elementToShowId);
+    elementToShow.style.display = "block";
+  }
 }
 
 function hideAllDivs(todayDivId) {
   const allDivs = document.querySelectorAll(".class");
   for (i = 0; i < allDivs.length; i++) {
-    const btnId = "btn-" + allDivs[i].id;
-    console.log("btnId", btnId);
+    let btnId = allDivs[i].id;
+    btnId = btnId.slice(4, 8);
+    btnId = "day-" + btnId;
+    console.log("btnId", btnId), "todayDivId", todayDivId;
     if (btnId != todayDivId) {
       allDivs[i].style.display = "none";
     }
