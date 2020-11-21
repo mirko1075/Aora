@@ -19,7 +19,9 @@ function ClassCalendar(props) {
         return (
           <div id="{obj.idClass}" key={i}>
             <h1>{obj.name}</h1>
-            <p>{obj.scheduled.getDay() + "/" + obj.scheduled.getMonth()}</p>
+            <p>
+              {obj.scheduled.getDate() + "/" + (obj.scheduled.getMonth() + 1)}
+            </p>
             <p>{obj.trainer.name}</p>
             <p>{obj.duration}</p>
             <p>{obj.classType}</p>

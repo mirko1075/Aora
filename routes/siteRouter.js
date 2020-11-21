@@ -47,6 +47,7 @@ siteRouter.get("/progress/:userId", (req, res, next) => {
 siteRouter.get("/home", (req, res, next) => {
   //   getUserBySession(req, res, next);
   Class.find()
+    .sort("scheduled")
     .populate("trainer")
     .then((foundClasses) => {
       const props = { foundClasses: foundClasses };
