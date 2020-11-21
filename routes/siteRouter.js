@@ -5,6 +5,9 @@ const isLoggedIn = require("./../utils/isLoggedIn");
 //const getUserBySession = require("./../utils/isLoggedIn");
 // ROUTES
 
+//LOADING
+const Class = require("./../models/Class.model");
+
 // GET > SIGN UP ROUTE
 siteRouter.get("/calendar", (req, res, next) => {
   res.render("Calendar");
@@ -43,6 +46,14 @@ siteRouter.get("/progress/:userId", (req, res, next) => {
 });
 siteRouter.get("/home", (req, res, next) => {
   //   getUserBySession(req, res, next);
-  res.render("Calendar");
+  Class.find()
+    .populate("trainer")
+    .then((foundClasses) => {
+      const props = { foundClasses: foundClasses };
+      res.render("Calendar", props);
+    })
+    .catch((error) =>
+      console.log("Something went wrong when retrieving an access token", error)
+    );
 });
 module.exports = siteRouter;
