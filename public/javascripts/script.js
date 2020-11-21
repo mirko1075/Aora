@@ -32,7 +32,7 @@ function hideAllDivs(todayDivId) {
 //// Add listeners
 const btnArray = document.querySelectorAll(".daysBtn");
 for (i = 0; i < btnArray.length; i++) {
-  const btnId = "btn-" + btnArray[i].id;
+  const btnId = btnArray[i].id;
   btnArray[i].addEventListener("click", function () {
     changeDay(btnId);
   });
