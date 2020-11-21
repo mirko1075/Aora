@@ -2,6 +2,7 @@ var express = require("express");
 var siteRouter = express.Router();
 
 const isLoggedIn = require("./../utils/isLoggedIn");
+//const getUserBySession = require("./../utils/isLoggedIn");
 // ROUTES
 
 // GET > SIGN UP ROUTE
@@ -21,10 +22,14 @@ siteRouter.post("/class-details/:idClass", (req, res, next) => {
 siteRouter.get("/class-schedule/add/:idClass", (req, res, next) => {
   res.render("Class");
 });
-siteRouter.get("/class-schedule/delete/:idClass", (req, res, next) => {
-  res.render("Class");
-});
-siteRouter.get("/profile/:userId", (req, res, next) => {
+siteRouter.get(
+  "/class-schedule/delete/:idClass",
+
+  (req, res, next) => {
+    res.render("Class");
+  }
+);
+siteRouter.get("/profile", (req, res, next) => {
   res.render("Profile");
 });
 siteRouter.post("/edit-user/:userId", (req, res, next) => {
@@ -37,6 +42,7 @@ siteRouter.get("/progress/:userId", (req, res, next) => {
   res.render("Progress");
 });
 siteRouter.get("/home", (req, res, next) => {
+  //   getUserBySession(req, res, next);
   res.render("Calendar");
 });
 module.exports = siteRouter;

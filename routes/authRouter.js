@@ -46,11 +46,19 @@ authRouter.post("/signup", (req, res, next) => {
 
       User.create({ email: email, password: hashedPassword })
         .then((createdUser) => {
-          res.redirect("/");
+          res.redirect("/private/Calendar/");
         })
-        .catch((err) => console.log(err));
+        .catch((err) => {
+          console.log(err);
+          const props = { errorMessage: "IError creating User<br>" + err };
+          res.render("Signup", props);
+        });
     })
-    .catch((err) => console.log(err));
+    .catch((err) => {
+      console.log(err);
+      const props = { errorMessage: "IError creating User<br>" + err };
+      res.render("Signup", props);
+    });
 });
 
 // GET > LOGIN ROUTE
@@ -67,9 +75,10 @@ authRouter.post("/login", (req, res, next) => {
     res.render("Login", props);
     return;
   }
-
+  console.log("1");
   User.findOne({ email }).then((user) => {
     if (!user) {
+      console.log("2");
       const props = { errorMessage: "The email doesn't exist" };
       res.render("Login", props);
       return;
@@ -77,16 +86,24 @@ authRouter.post("/login", (req, res, next) => {
     const passwordCorrect = bcrypt.compareSync(password, user.password);
 
     if (passwordCorrect) {
+      console.log("3");
       req.session.currentUser = user;
       res.redirect("/private/home");
     } else {
-      res.redirect("/auth/login");
+      console.log("4");
+      res.render("login", { errorMessage: "Incorrect password" });
     }
   });
 });
 
 // GET > LOGOUT ROUTE
 authRouter.get("/logout", (req, res, next) => {
-  res.render("Login");
+  req.session.destroy((err) => {
+    if (err) {
+      res.render("Login", err);
+    } else {
+      res.redirect("/auth/login");
+    }
+  });
 });
 module.exports = authRouter;
