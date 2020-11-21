@@ -2,7 +2,7 @@ const React = require("react");
 const Layout = require("./Layout");
 const addDate = require("../utils/utils");
 const ClassCalendar = require("./components/Class-calendar");
-const CalendarBar = require("./components/Calendar");
+const CalendarBar = require("./components/CalendarBar");
 
 let datesArr = [];
 let dateToPrint = null;
