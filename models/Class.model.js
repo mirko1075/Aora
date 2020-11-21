@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const classSchema = new Schema(
   {
     trainer: [{ type: Schema.Types.ObjectId, ref: "User" }],
-    name: { type: String, required: true, unique: true },
+    name: { type: String, required: true },
     description: String,
     closureMessage: String,
     scheduled: Date,

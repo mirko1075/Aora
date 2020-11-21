@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User.model");
 const zxcvbn = require("zxcvbn");
 
-const isLoggedIn = require("./../utils/isLoggedIn");
+const isLoggedIn = require("./../utils/utils");
 const saltRound = 10;
 
 // ROUTES

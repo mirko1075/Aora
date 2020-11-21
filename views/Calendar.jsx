@@ -45,19 +45,9 @@ for (let i = 0; i < 7; i++) {
   monthOfYear = dateToPrint.getMonth();
   datesArr.push({ dayOfWeek, dayOfMonth, monthOfYearName, monthOfYear });
 }
-// console.log("datesArr", datesArr);
+
 //////////////// END OF BAR VALUES CREATION, THEY WILL PASSED AS ARRAY IN THE PROPS
 
-// Class and calendar Receive parameters:
-// ID Class -- idClass
-// ClassName -- className
-// Image URL -- imageUrl
-// Scheduled time -- scheduled
-// Trainer Name -- trainer
-// Duration  --  duration
-// ClassType  --  classType
-// Url  --  url
-// Equipment  -- equipment
 function Calendar(props) {
   const classesArr = props;
   return (

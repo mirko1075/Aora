@@ -1,8 +1,8 @@
 var express = require("express");
 var siteRouter = express.Router();
 
-const isLoggedIn = require("./../utils/isLoggedIn");
-//const getUserBySession = require("./../utils/isLoggedIn");
+const isLoggedIn = require("./../utils/utils");
+//const getUserBySession = require("./../utils/utils");
 // ROUTES
 
 //LOADING

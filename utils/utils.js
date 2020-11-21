@@ -1,3 +1,12 @@
+function isLoggedIn(req, res, next) {
+  if (req.session.currentUser) {
+    console.log("GOOD TO GO");
+    next();
+  } else {
+    res.redirect("/auth/login");
+  }
+}
+
 function getUserBySession(req, res, next) {
   // console.log("req.session.currentUser:", req.session.currentUser);
   if (req.session.currentUser) {
@@ -13,5 +22,7 @@ function addDate(days) {
   return date;
 }
 
+//EXPORTS
+module.exports = isLoggedIn;
 module.exports = getUserBySession;
 module.exports = addDate;

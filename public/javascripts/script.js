@@ -4,19 +4,19 @@ function calculateToday() {
   let dateToPrint = new Date();
   dayOfMonth = dateToPrint.getDate();
   monthOfYear = dateToPrint.getMonth();
-  console.log("Today is:", dayOfMonth + "" + monthOfYear);
+  //   console.log("Today is:", dayOfMonth + "" + monthOfYear);
   return dayOfMonth + "" + monthOfYear;
 }
 
 function changeDay(day) {
   day = day.slice(4, 8);
   day = "day-" + day;
-  console.log("Change the day to: " + day);
+  //   console.log("Change the day to: " + day);
   const elementToShow = document.querySelector("#" + day);
 
   if (elementToShow) {
     const elementToShowId = elementToShow.id;
-    console.log("elementtoShow ID", elementToShow, elementToShowId);
+    // console.log("elementtoShow ID", elementToShow, elementToShowId);
     hideAllDivs(elementToShowId);
     elementToShow.style.display = "block";
   }
@@ -28,7 +28,7 @@ function hideAllDivs(todayDivId) {
     let btnId = allDivs[i].id;
     btnId = btnId.slice(4, 8);
     btnId = "day-" + btnId;
-    console.log("btnId", btnId), "todayDivId", todayDivId;
+    // console.log("btnId", btnId), "todayDivId", todayDivId;
     if (btnId != todayDivId) {
       allDivs[i].style.display = "none";
     }
