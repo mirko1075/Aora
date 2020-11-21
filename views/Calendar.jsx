@@ -12,6 +12,7 @@ let dateToPrint = null;
 let dayOfMonth = null;
 let dayOfWeek = null;
 let monthOfYear = null;
+let monthOfYearName = null;
 const monthNames = [
   "January",
   "February",
@@ -40,8 +41,9 @@ for (let i = 0; i < 7; i++) {
   dateToPrint = addDate(i);
   dayOfMonth = dateToPrint.getDate();
   dayOfWeek = dayNames[dateToPrint.getDay()];
-  monthOfYear = monthNames[dateToPrint.getMonth()];
-  datesArr.push({ dayOfWeek, dayOfMonth, monthOfYear });
+  monthOfYearName = monthNames[dateToPrint.getMonth()];
+  monthOfYear = dateToPrint.getMonth();
+  datesArr.push({ dayOfWeek, dayOfMonth, monthOfYearName, monthOfYear });
 }
 //////////////// END OF BAR VALUES CREATION, THEY WILL PASSED AS ARRAY IN THE PROPS
 

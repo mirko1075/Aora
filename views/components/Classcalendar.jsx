@@ -2,6 +2,8 @@ const React = require("react");
 
 function ClassCalendar(props) {
   const classesArr = props.classesArr.foundClasses;
+  let actualDay = null;
+
   // Receives parameters:
   // ID Class -- idClass
   // Class name -- name
@@ -12,12 +14,14 @@ function ClassCalendar(props) {
   // ClassType  --  classType
   // Url  --  url
   // Equipment  -- equipment
-  console.log("classesArr", classesArr);
+  // console.log("classesArr", classesArr);
   return (
     <div>
       {classesArr.map((obj, i) => {
+        obj.scheduled != actualDay ? (actualDay = obj.scheduled) : null;
+        console.log("actualday", actualDay);
         return (
-          <div id="{obj.idClass}" key={i}>
+          <div id={actualDay.getDate() + "" + actualDay.getMonth()} key={i}>
             <h1>{obj.name}</h1>
             <p>
               {obj.scheduled.getDate() + "/" + (obj.scheduled.getMonth() + 1)}
