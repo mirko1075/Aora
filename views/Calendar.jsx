@@ -45,6 +45,7 @@ for (let i = 0; i < 7; i++) {
   monthOfYear = dateToPrint.getMonth();
   datesArr.push({ dayOfWeek, dayOfMonth, monthOfYearName, monthOfYear });
 }
+// console.log("datesArr", datesArr);
 //////////////// END OF BAR VALUES CREATION, THEY WILL PASSED AS ARRAY IN THE PROPS
 
 // Class and calendar Receive parameters:

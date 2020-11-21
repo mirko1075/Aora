@@ -21,7 +21,14 @@ function ClassCalendar(props) {
         obj.scheduled != actualDay ? (actualDay = obj.scheduled) : null;
         console.log("actualday", actualDay);
         return (
-          <div id={actualDay.getDate() + "" + actualDay.getMonth()} key={i}>
+          <div
+            className={
+              "class " + actualDay.getDate() + "" + actualDay.getMonth()
+            }
+            key={i}
+            id={actualDay.getDate() + "" + actualDay.getMonth()}
+            key={i}
+          >
             <h1>{obj.name}</h1>
             <p>
               {obj.scheduled.getDate() + "/" + (obj.scheduled.getMonth() + 1)}

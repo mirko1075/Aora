@@ -5,19 +5,26 @@ function CalendarBar(props) {
     <div className="calendarbar">
       {props.datesArr.map((dateObj, i) => {
         return (
-          <div key="{i}" className="datebox">
+          <div
+            key="{i}"
+            id={String(dateObj.dayOfMonth) + String(dateObj.monthOfYear)}
+            className="datebox"
+          >
             <div className="month">
-              {String(dateObj.monthOfYear).slice(0, 3)}
+              {String(dateObj.monthOfYearName).slice(0, 3)}
             </div>
+            <div className="day">{String(dateObj.dayOfWeek).slice(0, 3)}</div>
             <div className="day">
-              <a href="javascript:changeDay('{String(dateObj.dayOfMonth)+String(dateObj.monthOfYear)}')">
-                {String(dateObj.dayOfWeek).slice(0, 3)}
-              </a>
-            </div>
-            <div className="day">
-              <a href="javascript:changeDay('{String(dateObj.dayOfMonth)+String(dateObj.monthOfYear)}')">
+              <button
+                className="daysBtn"
+                id={
+                  "btn-" +
+                  String(dateObj.dayOfMonth) +
+                  String(dateObj.monthOfYear)
+                }
+              >
                 {String(dateObj.dayOfMonth)}
-              </a>
+              </button>
             </div>
           </div>
         );
