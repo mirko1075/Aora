@@ -12,7 +12,7 @@ function changeDay(day) {
   console.log("Change the day to: " + day);
   const elementToShow = document.querySelector("#" + day);
   const elementToShowId = elementToShow.id;
-  console.log("elementtoShow ID", elementToShow, elementToShowId);
+  //   console.log("elementtoShow ID", elementToShow, elementToShowId);
   hideAllDivs(elementToShowId);
   elementToShow.style.display = "block";
 }
