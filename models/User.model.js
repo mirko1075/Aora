@@ -18,7 +18,14 @@ const userSchema = new Schema(
     userGoal: {
       type: String,
       default: "",
-      enum: ["Strenght", "Weight loss", "Mass gain", "General health", null],
+      enum: [
+        "Strenght",
+        "Weight loss",
+        "Mass gain",
+        "General health",
+        "",
+        null,
+      ],
     },
     userBodyType: {
       type: String,
