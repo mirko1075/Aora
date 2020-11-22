@@ -48,16 +48,6 @@ siteRouter.get("/classDetail/add/:idClass", (req, res, next) => {
     $addToSet: { scheduledClasses: [idClass] },
   })
     .then((foundClass) => {
-      const props = {
-        foundClass: foundClass,
-        req: req,
-        res: res,
-        next: next,
-      };
-      // console.log(
-      //   "!!!!!!!!!!!!!!!!!!PROPS from Promise FindByIdAndUpdate:",
-      //   props
-      // );
       res.redirect("/private/ClassDetail/" + idClass);
     })
     .catch((error) =>
@@ -67,13 +57,23 @@ siteRouter.get("/classDetail/add/:idClass", (req, res, next) => {
       )
     );
 });
-siteRouter.get(
-  "/class-schedule/delete/:idClass",
-
-  (req, res, next) => {
-    res.render("Class");
-  }
-);
+siteRouter.get("/classDetail/delete/:idClass", (req, res, next) => {
+  const idClass = req.params.idClass;
+  const idUser = getUserBySession(req, res, next);
+  // console.log("Delete/n idUser:", idUser, "idClass:", idClass);
+  User.findByIdAndUpdate(idUser, {
+    $pull: { scheduledClasses: idClass },
+  })
+    .then((foundClass) => {
+      res.redirect("/private/ClassDetail/" + idClass);
+    })
+    .catch((error) =>
+      console.log(
+        "Something went wrong when retrieving an access token using findByIdAndUpdate",
+        error
+      )
+    );
+});
 siteRouter.get("/profile", (req, res, next) => {
   res.render("Profile");
 });

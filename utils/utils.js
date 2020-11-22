@@ -11,6 +11,7 @@ function addDate(days) {
 
 function isBooked(classId, userId) {
   const User = require("./../models/User.model");
+  let result = false;
   User.findById(userId)
     .then((foundUser) => {
       console.log(
@@ -21,11 +22,12 @@ function isBooked(classId, userId) {
       );
       if (foundUser.scheduledClasses.indexOf(classId) != -1) {
         console.log("Found");
-        return true;
+        result = true;
       } else {
         console.log("Not found");
-        return false;
+        result = false;
       }
+      return result;
     })
     .catch((error) =>
       console.log(
@@ -37,7 +39,6 @@ function isBooked(classId, userId) {
 }
 
 function getUserBySession(req, res, next) {
-  console.log("req.session.currentUser._id:", req.session.currentUser._id);
   if (req.session.currentUser) {
     return req.session.currentUser._id;
   } else {
