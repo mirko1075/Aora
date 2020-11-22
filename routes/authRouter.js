@@ -5,7 +5,7 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User.model");
 const zxcvbn = require("zxcvbn");
 
-const isLoggedIn = require("./../utils/utils");
+const isLoggedIn = require("./../utils/isLoggedIn");
 const saltRound = 10;
 
 // ROUTES
@@ -25,13 +25,13 @@ authRouter.post("/signup", (req, res, next) => {
     res.render("Signup", props);
     return;
   }
-  
+
   // PASSWORD STRENGTH
-  if (zxcvbn(password).score<3) {
-      const suggestions = zxcvbn(password).feedback.suggestions;
-      const props = { errorMessage: suggestions[0] };
-      res.render("Signup", props);
-      return;
+  if (zxcvbn(password).score < 3) {
+    const suggestions = zxcvbn(password).feedback.suggestions;
+    const props = { errorMessage: suggestions[0] };
+    res.render("Signup", props);
+    return;
   }
 
   // ENTER PASSWORD AND REPEAT PASSWORD FIELDS MATCH VALIDATION
@@ -39,19 +39,18 @@ authRouter.post("/signup", (req, res, next) => {
     const props = { errorMessage: `Passwords don't match!` };
     res.render("Signup", props);
     return;
-    }
+  }
 
   //EMAIL VALIDATION
 
   // EMAIL SYNTAX VALIDATION
   const emailRegEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   // const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-  if (emailRegEx.test(email) = 0) {
+  if ((emailRegEx.test(email) = 0)) {
     const props = { errorMessage: `Enter a valid email adress` };
     res.render("Signup", props);
     return;
   }
-
 
   //EMAIL AVAILABILITY
   User.findOne({ email: email })
@@ -96,15 +95,15 @@ authRouter.post("/login", (req, res, next) => {
     res.render("Login", props);
     return;
   }
-  
-  //CHECK FOR EMAIL IN DATABASE 
+
+  //CHECK FOR EMAIL IN DATABASE
   User.findOne({ email }).then((user) => {
     if (!user) {
       const props = { errorMessage: "The email doesn't exist" };
       res.render("Login", props);
       return;
     }
-    
+
     //CHECK IF PASSWORD USED FOR LOGIN MATCHES THE ONE FOR THE USER SAVED IN THE DATABASE
     const passwordCorrect = bcrypt.compareSync(password, user.password);
 

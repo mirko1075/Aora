@@ -1,8 +1,7 @@
 const React = require("react");
 const Layout = require("./Layout");
-const getprops = require("../utils/utils");
-const getUserBySession = require("../utils/utils");
-const isBooked = require("../utils/utils");
+const getUserBySession = require("../utils/isBooked");
+const isBooked = require("../utils/isBooked");
 
 function ClassDetail(props) {
   props = props.foundClass;
@@ -22,7 +21,7 @@ function ClassDetail(props) {
       <br></br>
 
       {isBooked(getUserBySession(props.req, props.res, props.next)) ? (
-        <a href={"/private/classschedule/add/" + props.name}>Book</a>
+        <a href={"/private/classDetail/add/" + props._id}>Book</a>
       ) : null}
       <br></br>
       <a href="/private/calendar">Back to calendar</a>

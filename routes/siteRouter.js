@@ -1,12 +1,13 @@
 var express = require("express");
 var siteRouter = express.Router();
 
-const isLoggedIn = require("./../utils/utils");
-//const getUserBySession = require("./../utils/utils");
+const isLoggedIn = require("../utils/isLoggedIn");
+const getUserBySession = require("./../utils/getUserBySession");
 // ROUTES
 
 //LOADING
 const Class = require("./../models/Class.model");
+const User = require("./../models/User.model");
 
 // GET > SIGN UP ROUTE
 siteRouter.get("/calendar", (req, res, next) => {
@@ -36,8 +37,22 @@ siteRouter.get("/classDetail/:idClass", (req, res, next) => {
 //   res.render("Class");
 // });
 
-siteRouter.get("/classschedule/add/:idClass", (req, res, next) => {
-  res.render("Class");
+siteRouter.get("/classDetail/add/:idClass", (req, res, next) => {
+  const idClass = req.params.idClass;
+  const idUser = getUserBySession(req, res, next);
+  console.log("idUser:", idUser);
+  User.findByIdAndUpdate(idUser, {
+    $addToSet: { scheduledClasses: [idClass] },
+  }).then((updatedClass) => {
+    const props = {
+      updatedClass: updatedClass,
+      req: req,
+      res: res,
+      next: next,
+    };
+    console.log("Props from Promise FindByIdAndUpdate:", props);
+    res.render("ClassDetail", props);
+  });
 });
 siteRouter.get(
   "/class-schedule/delete/:idClass",

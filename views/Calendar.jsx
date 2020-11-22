@@ -1,9 +1,10 @@
 const React = require("react");
 const Layout = require("./Layout");
-const addDate = require("../utils/utils");
+const addDate = require("../utils/addDate");
+const isLoggedIn = require("../utils/isLoggedIn");
 const ClassCalendar = require("./components/Classcalendar");
 const CalendarBar = require("./components/CalendarBar");
-
+console.log("isLoggedIn", isLoggedIn);
 //CREATION OF CALENDAR BAR
 
 let datesArr = [];
@@ -38,6 +39,7 @@ const dayNames = [
 
 for (let i = 0; i < 7; i++) {
   dateToPrint = addDate(i);
+  console.log("dateToPrint", dateToPrint);
   dayOfMonth = dateToPrint.getDate();
   dayOfWeek = dayNames[dateToPrint.getDay()];
   monthOfYearName = monthNames[dateToPrint.getMonth()];
