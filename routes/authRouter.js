@@ -44,7 +44,7 @@ authRouter.post("/signup", (req, res, next) => {
   //EMAIL VALIDATION
 
   // EMAIL SYNTAX VALIDATION
-  const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const emailRegEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   // const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
   if (emailRegEx.test(email) = 0) {
     const props = { errorMessage: `Enter a valid email adress` };
@@ -96,29 +96,30 @@ authRouter.post("/login", (req, res, next) => {
     res.render("Login", props);
     return;
   }
-  console.log("1");
+  
+  //CHECK FOR EMAIL IN DATABASE 
   User.findOne({ email }).then((user) => {
     if (!user) {
-      console.log("2");
       const props = { errorMessage: "The email doesn't exist" };
       res.render("Login", props);
       return;
     }
+    
+    //CHECK IF PASSWORD USED FOR LOGIN MATCHES THE ONE FOR THE USER SAVED IN THE DATABASE
     const passwordCorrect = bcrypt.compareSync(password, user.password);
 
+    //CREATE COOKIE & SEND TO HOME OR SHOW ERROR INSTEAD
     if (passwordCorrect) {
-      console.log("3");
       req.session.currentUser = user;
       res.redirect("/private/home");
     } else {
-      console.log("4");
       res.render("login", { errorMessage: "Incorrect password" });
     }
   });
 });
 
 // GET > LOGOUT ROUTE
-authRouter.get("/logout", (req, res, next) => {
+authRouter.get("/logout", isLoggedIn, (req, res, next) => {
   req.session.destroy((err) => {
     if (err) {
       res.render("Login", err);
