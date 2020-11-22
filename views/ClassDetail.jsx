@@ -37,10 +37,10 @@ function ClassDetail(props) {
         <br></br>
         <br></br>
 
-        {isBooked(getUserBySession(req, res, next)) ? (
-          <a href={"/private/classDetail/add/" + props._id}>Book</a>
-        ) : (
+        {isBooked(props._id, getUserBySession(req, res, next)) ? (
           <a href={"/private/classDetail/delete/" + props._id}>Unbook</a>
+        ) : (
+          <a href={"/private/classDetail/add/" + props._id}>Book</a>
         )}
         <br></br>
         <a href="/private/calendar">Back to calendar</a>

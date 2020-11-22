@@ -13,8 +13,13 @@ function isBooked(classId, userId) {
   const User = require("./../models/User.model");
   User.findById(userId)
     .then((foundUser) => {
-      console.log("foundUser", foundUser);
-      if (foundUser.scheduledClasses.find((element) => element == classId)) {
+      console.log(
+        "ClassId:",
+        classId,
+        "foundUser.scheduledClasses",
+        foundUser.scheduledClasses
+      );
+      if (foundUser.scheduledClasses.indexOf(classId) != -1) {
         console.log("Found");
         return true;
       } else {
