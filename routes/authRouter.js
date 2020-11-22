@@ -27,7 +27,10 @@ authRouter.post("/signup", (req, res, next) => {
   }
 
   // PASSWORD STRENGTH
-  if (zxcvbn(password).score < 3) {
+  // if (zxcvbn(password).score < 3) {    // TO UNCOMMENT, COMMENTED TO KEEP WORKING WITH CLASSES
+  // console.log("Score: ", zxcvbn(password));
+  if (zxcvbn(password).score > 0) {
+    //TO COMMENT
     const suggestions = zxcvbn(password).feedback.suggestions;
     const props = { errorMessage: suggestions[0] };
     res.render("Signup", props);
@@ -44,9 +47,10 @@ authRouter.post("/signup", (req, res, next) => {
   //EMAIL VALIDATION
 
   // EMAIL SYNTAX VALIDATION
-  const emailRegEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  // const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
-  if ((emailRegEx.test(email) = 0)) {
+  // const emailRegEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+  if (emailRegEx.test(email) == 0) {
+    // MODIFIED, IT WAS with one = sign, has to be with double
     const props = { errorMessage: `Enter a valid email adress` };
     res.render("Signup", props);
     return;

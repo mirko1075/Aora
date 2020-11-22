@@ -1,13 +1,13 @@
 var express = require("express");
 var siteRouter = express.Router();
 
-const isLoggedIn = require("../utils/isLoggedIn");
-const getUserBySession = require("./../utils/getUserBySession");
-// ROUTES
+const { getUserBySession, isLoggedIn } = require("../utils/utils");
 
 //LOADING
 const Class = require("./../models/Class.model");
 const User = require("./../models/User.model");
+
+// ROUTES
 
 // GET > SIGN UP ROUTE
 siteRouter.get("/calendar", (req, res, next) => {
@@ -29,7 +29,10 @@ siteRouter.get("/classDetail/:idClass", (req, res, next) => {
       res.render("ClassDetail", props);
     })
     .catch((error) =>
-      console.log("Something went wrong when retrieving an access token", error)
+      console.log(
+        "Something went wrong when retrieving an access token using findById",
+        error
+      )
     );
 });
 
@@ -40,19 +43,29 @@ siteRouter.get("/classDetail/:idClass", (req, res, next) => {
 siteRouter.get("/classDetail/add/:idClass", (req, res, next) => {
   const idClass = req.params.idClass;
   const idUser = getUserBySession(req, res, next);
-  console.log("idUser:", idUser);
+  // console.log("idUser:", idUser, "idClass:", idClass);
   User.findByIdAndUpdate(idUser, {
     $addToSet: { scheduledClasses: [idClass] },
-  }).then((updatedClass) => {
-    const props = {
-      updatedClass: updatedClass,
-      req: req,
-      res: res,
-      next: next,
-    };
-    console.log("Props from Promise FindByIdAndUpdate:", props);
-    res.render("ClassDetail", props);
-  });
+  })
+    .then((foundClass) => {
+      const props = {
+        foundClass: foundClass,
+        req: req,
+        res: res,
+        next: next,
+      };
+      // console.log(
+      //   "!!!!!!!!!!!!!!!!!!PROPS from Promise FindByIdAndUpdate:",
+      //   props
+      // );
+      res.redirect("/private/ClassDetail/" + idClass);
+    })
+    .catch((error) =>
+      console.log(
+        "Something went wrong when retrieving an access token using findByIdAndUpdate",
+        error
+      )
+    );
 });
 siteRouter.get(
   "/class-schedule/delete/:idClass",
