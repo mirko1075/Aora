@@ -20,6 +20,7 @@ function ClassDetail(props) {
       })}
       <br></br>
       <br></br>
+
       {isBooked(getUserBySession(props.req, props.res, props.next)) ? (
         <a href={"/private/classschedule/add/" + props.name}>Book</a>
       ) : null}
