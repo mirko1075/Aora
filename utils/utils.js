@@ -1,12 +1,3 @@
-function addDate(days) {
-  var date = new Date();
-
-  console.log("date before", date);
-  date.setDate(date.getDate() + days);
-  console.log("date after", date);
-  return date;
-}
-
 //Function to check if classed is booked
 
 function isBooked(classId, userId) {
@@ -54,4 +45,4 @@ function isLoggedIn(req, res, next) {
   }
 }
 
-module.exports = { addDate, getUserBySession, isBooked, isLoggedIn };
+module.exports = { getUserBySession, isBooked, isLoggedIn };
