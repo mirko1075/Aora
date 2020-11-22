@@ -1,5 +1,4 @@
 //Function to check if classed is booked
-
 function isBooked(classId, userId) {
   const User = require("./../models/User.model");
   let result = false;
@@ -29,6 +28,7 @@ function isBooked(classId, userId) {
   return true;
 }
 
+// Function gets userId from Session
 function getUserBySession(req, res, next) {
   if (req.session.currentUser) {
     return req.session.currentUser._id;
@@ -37,6 +37,7 @@ function getUserBySession(req, res, next) {
   }
 }
 
+// Function middleware for blocking access to unauthorized
 function isLoggedIn(req, res, next) {
   if (req.session.currentUser) {
     next();

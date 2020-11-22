@@ -9,15 +9,32 @@ const User = require("./../models/User.model");
 
 // ROUTES
 
-// GET > SIGN UP ROUTE
+// GET > CALENDAR HOME
+
+siteRouter.get("/home", (req, res, next) => {
+  //   getUserBySession(req, res, next);
+  Class.find()
+    .sort("scheduled")
+    .populate("trainer")
+    .then((foundClasses) => {
+      const props = { foundClasses: foundClasses };
+      res.render("Calendar", props);
+    })
+    .catch((error) =>
+      console.log("Something went wrong when retrieving an access token", error)
+    );
+});
+
 siteRouter.get("/calendar", (req, res, next) => {
   res.redirect("/private/Home");
 });
 
-siteRouter.get("/my-schedule", (req, res, next) => {
-  res.render("Calendar");
-});
+// NOT NEEDED
+// siteRouter.get("/my-schedule", (req, res, next) => {
+//   res.render("Calendar");
+// });
 
+// ROUTE FOR CLASS DETAILS SHOW
 siteRouter.get("/classDetail/:idClass", (req, res, next) => {
   const idCLass = req.params.idClass;
   // console.log("IdClass: ", idCLass);
@@ -36,10 +53,12 @@ siteRouter.get("/classDetail/:idClass", (req, res, next) => {
     );
 });
 
+// NOT NEEEDED
 // siteRouter.post("/classDetails/:idClass", (req, res, next) => {   // Not needed
 //   res.render("Class");
 // });
 
+// ROUTE FOR CLASS BOOK
 siteRouter.get("/classDetail/add/:idClass", (req, res, next) => {
   const idClass = req.params.idClass;
   const idUser = getUserBySession(req, res, next);
@@ -57,6 +76,8 @@ siteRouter.get("/classDetail/add/:idClass", (req, res, next) => {
       )
     );
 });
+
+// ROUTE FOR CLASS  UNBOOK
 siteRouter.get("/classDetail/delete/:idClass", (req, res, next) => {
   const idClass = req.params.idClass;
   const idUser = getUserBySession(req, res, next);
@@ -86,17 +107,5 @@ siteRouter.get("/live-class/:classId", (req, res, next) => {
 siteRouter.get("/progress/:userId", (req, res, next) => {
   res.render("Progress");
 });
-siteRouter.get("/home", (req, res, next) => {
-  //   getUserBySession(req, res, next);
-  Class.find()
-    .sort("scheduled")
-    .populate("trainer")
-    .then((foundClasses) => {
-      const props = { foundClasses: foundClasses };
-      res.render("Calendar", props);
-    })
-    .catch((error) =>
-      console.log("Something went wrong when retrieving an access token", error)
-    );
-});
+
 module.exports = siteRouter;
