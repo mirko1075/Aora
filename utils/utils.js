@@ -32,7 +32,7 @@ function isBooked(classId, userId) {
 }
 
 function getUserBySession(req, res, next) {
-  // console.log("req.session.currentUser:", req.session);
+  console.log("req.session.currentUser._id:", req.session.currentUser._id);
   if (req.session.currentUser) {
     return req.session.currentUser._id;
   } else {
