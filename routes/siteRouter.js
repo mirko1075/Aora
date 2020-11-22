@@ -95,17 +95,34 @@ siteRouter.get("/classDetail/delete/:idClass", (req, res, next) => {
       )
     );
 });
-siteRouter.get("/profile", (req, res, next) => {
-  res.render("Profile");
-});
-siteRouter.post("/edit-user/:userId", (req, res, next) => {
-  res.render("Profile");
-});
+
+// GET LIVE-CLASS ROUTE
 siteRouter.get("/live-class/:classId", (req, res, next) => {
   res.render("Liveclass");
 });
+
+// GET SCHEDULE ROUTE
+siteRouter.get("/schedule", (req, res, next) => {
+  const props = req.session.currentUser;
+  res.render("Schedule", props);
+});
+// GET PROGRESS ROUTE
+siteRouter.get("/progress", (req, res, next) => {
+  const props = req.session.currentUser;
+  res.render("Progress", props);
+});
+
+// GET PROFILE ROUTE I (which one should stay?)
 siteRouter.get("/progress/:userId", (req, res, next) => {
   res.render("Progress");
+});
+// GET PROFILE ROUTE II (which one should stay?)
+siteRouter.get("/profile", (req, res, next) => {
+  res.render("Profile");
+});
+// POST PROFILE EDIT ROUTE
+siteRouter.post("/edit-user/:userId", (req, res, next) => {
+  res.render("Profile");
 });
 
 module.exports = siteRouter;

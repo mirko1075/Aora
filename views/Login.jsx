@@ -3,7 +3,7 @@ const Layout = require("./Layout");
 
 function Login (props) {
     return(
-        <Layout>
+        //<Layout>
             <form id="form" action="/auth/login" method="POST">
                 <input type="text" name="email" placeholder="ENTER EMAIL" />
                 <br/>
@@ -18,7 +18,7 @@ function Login (props) {
                     : null
                 }
             </form>
-        </Layout>
+        //</Layout>
     )
 }
 
