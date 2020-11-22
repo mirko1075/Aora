@@ -15,8 +15,10 @@ function isBooked(classId, userId) {
     .then((foundUser) => {
       console.log("foundUser", foundUser);
       if (foundUser.scheduledClasses.find((element) => element == classId)) {
+        console.log("Found");
         return true;
       } else {
+        console.log("Not found");
         return false;
       }
     })
