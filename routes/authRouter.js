@@ -19,20 +19,41 @@ authRouter.get("/signup", (req, res, next) => {
 authRouter.post("/signup", (req, res, next) => {
   const { email, password, repeat } = req.body;
 
-  // POST > SIGN UP EMAIL AND PASSWORD
+  // REQUIRE DATA INPUT ON ALL FIELDS
   if (email === "" || password === "" || repeat === "") {
     const props = { errorMessage: "Please complete form" };
     res.render("Signup", props);
     return;
   }
+  
+  // PASSWORD STRENGTH
+  if (zxcvbn(password).score<3) {
+      const suggestions = zxcvbn(password).feedback.suggestions;
+      const props = { errorMessage: suggestions[0] };
+      res.render("Signup", props);
+      return;
+  }
+
+  // ENTER PASSWORD AND REPEAT PASSWORD FIELDS MATCH VALIDATION
   if (password !== repeat) {
     const props = { errorMessage: `Passwords don't match!` };
     res.render("Signup", props);
     return;
+    }
+
+  //EMAIL VALIDATION
+
+  // EMAIL SYNTAX VALIDATION
+  const emailRegex = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  // const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
+  if (emailRegEx.test(email) = 0) {
+    const props = { errorMessage: `Enter a valid email adress` };
+    res.render("Signup", props);
+    return;
   }
 
-  //email validation
 
+  //EMAIL AVAILABILITY
   User.findOne({ email: email })
     .then((user) => {
       if (user) {
