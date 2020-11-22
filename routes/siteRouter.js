@@ -16,24 +16,27 @@ siteRouter.get("/calendar", (req, res, next) => {
 siteRouter.get("/my-schedule", (req, res, next) => {
   res.render("Calendar");
 });
+
 siteRouter.get("/classDetail/:idClass", (req, res, next) => {
   const idCLass = req.params.idClass;
-  console.log("IdClass: ", idCLass);
+  // console.log("IdClass: ", idCLass);
   Class.findById(idCLass)
     .populate("trainer")
     .then((foundClass) => {
-      const props = { foundClass: foundClass };
-      console.log("Props:", props);
-      res.render("ClassDetail", props.foundClass);
+      const props = { foundClass: foundClass, req: req, res: res, next: next };
+      // console.log("Props:", props);
+      res.render("ClassDetail", props);
     })
     .catch((error) =>
       console.log("Something went wrong when retrieving an access token", error)
     );
 });
-siteRouter.post("/class-details/:idClass", (req, res, next) => {
-  res.render("Class");
-});
-siteRouter.get("/class-schedule/add/:idClass", (req, res, next) => {
+
+// siteRouter.post("/classDetails/:idClass", (req, res, next) => {   // Not needed
+//   res.render("Class");
+// });
+
+siteRouter.get("/classschedule/add/:idClass", (req, res, next) => {
   res.render("Class");
 });
 siteRouter.get(

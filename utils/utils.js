@@ -1,4 +1,4 @@
-function isLoggedIn (req, res, next) {
+function isLoggedIn(req, res, next) {
   if (req.session.currentUser) {
     next();
   } else {
@@ -21,7 +21,12 @@ function addDate(days) {
   return date;
 }
 
+//Function to check if classed is booked
+
+function isBooked(classId, userId) {}
+
 //EXPORTS
 module.exports = isLoggedIn;
 module.exports = getUserBySession;
 module.exports = addDate;
+module.exports = isBooked;
