@@ -26,7 +26,14 @@ function ClassCalendar(props) {
               "class " + actualDay.getDate() + "" + actualDay.getMonth()
             }
             key={i}
-            id={"day-" + actualDay.getDate() + "" + actualDay.getMonth()}
+            id={
+              "class-" +
+              i +
+              "-" +
+              actualDay.getDate() +
+              "" +
+              actualDay.getMonth()
+            }
             key={i}
           >
             <h1>{obj.name}</h1>
