@@ -10,14 +10,25 @@ const Class = require("./../models/Class.model");
 
 // GET > SIGN UP ROUTE
 siteRouter.get("/calendar", (req, res, next) => {
-  res.render("Calendar");
+  res.redirect("/private/Home");
 });
 
 siteRouter.get("/my-schedule", (req, res, next) => {
   res.render("Calendar");
 });
-siteRouter.get("/class-details/:idClass", (req, res, next) => {
-  res.render("Class");
+siteRouter.get("/classDetail/:idClass", (req, res, next) => {
+  const idCLass = req.params.idClass;
+  console.log("IdClass: ", idCLass);
+  Class.findById(idCLass)
+    .populate("trainer")
+    .then((foundClass) => {
+      const props = { foundClass: foundClass };
+      console.log("Props:", props);
+      res.render("ClassDetail", props.foundClass);
+    })
+    .catch((error) =>
+      console.log("Something went wrong when retrieving an access token", error)
+    );
 });
 siteRouter.post("/class-details/:idClass", (req, res, next) => {
   res.render("Class");

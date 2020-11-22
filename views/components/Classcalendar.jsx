@@ -39,6 +39,7 @@ function ClassCalendar(props) {
             {obj.equipment.map((equipObj) => {
               return <p>{equipObj}</p>;
             })}
+            <a href={"/private/classDetail/" + obj._id}>Detail</a>
           </div>
         );
       })}

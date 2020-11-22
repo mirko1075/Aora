@@ -26,15 +26,16 @@ function hideAllDivs(todayDivId) {
   const allDivs = document.querySelectorAll(".class");
   for (i = 0; i < allDivs.length; i++) {
     let btnId = allDivs[i].id;
+    console.log("allDivs[i].id:", allDivs[i].id);
     btnId = btnId.slice(4, 8);
     btnId = "day-" + btnId;
-    // console.log("btnId", btnId), "todayDivId", todayDivId;
-    if (btnId != todayDivId) {
+    // console.log("btnId", btnId, "todayDivId", todayDivId);
+    if (btnId != "day-" + todayDivId) {
       allDivs[i].style.display = "none";
     }
   }
 }
-// window.addEventListener("load", hideAllDivs(calculateToday()));
+window.addEventListener("load", hideAllDivs(calculateToday()));
 
 //// Add listeners
 const btnArray = document.querySelectorAll(".daysBtn");

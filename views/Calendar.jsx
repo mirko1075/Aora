@@ -1,5 +1,4 @@
 const React = require("react");
-const mongoose = require("mongoose");
 const Layout = require("./Layout");
 const addDate = require("../utils/utils");
 const ClassCalendar = require("./components/Classcalendar");
