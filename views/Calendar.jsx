@@ -4,6 +4,7 @@ const { isLoggedIn, addDate } = require("../utils/utils");
 
 // Class for Calendar creation
 const CalendarClass = require("../utils/CalendarClass");
+const Filter = require("./components/Filter");
 const ClassCalendar = require("./components/Classcalendar");
 const CalendarBar = require("./components/CalendarBar");
 console.log("isLoggedIn", isLoggedIn);
@@ -22,6 +23,11 @@ function Calendar(props) {
       <h1>Home Page</h1>
       <CalendarBar datesArr={datesArr}></CalendarBar>
       <ClassCalendar classesArr={classesArr}></ClassCalendar>
+      <br></br>
+      <br></br>
+      <Filter classesArr={classesArr}></Filter>
+      <br></br>
+      <br></br>
     </Layout>
   );
 }
