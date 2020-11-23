@@ -15,22 +15,23 @@ function Filter(props) {
   let classDifficultyArr = classesArr.map((elem) => {
     return elem.difficulty;
   });
-  let classEquipmentArr = classesArr.map((elem) => {
-    const equipment = elem.equipment.map((equipObj) => {
-      return equipObj;
+  let classEquipmentArr = [];
+  let tempClassEquipmentArr = classesArr.map((elem) => {
+    const elemStr = elem.equipment.map((equipObj) => {
+      classEquipmentArr.push(equipObj);
     });
-    console.log("elem", elem);
   });
   const uniqueTrainers = unifyArray(trainersArr);
   const uniqueClassesTypes = unifyArray(classesArrTypes);
   const uniqueClassDuration = unifyArray(classDurationArr);
   const uniqueDifficulty = unifyArray(classDifficultyArr);
   const uniqueEquipment = unifyArray(classEquipmentArr);
-  console.log("uniqueEquipment", uniqueEquipment);
+  // console.log("uniqueEquipment", uniqueEquipment);
+  // console.log("classEquipmentArr", classEquipmentArr);
   return (
     <div id="filter" className="filter">
       <h3>Filter</h3>
-      <form>
+      <form action="/private/calendar" method="post">
         <label for="classType">Class type</label>
         <select name="classType" id="classType">
           <option value="">Select class type</option>
@@ -67,13 +68,16 @@ function Filter(props) {
         </select>{" "}
         <br></br>
         <br></br>
-        <label for="equipment">Equipment</label>
+        <label for="equipment">Required equipment</label>
         <select name="equipment">
           <option value="">Select equipment</option>
           {uniqueEquipment.map((elem) => {
             return <option value={elem}>{elem}</option>;
           })}
         </select>
+        <br></br>
+        <br></br>
+        <input type="submit" value="Filter" />
       </form>
     </div>
   );
