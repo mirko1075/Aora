@@ -15,11 +15,18 @@ function Filter(props) {
   let classDifficultyArr = classesArr.map((elem) => {
     return elem.difficulty;
   });
+  let classEquipmentArr = classesArr.map((elem) => {
+    const equipment = elem.equipment.map((equipObj) => {
+      return equipObj;
+    });
+    console.log("elem", elem);
+  });
   const uniqueTrainers = unifyArray(trainersArr);
   const uniqueClassesTypes = unifyArray(classesArrTypes);
   const uniqueClassDuration = unifyArray(classDurationArr);
   const uniqueDifficulty = unifyArray(classDifficultyArr);
-  console.log("uniqueDifficulty", uniqueDifficulty);
+  const uniqueEquipment = unifyArray(classEquipmentArr);
+  console.log("uniqueEquipment", uniqueEquipment);
   return (
     <div id="filter" className="filter">
       <h3>Filter</h3>
@@ -55,6 +62,15 @@ function Filter(props) {
         <select name="difficulty">
           <option value="">Select difficulty</option>
           {uniqueDifficulty.map((elem) => {
+            return <option value={elem}>{elem}</option>;
+          })}
+        </select>{" "}
+        <br></br>
+        <br></br>
+        <label for="equipment">Equipment</label>
+        <select name="equipment">
+          <option value="">Select equipment</option>
+          {uniqueEquipment.map((elem) => {
             return <option value={elem}>{elem}</option>;
           })}
         </select>
