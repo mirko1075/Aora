@@ -11,7 +11,11 @@ const User = require("./../models/User.model");
 
 // GET > CALENDAR HOME
 
-siteRouter.get("/home", (req, res, next) => {
+siteRouter.get("/", (req, res, next) => {
+  res.render("Calendar");
+});
+
+siteRouter.get("/calendar", (req, res, next) => {
   //   getUserBySession(req, res, next);
   Class.find()
     .sort("scheduled")
@@ -23,10 +27,6 @@ siteRouter.get("/home", (req, res, next) => {
     .catch((error) =>
       console.log("Something went wrong when retrieving an access token", error)
     );
-});
-
-siteRouter.get("/calendar", (req, res, next) => {
-  res.redirect("/private/Home");
 });
 
 // NOT NEEDED
