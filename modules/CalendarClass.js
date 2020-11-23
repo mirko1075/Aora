@@ -32,7 +32,7 @@ class CalendarClass {
 
     for (let i = 0; i < 7; i++) {
       dateToPrint = this.addDate(i);
-      console.log("dateToPrint", dateToPrint);
+      // console.log("dateToPrint", dateToPrint);
       dayOfMonth = dateToPrint.getDate();
       dayOfWeek = this.dayNames[dateToPrint.getDay()];
       monthOfYearName = this.monthNames[dateToPrint.getMonth()];
