@@ -30,7 +30,7 @@ function isBooked(classId, userId) {
 
 // Function gets userId from Session
 function getUserBySession(req, res, next) {
-  console.log("hey")
+  console.log("hey");
   if (req.session.currentUser) {
     return req.session.currentUser._id;
   } else {
@@ -46,5 +46,12 @@ function isLoggedIn(req, res, next) {
     res.redirect("/auth/login");
   }
 }
+function unifyArray(array) {
+  const unique = (value, index, self) => {
+    return self.indexOf(value) === index;
+  };
 
-module.exports = { getUserBySession, isBooked, isLoggedIn };
+  const uniqueArray = array.filter(unique);
+  return uniqueArray;
+}
+module.exports = { getUserBySession, isBooked, isLoggedIn, unifyArray };

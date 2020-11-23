@@ -1,24 +1,31 @@
 const React = require("react");
 
 function Filter(props) {
+  const unifyArray = props.unifyArray;
   const classesArr = props.classesArr.foundClasses;
-  let uniqueNames = classesArr.map((elem) => {
+  let trainersArr = classesArr.map((elem) => {
     return elem.trainer[0];
   });
-  _.uniq(uniqueNames, true);
-  console.log("ClassesArr:", classesArr);
+  let classesArrTypes = classesArr.map((elem) => {
+    return elem.classType;
+  });
+  const uniqueTrainers = unifyArray(trainersArr);
+  const uniqueClassesTypes = unifyArray(classesArrTypes);
+  console.log("uniqueClasses", uniqueClassesTypes);
   return (
     <div id="filter" className="filter">
       <h3>Filter</h3>
       <form>
         <select type="select" name="classType">
-          {classesArr.map((elem) => {
-            return <option value={elem.classType}>{elem.classType}</option>;
+          {uniqueClassesTypes.map((elem) => {
+            return <option value={elem}>{elem}</option>;
           })}
         </select>
+        <br></br>
+        <br></br>
         <select name="trainer">
-          {uniqueNames.map((elem) => {
-            return <option value={elem.trainer[0]._id}>{elem.name}</option>;
+          {uniqueTrainers.map((elem) => {
+            return <option value={elem._id}>{elem.name}</option>;
           })}
         </select>
       </form>
