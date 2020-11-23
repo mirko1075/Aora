@@ -24,6 +24,7 @@ function isBooked(classId, userId) {
         error
       )
     );
+  return pr;
 }
 
 // Function gets userId from Session

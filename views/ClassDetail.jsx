@@ -8,6 +8,11 @@ function ClassDetail(props) {
   const req = props.req;
   const next = props.next;
   props = props.foundClass;
+  console.log(
+    "IsBooked",
+    isBooked(props._id, getUserBySession(req, res, next))
+  );
+  console.log("getUserById", getUserBySession(req, res, next));
   return (
     <Layout>
       <div className="classcontainer">
