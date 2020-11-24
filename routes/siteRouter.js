@@ -211,4 +211,29 @@ siteRouter.post("/edit-user/:userId", (req, res, next) => {
   res.render("Profile");
 });
 
+// GET PROFILE ROUTE II (which one should stay?)
+// siteRouter.get("/profile", (req, res, next) => {
+//   res.render("ProfileForm");
+// });
+
+// GET PROFILE ROUTE II (which one should stay?)
+siteRouter.get("/profile", (req, res, next) => {
+  // const idUser= getUserBySession(req, res, next);
+  const id = req.session.currentUser._id;
+  User.find({_id:id})
+  .then((user)=>{
+    // const props={userFound:userFound};
+    console.log("hello, its me again");
+    res.render("Profile", props);
+  })
+  .catch((err)=>{
+    console.log("Something went wrong connecting to the DB")
+  })
+});
+
+// POST PROFILE EDIT ROUTE
+siteRouter.post("/edit-user/:userId", (req, res, next) => {
+  res.render("Profile");
+});
+
 module.exports = siteRouter;

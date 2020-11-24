@@ -3,7 +3,11 @@ const Layout = require("./Layout");
 const { unifyArray } = require("../utils/utils");
 
 // Class for Calendar creation
+<<<<<<< HEAD
+const CalendarClass = require("../utils/CalendarClass");
+=======
 const CalendarClass = require("../modules/CalendarClass");
+>>>>>>> bcb00fdfd236e75e61206b960f554632c0c20336
 const Filter = require("./components/Filter");
 const ClassCalendar = require("./components/Classcalendar");
 const CalendarBar = require("./components/CalendarBar");
