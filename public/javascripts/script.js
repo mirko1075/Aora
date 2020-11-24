@@ -14,7 +14,7 @@ function changeDay(day) {
   // day = day.slice(4, 8);
   // day = day;
   // console.log("Change the day to: " + day);
-  const elementsToShow = document.querySelectorAll(".class");
+  const elementsToShow = document.querySelectorAll(".classArticle");
 
   if (elementsToShow) {
     hideAllDivs(day);
@@ -23,7 +23,7 @@ function changeDay(day) {
 }
 
 function hideAllDivs(todayDivId) {
-  const allDivs = document.querySelectorAll(".class");
+  const allDivs = document.querySelectorAll(".classArticle");
   for (i = 0; i < allDivs.length; i++) {
     let btnId = allDivs[i].id;
     // console.log("Hide: allDivs[i].id:", allDivs[i].id);
@@ -37,7 +37,7 @@ function hideAllDivs(todayDivId) {
 }
 
 function displayDiv(day) {
-  const classes = document.querySelectorAll(".class");
+  const classes = document.querySelectorAll(".classArticle");
   for (i = 0; i < classes.length; i++) {
     let classId = classes[i].id;
     // console.log("Display: classes[i].id:", classes[i].id);
@@ -49,8 +49,22 @@ function displayDiv(day) {
     }
   }
 }
-window.addEventListener("load", hideAllDivs(calculateToday()));
 
+function showFilter(div) {
+  if (div.classList.contains("filterHidden")) {
+    div.classList.add("filterShow");
+    div.classList.remove("filterHidden");
+  } else {
+    div.classList.add("filterHidden");
+    div.classList.remove("filterShow");
+  }
+}
+function applyFilter() {
+  console.log("Apply Filter");
+}
+function unApplyFilter() {
+  console.log("Apply Filter");
+}
 //// Add listeners
 const btnArray = document.querySelectorAll(".daysBtn");
 for (i = 0; i < btnArray.length; i++) {
@@ -59,3 +73,25 @@ for (i = 0; i < btnArray.length; i++) {
     changeDay(btnId);
   });
 }
+window.addEventListener("load", hideAllDivs(calculateToday()));
+const filterDiv = document.getElementById("filter");
+const filterBtn = document.getElementById("filterBtn");
+const addFilter = document.getElementById("addFilter");
+const removeFilter = document.getElementById("removeFilter");
+const closeFilter = document.getElementById("closeFilter");
+
+filterBtn.addEventListener("click", function () {
+  showFilter(filterDiv);
+});
+
+addFilter.addEventListener("click", function () {
+  applyFilter();
+});
+
+filterBtn.addEventListener("click", function () {
+  unApplyFilter();
+});
+
+closeFilter.addEventListener("click", function () {
+  showFilter(filterDiv);
+});

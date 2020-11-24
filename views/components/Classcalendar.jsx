@@ -20,10 +20,7 @@ function ClassCalendar(props) {
       {classesArr.map((obj, i) => {
         obj.scheduled != actualDay ? (actualDay = obj.scheduled) : null;
         return (
-          <div
-            className={
-              "class " + actualDay.getDate() + "" + actualDay.getMonth()
-            }
+          <article
             key={i}
             id={
               "class-" +
@@ -33,7 +30,13 @@ function ClassCalendar(props) {
               "" +
               actualDay.getMonth()
             }
-            key={i}
+            data-classType={obj.classType}
+            data-trainer={obj.trainer.name}
+            data-duration={obj.duration}
+            data-difficulty={obj.difficulty}
+            className={
+              "classArticle " + actualDay.getDate() + "" + actualDay.getMonth()
+            }
           >
             <h1>{obj.name}</h1>
             <p>
@@ -46,7 +49,7 @@ function ClassCalendar(props) {
               return <p>{equipObj}</p>;
             })}
             <a href={"/private/classDetail/" + obj._id}>Detail</a>
-          </div>
+          </article>
         );
       })}
     </div>
