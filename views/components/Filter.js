@@ -34,55 +34,75 @@ function Filter(props) {
       <form action="/private/calendar" method="get">
         <label for="classType">Class type</label>
         <select name="classType" id="classType">
-          <option value="" disabled selected>
+          <option value="" selected>
             Select class type
           </option>
-          {uniqueClassesTypes.map((elem) => {
-            return <option value={elem}>{elem}</option>;
+          {uniqueClassesTypes.map((elem, i) => {
+            return (
+              <option key={i} value={elem}>
+                {elem}
+              </option>
+            );
           })}
         </select>
         <br></br>
         <br></br>
         <label for="trainer">Trainer</label>
         <select name="trainer" id="trainer">
-          <option value="" disabled selected>
+          <option value="" selected>
             Select Trainer
           </option>
-          {uniqueTrainers.map((elem) => {
-            return <option value={elem._id}>{elem.name}</option>;
+          {uniqueTrainers.map((elem, i) => {
+            return (
+              <option key={i} value={elem._id}>
+                {elem.name}
+              </option>
+            );
           })}
         </select>{" "}
         <br></br>
         <br></br>
         <label for="duration">Duration</label>
         <select name="duration" id="duration">
-          <option value="" disabled selected>
+          <option value="" selected>
             Select duration
           </option>
-          {uniqueClassDuration.map((elem) => {
-            return <option value={elem}>{elem}</option>;
+          {uniqueClassDuration.map((elem, i) => {
+            return (
+              <option key={i} value={elem}>
+                {elem}
+              </option>
+            );
           })}
         </select>{" "}
         <br></br>
         <br></br>
         <label for="difficulty">Difficulty</label>
         <select name="difficulty" id="difficulty">
-          <option value="" disabled selected>
+          <option value="" selected>
             Select difficulty
           </option>
-          {uniqueDifficulty.map((elem) => {
-            return <option value={elem}>{elem}</option>;
+          {uniqueDifficulty.map((elem, i) => {
+            return (
+              <option key={i} value={elem}>
+                {elem}
+              </option>
+            );
           })}
         </select>{" "}
         <br></br>
         <br></br>
         <label for="equipment">Required equipment</label>
         <select name="equipment" id="equipment">
-          <option value="" disabled selected>
+          <option value="" selected>
             Select equipment
           </option>
-          {uniqueEquipment.map((elem) => {
-            return <option value={elem}>{elem}</option>;
+          {uniqueEquipment.map((elem, i) => {
+            return (
+              <option key={i} value={elem}>
+                {elem}
+              </option>
+            );
           })}
         </select>
         <br></br>

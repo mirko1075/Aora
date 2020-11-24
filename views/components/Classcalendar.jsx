@@ -11,7 +11,7 @@ function ClassCalendar(props) {
   // Scheduled time -- scheduled
   // Trainer Name -- trainer
   // Duration  --  duration
-  // ClassType  --  classType
+  // classType  --  classType
   // Url  --  url
   // Equipment  -- equipment
   // console.log("classesArr", classesArr);
