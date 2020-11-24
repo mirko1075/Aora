@@ -33,8 +33,8 @@ function Filter(props) {
       <h3>Filter</h3>
       <form action="/private/calendar" method="get">
         <label for="classType">Class type</label>
-        <select name="classType" id="classType" multiple>
-          <option value="" disabled>
+        <select name="classType" id="classType">
+          <option value="" disabled selected>
             Select class type
           </option>
           {uniqueClassesTypes.map((elem) => {
@@ -44,8 +44,8 @@ function Filter(props) {
         <br></br>
         <br></br>
         <label for="trainer">Trainer</label>
-        <select name="trainer" id="trainer" multiple>
-          <option value="" disabled>
+        <select name="trainer" id="trainer">
+          <option value="" disabled selected>
             Select Trainer
           </option>
           {uniqueTrainers.map((elem) => {
@@ -55,8 +55,8 @@ function Filter(props) {
         <br></br>
         <br></br>
         <label for="duration">Duration</label>
-        <select name="duration" multiple>
-          <option value="" disabled>
+        <select name="duration" id="duration">
+          <option value="" disabled selected>
             Select duration
           </option>
           {uniqueClassDuration.map((elem) => {
@@ -66,8 +66,8 @@ function Filter(props) {
         <br></br>
         <br></br>
         <label for="difficulty">Difficulty</label>
-        <select name="difficulty" multiple>
-          <option value="" disabled>
+        <select name="difficulty" id="difficulty">
+          <option value="" disabled selected>
             Select difficulty
           </option>
           {uniqueDifficulty.map((elem) => {
@@ -77,8 +77,8 @@ function Filter(props) {
         <br></br>
         <br></br>
         <label for="equipment">Required equipment</label>
-        <select name="equipment" multiple>
-          <option value="" disabled>
+        <select name="equipment" id="equipment">
+          <option value="" disabled selected>
             Select equipment
           </option>
           {uniqueEquipment.map((elem) => {

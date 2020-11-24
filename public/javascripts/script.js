@@ -65,6 +65,20 @@ function applyFilter() {
 function unApplyFilter() {
   console.log("Apply Filter");
 }
+
+function filter(idSelected, value) {
+  console.log("Parameters:", idSelected, value);
+  const divsArr = document.querySelectorAll("article");
+  // console.log("divsArr", divsArr);
+  for (let i = 0; i < divsArr.length; i++) {
+    const elem = divsArr[i];
+    console.log("Key selected", divsArr[i][idSelected]);
+    if (elem[idSelected] === value) {
+      selectionObj[idSelected] = value;
+    }
+  }
+  console.log("selectionObj", selectionObj);
+}
 //// Add listeners
 const btnArray = document.querySelectorAll(".daysBtn");
 for (i = 0; i < btnArray.length; i++) {
@@ -73,12 +87,28 @@ for (i = 0; i < btnArray.length; i++) {
     changeDay(btnId);
   });
 }
-window.addEventListener("load", hideAllDivs(calculateToday()));
+
+// IDENTIFYING ELEMENTS BY ID
 const filterDiv = document.getElementById("filter");
 const filterBtn = document.getElementById("filterBtn");
 const addFilter = document.getElementById("addFilter");
 const removeFilter = document.getElementById("removeFilter");
 const closeFilter = document.getElementById("closeFilter");
+const article = document.getElementById("electriccars");
+const classType = document.getElementById("classType");
+const trainer = document.getElementById("trainer");
+const duration = document.getElementById("duration");
+const difficulty = document.getElementById("difficulty");
+const equipment = document.getElementById("equipment");
+const selectionObj = {
+  classType: "",
+  trainer: "",
+  duration: "",
+  difficulty: "",
+  equipment: "",
+};
+// LISTENERS
+window.addEventListener("load", hideAllDivs(calculateToday()));
 
 filterBtn.addEventListener("click", function () {
   showFilter(filterDiv);
@@ -94,4 +124,24 @@ filterBtn.addEventListener("click", function () {
 
 closeFilter.addEventListener("click", function () {
   showFilter(filterDiv);
+});
+
+classType.addEventListener("change", function () {
+  filter(classType.id, classType.value);
+});
+
+trainer.addEventListener("change", function () {
+  filter(trainer.id, trainer.value);
+});
+
+duration.addEventListener("change", function () {
+  filter(duration.id, duration.value);
+});
+
+difficulty.addEventListener("change", function () {
+  filter(difficulty.id, difficulty.value);
+});
+
+equipment.addEventListener("change", function () {
+  filter(equipment.id, equipment.value);
 });
