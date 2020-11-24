@@ -19,6 +19,7 @@
     "morgan": "~1.9.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-inline-script": "^1.2.0",
     "zxcvbn": "^4.4.2"
   },
   "devDependencies": {
