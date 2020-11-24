@@ -54,4 +54,7 @@ function unifyArray(array) {
   const uniqueArray = array.filter(unique);
   return uniqueArray;
 }
-module.exports = { getUserBySession, isBooked, isLoggedIn, unifyArray };
+function addZeroBefore(n) {
+  return (n < 10 ? '0' : '') + n;
+}
+module.exports = { getUserBySession, isBooked, isLoggedIn, unifyArray, addZeroBefore };

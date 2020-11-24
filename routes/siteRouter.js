@@ -103,8 +103,37 @@ siteRouter.get("/live-class/:classId", (req, res, next) => {
 
 // GET SCHEDULE ROUTE
 siteRouter.get("/schedule", (req, res, next) => {
-  const props = req.session.currentUser;
-  res.render("Schedule", props);
+  const id = req.session.currentUser._id;
+  User.find({_id: id})
+  //.populate("scheduledClasses").populate(["trainer"])
+  .populate([
+    {
+      path: 'scheduledClasses',
+        populate: {
+          path: 'trainer'
+        }
+    },
+  ])
+  
+  
+  
+  .then ((user)=>{
+    //console.log("user" + user)
+    console.log("USER.EMAIL: " + user[0].email)
+    console.log("USER classes duration: " + user[0].scheduledClasses[0].duration)
+    console.log("///////USER classes trainer: " + user[0].scheduledClasses[0].trainer[0].name)
+    //const props = req.session.currentUser;
+    const props = { user: user };
+    
+    res.render("Schedule", props);
+
+  })
+  .catch((error) =>
+    console.log(
+      "Something went wrong when finding a user id @ get schedule route",
+      error
+    )
+  );
 });
 // GET PROGRESS ROUTE
 siteRouter.get("/progress", (req, res, next) => {
