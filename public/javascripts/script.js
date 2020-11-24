@@ -1,9 +1,12 @@
+"use strict";
+/// VARIABLES
+
 // Function to change the day
 
 function calculateToday() {
   let dateToPrint = new Date();
-  dayOfMonth = dateToPrint.getDate();
-  monthOfYear = dateToPrint.getMonth();
+  let dayOfMonth = dateToPrint.getDate();
+  let monthOfYear = dateToPrint.getMonth();
   //   console.log("Today is:", dayOfMonth + "" + monthOfYear);
   return dayOfMonth + "" + monthOfYear;
 }
@@ -24,7 +27,7 @@ function changeDay(day) {
 
 function hideAllDivs(todayDivId) {
   const allDivs = document.querySelectorAll(".classArticle");
-  for (i = 0; i < allDivs.length; i++) {
+  for (let i = 0; i < allDivs.length; i++) {
     let btnId = allDivs[i].id;
     // console.log("Hide: allDivs[i].id:", allDivs[i].id);
     btnId = btnId.slice(btnId.indexOf("-", -1) + 1, btnId.length);
@@ -38,7 +41,7 @@ function hideAllDivs(todayDivId) {
 
 function displayDiv(day) {
   const classes = document.querySelectorAll(".classArticle");
-  for (i = 0; i < classes.length; i++) {
+  for (let i = 0; i < classes.length; i++) {
     let classId = classes[i].id;
     // console.log("Display: classes[i].id:", classes[i].id);
     classId = classId.slice(classId.indexOf("-", -1) + 1, classId.length);
@@ -60,28 +63,70 @@ function showFilter(div) {
   }
 }
 function applyFilter() {
-  console.log("Apply Filter");
+  // console.log("Apply Filter", divsToHide, divsToShow);
+  for (let i = 0; i < divsToHide.length; i++) {
+    divsToHide[i].style.display = "none";
+  }
+  for (let i = 0; i < divsToShow.length; i++) {
+    divsToShow[i].style.display = "block";
+  }
+  filterDiv.classList.add("filterHidden");
+  filterDiv.classList.remove("filterShow");
 }
 function unApplyFilter() {
   console.log("Apply Filter");
 }
+const selectionObj = {
+  classType: "",
+  trainer: "",
+  duration: "",
+  difficulty: "",
+  equipment: "",
+};
+const divsToHide = [];
+const divsToShow = [];
 
-function filter(idSelected, value) {
-  console.log("Parameters:", idSelected, value);
+function filter(field, fieldValue) {
+  // console.log("Parameters:", field, fieldValue);
   const divsArr = document.querySelectorAll("article");
-  // console.log("divsArr", divsArr);
   for (let i = 0; i < divsArr.length; i++) {
     const elem = divsArr[i];
-    console.log("Key selected", divsArr[i][idSelected]);
-    if (elem[idSelected] === value) {
-      selectionObj[idSelected] = value;
+    // console.log(
+    //   "Class type all:",
+    //   divsArr[i].attributes["data-classType"].value
+    // );
+    if (divsArr[i].attributes["data-classType"].value === fieldValue) {
+      // console.log("Here i am", divsArr[i].attributes["data-classType"].value);
+      divsToShow.push(divsArr[i]);
+    } else {
+      divsToHide.push(divsArr[i]);
     }
   }
-  console.log("selectionObj", selectionObj);
+  // switch (field) {
+  //   case "classType":
+  //     console.log("Here I am");
+  //     selectionObj["classType"] = fieldValue;
+  //     break;
+  //   case "trainer":
+  //     selectionObj["trainer"] = fieldValue;
+  //     break;
+  //   case "duration":
+  //     selectionObj["duration"] = fieldValue;
+  //     break;
+  //   case "difficulty":
+  //     selectionObj["difficulty"] = fieldValue;
+  //     break;
+  //   case "equipment":
+  //     selectionObj["equipment"] = fieldValue;
+  //     break;
+  // }
+  // console.log("selectionObj", selectionObj);
+
+  // return selectionObj;
 }
 //// Add listeners
 const btnArray = document.querySelectorAll(".daysBtn");
-for (i = 0; i < btnArray.length; i++) {
+for (let i = 0; i < btnArray.length; i++) {
   const btnId = btnArray[i].id;
   btnArray[i].addEventListener("click", function () {
     changeDay(btnId);
@@ -100,13 +145,7 @@ const trainer = document.getElementById("trainer");
 const duration = document.getElementById("duration");
 const difficulty = document.getElementById("difficulty");
 const equipment = document.getElementById("equipment");
-const selectionObj = {
-  classType: "",
-  trainer: "",
-  duration: "",
-  difficulty: "",
-  equipment: "",
-};
+
 // LISTENERS
 window.addEventListener("load", hideAllDivs(calculateToday()));
 

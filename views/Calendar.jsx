@@ -18,7 +18,7 @@ const datesArr = calendar.createDateArr();
 
 function Calendar(props) {
   const classesArr = props;
-  console.log("Props from calendar", props);
+  // console.log("Props from calendar", props);
   return (
     <Layout title="Calendar">
       <h1>Home Page</h1>

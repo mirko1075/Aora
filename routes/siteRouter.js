@@ -212,9 +212,16 @@ siteRouter.get("/profile", (req, res, next) => {
 
 // GET PROFILE FORM ROUTE
 siteRouter.get("/profileform", (req, res, next) => {
-  const props = req.session.currentUser;
-  console.log("hello my friend");
-  res.render("ProfileForm", props);
+  const id = req.session.currentUser._id;
+  User.find({_id:id})
+  
+  .then((user)=>{
+    const props = {user: user};
+    res.render("ProfileForm", props);
+  })
+  .catch((err)=>{
+    console.log("Something went wrong connecting to the DB")
+  })
 });
 
 // POST PROFILE EDIT ROUTE
