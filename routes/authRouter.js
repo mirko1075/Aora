@@ -51,7 +51,6 @@ authRouter.post("/signup", (req, res, next) => {
   // const emailRegEx = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   const emailRegEx = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/;
   if (emailRegEx.test(email) == 0) {
-    // MODIFIED, IT WAS with one = sign, has to be with double
     const props = { errorMessage: `Enter a valid email adress` };
     res.render("Signup", props);
     return;
@@ -95,6 +94,7 @@ authRouter.get("/login", (req, res, next) => {
 authRouter.post("/login", (req, res, next) => {
   const { email, password } = req.body;
 
+  // REQUIRE DATA INPUT ON ALL FIELDS
   if (email === "" || password === "") {
     const props = { errorMessage: "Please email and password" };
     res.render("Login", props);
@@ -117,7 +117,7 @@ authRouter.post("/login", (req, res, next) => {
       req.session.currentUser = user;
       res.redirect("/private/home");
     } else {
-      res.render("login", { errorMessage: "Incorrect password" });
+      res.render("Login", { errorMessage: "Incorrect password" });
     }
   });
 });

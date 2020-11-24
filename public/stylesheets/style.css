@@ -1,19 +1,21 @@
-/*Import FONT from GOOGLEAPI*/
+Import FONT from GOOGLEAPI
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 /* --- CSS VARIABLES --- */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/var */
 :root {
-  --text-color: #090a0a;
+  --text-color: white;;
 }
 
 body {
-  padding: 50px;
+  background-color: black;
+  color: white;
   font: 14px "Roboto", "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
 a {
   color: var(--text-color);
+  text-decoration: none;
 }
 .calendarbar {
   display: flex;
@@ -39,12 +41,36 @@ a {
 .classcontainer {
   height: auto;
 }
-/* ---------------------- */
+/* NAV / FOOTER STYLING---------------------- */
 nav {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  text-align: center;
+  font-variant: small-caps;
+  background-color: black;
+  width: 100vw;
+  height: 60px;
+  border-top: 1px solid #666666;
   width: 100vw;
   display: flex;
   justify-content: space-around;
+  align-items: flex-end;
+  position: fixed;
+  bottom: 0px;
+  
 }
+
+nav div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+nav img {
+  margin: 1px;
+}
+/* END of NAV / FOOTER------------------------------ */
 
 #schedule-date {
   text-transform: uppercase;

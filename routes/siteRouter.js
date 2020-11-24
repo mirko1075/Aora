@@ -1,6 +1,8 @@
 var express = require("express");
 var siteRouter = express.Router();
 
+const bcrypt = require("bcrypt");
+const zxcvbn = require("zxcvbn");
 const { getUserBySession, isLoggedIn } = require("../utils/utils");
 
 //LOADING
@@ -10,7 +12,6 @@ const User = require("./../models/User.model");
 // ROUTES
 
 // GET > CALENDAR HOME
-
 siteRouter.get("/", (req, res, next) => {
   res.redirect("/private/Calendar");
 });
@@ -128,7 +129,7 @@ siteRouter.get("/classDetail/add/:idClass", (req, res, next) => {
     );
 });
 
-// ROUTE FOR CLASS  UNBOOK
+// ROUTE > FOR CLASS  UNBOOK
 siteRouter.get("/classDetail/delete/:idClass", (req, res, next) => {
   const idClass = req.params.idClass;
   const idUser = req.session.currentUser._id;
@@ -147,12 +148,12 @@ siteRouter.get("/classDetail/delete/:idClass", (req, res, next) => {
     );
 });
 
-// GET LIVE-CLASS ROUTE
+// GET > LIVE-CLASS ROUTE
 siteRouter.get("/live-class/:idCLass", (req, res, next) => {
   res.render("Liveclass");
 });
 
-// GET SCHEDULE ROUTE
+// GET > SCHEDULE ROUTE
 siteRouter.get("/schedule", (req, res, next) => {
   const id = req.session.currentUser._id;
   User.find({ _id: id })
@@ -188,25 +189,20 @@ siteRouter.get("/schedule", (req, res, next) => {
       )
     );
 });
-// GET PROGRESS ROUTE
+
+// GET > PROGRESS ROUTE
 siteRouter.get("/progress", (req, res, next) => {
   const props = req.session.currentUser;
   res.render("Progress", props);
 });
 
-// GET PROFILE ROUTE
+// GET > PROFILE ROUTE
 siteRouter.get("/profile", (req, res, next) => {
   const id = req.session.currentUser._id;
-  console.log("hola juan miguel", id);
   User.find({_id:id})
   
-  
   .then((user)=>{
-    console.log("hello, its me again");
     const props = { user: user };
-    console.log("email", props.user[0].email);
-    console.log("email", props.user[0].name);
-    
     res.render("Profile", props);
   })
   .catch((err)=>{
@@ -216,13 +212,20 @@ siteRouter.get("/profile", (req, res, next) => {
 
 // GET PROFILE FORM ROUTE
 siteRouter.get("/profileform", (req, res, next) => {
-  const props = req.session.currentUser;
-  res.render("ProfileForm", props);
+  const id = req.session.currentUser._id;
+  User.find({_id:id})
+  
+  .then((user)=>{
+    const props = {user: user};
+    res.render("ProfileForm", props);
+  })
+  .catch((err)=>{
+    console.log("Something went wrong connecting to the DB")
+  })
 });
 
 // POST PROFILE EDIT ROUTE
-siteRouter.post("/edit-user/:userId", (req, res, next) => {
-  console.log("email", props.user[0].name);
+siteRouter.post("/profileform", (req, res, next) => {
   res.render("ProfileForm");
 });
 
