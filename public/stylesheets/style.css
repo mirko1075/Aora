@@ -45,3 +45,7 @@ nav {
   display: flex;
   justify-content: space-around;
 }
+
+#schedule-date {
+  text-transform: uppercase;
+}
