@@ -185,6 +185,7 @@ siteRouter.get("/profile", (req, res, next) => {
     console.log("hello, its me again");
     const props = { user: user };
     console.log("email", props.user[0].email);
+    console.log("email", props.user[0].name);
     
     res.render("Profile", props);
   })
@@ -193,9 +194,16 @@ siteRouter.get("/profile", (req, res, next) => {
   })
 });
 
+// GET PROFILE FORM ROUTE
+siteRouter.get("/profileform", (req, res, next) => {
+  const props = req.session.currentUser;
+  res.render("ProfileForm", props);
+});
+
 // POST PROFILE EDIT ROUTE
 siteRouter.post("/edit-user/:userId", (req, res, next) => {
-  res.render("Profile");
+  console.log("email", props.user[0].name);
+  res.render("ProfileForm");
 });
 
 module.exports = siteRouter;
