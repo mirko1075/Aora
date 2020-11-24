@@ -59,7 +59,12 @@ function showFilter(div) {
     div.classList.remove("filterShow");
   }
 }
-
+function applyFilter() {
+  console.log("Apply Filter");
+}
+function unApplyFilter() {
+  console.log("Apply Filter");
+}
 //// Add listeners
 const btnArray = document.querySelectorAll(".daysBtn");
 for (i = 0; i < btnArray.length; i++) {
@@ -71,6 +76,22 @@ for (i = 0; i < btnArray.length; i++) {
 window.addEventListener("load", hideAllDivs(calculateToday()));
 const filterDiv = document.getElementById("filter");
 const filterBtn = document.getElementById("filterBtn");
+const addFilter = document.getElementById("addFilter");
+const removeFilter = document.getElementById("removeFilter");
+const closeFilter = document.getElementById("closeFilter");
+
 filterBtn.addEventListener("click", function () {
+  showFilter(filterDiv);
+});
+
+addFilter.addEventListener("click", function () {
+  applyFilter();
+});
+
+filterBtn.addEventListener("click", function () {
+  unApplyFilter();
+});
+
+closeFilter.addEventListener("click", function () {
   showFilter(filterDiv);
 });
