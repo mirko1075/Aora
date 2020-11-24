@@ -28,19 +28,39 @@ siteRouter.get("/calendar", (req, res, next) => {
   difficulty ? (queryObj.difficulty = difficulty) : null;
   equipment ? (queryObj.equipment = equipment) : null;
 
-  Class.find(queryObj)
+  /// ******************************  ///
+  // TO CHECK WITH UROS
+  //   const pr = Class.find(queryObj)
+  //     .sort("scheduled")
+  //     .populate("trainer")
+  //     .then((foundClasses) => {
+  //       // console.log("foundClasses", foundClasses);
+  //       const pr = User.findOne({ userType: "trainer" });
+  //       return pr;
+  //     })
+  //     .then((usersFound) => {
+  //       const props = { usersFound, foundClasses };
+  //       res.render("Calendar", props);
+  //       return pr;
+  //     })
+
+  //     .catch((error) =>
+  //       console.log("Something went wrong when retrieving an access token", error)
+  //     );
+  // });
+  const pr = Class.find(queryObj)
     .sort("scheduled")
     .populate("trainer")
     .then((foundClasses) => {
       // console.log("foundClasses", foundClasses);
       const props = { foundClasses };
       res.render("Calendar", props);
+      return pr;
     })
     .catch((error) =>
       console.log("Something went wrong when retrieving an access token", error)
     );
 });
-
 // NOT NEEDED
 // siteRouter.get("/my-schedule", (req, res, next) => {
 //   res.render("Calendar");
@@ -76,7 +96,8 @@ siteRouter.get("/classDetail/:idClass", (req, res, next) => {
             foundClass: foundClass,
             isBooked: isBooked,
           };
-          console.log("Props from promise:", props);
+          console.log("IsBooked:", props.isBooked);
+          // console.log("Props from promise:", props);
           res.render("ClassDetail", props);
         });
     })
@@ -172,7 +193,6 @@ siteRouter.get("/progress", (req, res, next) => {
   const props = req.session.currentUser;
   res.render("Progress", props);
 });
-
 
 // GET PROFILE ROUTE
 siteRouter.get("/profile", (req, res, next) => {

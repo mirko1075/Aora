@@ -29,9 +29,9 @@ function Filter(props) {
   // console.log("uniqueEquipment", uniqueEquipment);
   // console.log("classEquipmentArr", classEquipmentArr);
   return (
-    <div id="filter" className="filter">
+    <div id="filter" className="filterHidden">
       <h3>Filter</h3>
-      <form action="">
+      <form action="/private/calendar" method="get">
         <label for="classType">Class type</label>
         <select name="classType" id="classType" multiple>
           <option value="" disabled>
@@ -88,7 +88,8 @@ function Filter(props) {
         <br></br>
         <br></br>
         <input type="button" id="addFilter" value="Filter" />
-        <input type="button" id="removeFilter" value="Remove filter" />
+        <input type="button" id="removeFilter" value="Reset filter" />
+        <input type="button" id="closeFilter" value="Close filter" />
       </form>
     </div>
   );

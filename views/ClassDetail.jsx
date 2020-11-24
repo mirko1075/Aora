@@ -4,9 +4,10 @@ const { isBooked, getUserBySession } = require("../utils/utils");
 
 function ClassDetail(props) {
   // console.log("!!!!!!!PROPS from ClassDetail:", props);
-  props = props.foundClass;
   const isBooked = props.isBooked;
-  console.log("isBooked", isBooked);
+  props = props.foundClass;
+
+  console.log("isBooked from ClassDetail", isBooked);
   return (
     <Layout>
       <div className="classcontainer">

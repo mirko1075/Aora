@@ -1,5 +1,4 @@
 const React = require("react");
-
 const Class = require("../../modules/Class");
 
 function GenerateScriptDivFilter(props) {
@@ -30,7 +29,8 @@ function GenerateScriptDivFilter(props) {
     divObjToInsert.equipment = equipmentArr;
     divsArr.push(divObjToInsert);
   });
-  const stringDivs = JSON.stringify(divsArr);
+  let stringDivs = JSON.stringify(divsArr);
+  stringDivs = stringDivs.replace("&quot;", "'");
   console.log("stringDivs", stringDivs);
   //   return <script>const stringDivs={{ stringDivs }}</script>;
   return <div></div>;
