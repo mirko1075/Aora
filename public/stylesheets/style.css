@@ -46,6 +46,9 @@ nav {
   justify-content: space-around;
 }
 
+#schedule-date {
+  text-transform: uppercase;
+}
 .filterShow {
   background-color: white;
   display: block;
