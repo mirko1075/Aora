@@ -14,12 +14,6 @@ function Layout(props) {
       <body>
         {props.children}
         <Footer>
-        <nav>
-          <a href ="/private/home">classes</a>
-          <a href ="/private/schedule">schedule</a>
-          <a href ="/private/progress">progress</a>
-          <a href ="/private/profile">profile</a>
-        </nav>
         </Footer>
         <script type="text/javascript" src="/javascripts/script.js"></script>
       </body>
