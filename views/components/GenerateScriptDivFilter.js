@@ -30,10 +30,11 @@ function GenerateScriptDivFilter(props) {
     divObjToInsert.equipment = equipmentArr;
     divsArr.push(divObjToInsert);
   });
-  const stringDivs = JSON.stringify(divsArr);
+  let stringDivs = JSON.stringify(divsArr);
+  stringDivs = stringDivs.replace("/'", "'");
   console.log("stringDivs", stringDivs);
   //   return <script>const stringDivs={{ stringDivs }}</script>;
-  return <div></div>;
+  return <script>{"const stringDivs=" + stringDivs + ";"}</script>;
 }
 
 module.exports = GenerateScriptDivFilter;

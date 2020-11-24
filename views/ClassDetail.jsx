@@ -6,7 +6,7 @@ function ClassDetail(props) {
   // console.log("!!!!!!!PROPS from ClassDetail:", props);
   props = props.foundClass;
   const isBooked = props.isBooked;
-  console.log("isBooked", isBooked);
+  // console.log("isBooked", isBooked);
   return (
     <Layout>
       <div className="classcontainer">

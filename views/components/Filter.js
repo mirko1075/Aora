@@ -31,7 +31,7 @@ function Filter(props) {
   return (
     <div id="filter" className="filter">
       <h3>Filter</h3>
-      <form action="">
+      <form action="/private/calendar" method="get">
         <label for="classType">Class type</label>
         <select name="classType" id="classType" multiple>
           <option value="" disabled>
@@ -87,8 +87,8 @@ function Filter(props) {
         </select>
         <br></br>
         <br></br>
-        <input type="button" id="addFilter" value="Filter" />
-        <input type="button" id="removeFilter" value="Remove filter" />
+        <input type="submit" id="addFilter" value="Filter" />
+        <input type="reset" id="removeFilter" value="Reset filter" />
       </form>
     </div>
   );

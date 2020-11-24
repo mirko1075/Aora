@@ -28,19 +28,39 @@ siteRouter.get("/calendar", (req, res, next) => {
   difficulty ? (queryObj.difficulty = difficulty) : null;
   equipment ? (queryObj.equipment = equipment) : null;
 
-  Class.find(queryObj)
+  /// ******************************  ///
+  // TO CHECK WITH UROS
+  //   const pr = Class.find(queryObj)
+  //     .sort("scheduled")
+  //     .populate("trainer")
+  //     .then((foundClasses) => {
+  //       // console.log("foundClasses", foundClasses);
+  //       const pr = User.findOne({ userType: "trainer" });
+  //       return pr;
+  //     })
+  //     .then((usersFound) => {
+  //       const props = { usersFound, foundClasses };
+  //       res.render("Calendar", props);
+  //       return pr;
+  //     })
+
+  //     .catch((error) =>
+  //       console.log("Something went wrong when retrieving an access token", error)
+  //     );
+  // });
+  const pr = Class.find(queryObj)
     .sort("scheduled")
     .populate("trainer")
     .then((foundClasses) => {
       // console.log("foundClasses", foundClasses);
       const props = { foundClasses };
       res.render("Calendar", props);
+      return pr;
     })
     .catch((error) =>
       console.log("Something went wrong when retrieving an access token", error)
     );
 });
-
 // NOT NEEDED
 // siteRouter.get("/my-schedule", (req, res, next) => {
 //   res.render("Calendar");
