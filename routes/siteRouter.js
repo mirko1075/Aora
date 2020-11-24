@@ -109,11 +109,6 @@ siteRouter.get("/classDetail/:idClass", (req, res, next) => {
     );
 });
 
-// NOT NEEEDED
-// siteRouter.post("/classDetails/:idClass", (req, res, next) => {   // Not needed
-//   res.render("Class");
-// });
-
 // ROUTE FOR CLASS BOOK
 siteRouter.get("/classDetail/add/:idClass", (req, res, next) => {
   const idClass = req.params.idClass;
@@ -199,27 +194,8 @@ siteRouter.get("/progress", (req, res, next) => {
   res.render("Progress", props);
 });
 
-// GET PROFILE ROUTE I (which one should stay?)
-siteRouter.get("/progress/:userId", (req, res, next) => {
-  res.render("Progress");
-});
-// GET PROFILE ROUTE II (which one should stay?)
+// GET PROFILE ROUTE
 siteRouter.get("/profile", (req, res, next) => {
-  res.render("Profile");
-});
-// POST PROFILE EDIT ROUTE
-siteRouter.post("/edit-user/:userId", (req, res, next) => {
-  res.render("Profile");
-});
-
-// GET PROFILE ROUTE II (which one should stay?)
-// siteRouter.get("/profile", (req, res, next) => {
-//   res.render("ProfileForm");
-// });
-
-// GET PROFILE ROUTE II (which one should stay?)
-siteRouter.get("/profile", (req, res, next) => {
-  // const idUser= getUserBySession(req, res, next);
   const id = req.session.currentUser._id;
   User.find({ _id: id })
     .then((user) => {

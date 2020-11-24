@@ -75,13 +75,13 @@ authRouter.post("/signup", (req, res, next) => {
         })
         .catch((err) => {
           console.log(err);
-          const props = { errorMessage: "IError creating User<br>" + err };
+          const props = { errorMessage: "Error creating User<br>" + err };
           res.render("Signup", props);
         });
     })
     .catch((err) => {
       console.log(err);
-      const props = { errorMessage: "IError creating User<br>" + err };
+      const props = { errorMessage: "Error creating User<br>" + err };
       res.render("Signup", props);
     });
 });

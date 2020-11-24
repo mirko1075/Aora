@@ -2,39 +2,36 @@ const React = require("react");
 const Layout = require("./Layout");
 
 function Profile (props) {
-    const foundUser=props.foundUser;
-    
     console.log(props)
     return(
         <Layout>
-            <form id="form" action="/auth/login" method="POST">
-                <i href="">PROFILE PICTURE</i>
+            <form id="form" action="/private/profile" method="POST">
+                <i href="{props.user[0].picUrl}">PROFILE PICTURE</i>
+                
                 <button type="submit">LOG OUT</button>
                 <button type="submit">EDIT</button>
                 <br/>
-                {/* <input type="text" name="name" placeholder="name" value="{foundUser.name}" /> */}
-                {/* <p>"${foundUser.email}"</p> */}
-                <i href="">PROFILE PICTURE</i>
-                
-                {/* <button type="submit">LOG OUT</button>
-                <button type="submit">EDIT PROFILE</button>
+                <h2>NAME</h2>
+                <p>{props.user[0].name}</p>
                 <br/>
-                <p>NAME</p>
+                <h2>LAST NAME</h2>
+                <p>{props.user[0].lasName}</p>
                 <br/>
-                <p>{foundUser.name}</p>
+                <h2>EMAIL</h2>
+                <p>{props.user[0].email}</p>
                 <br/>
-                <p>{foundUser.lastName}</p>
+                <h2>GENDER</h2>
+                <p>{props.user[0].gender}</p>
                 <br/>
-                <p>{foundUser.email}</p>
+                <h2>BIRTHDATE</h2>
+                <p>{props.user[0].birthDate}</p>
                 <br/>
-                <p>{foundUser.gender}</p>
+                <h2>CITY</h2>
+                <p>{props.user[0].city}</p>
                 <br/>
-                <p>{foundUser.birthDate}</p>
+                <h2>COUNTRY</h2>
+                <p>{props.user[0].country}</p>
                 <br/>
-                <p>{foundUser.city}</p>
-                <br/>
-                <p>{foundUser.country}</p>
-                <br/> */}
 
                 {
                 props.errorMessage 
