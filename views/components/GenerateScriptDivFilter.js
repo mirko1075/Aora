@@ -1,5 +1,4 @@
 const React = require("react");
-
 const Class = require("../../modules/Class");
 
 function GenerateScriptDivFilter(props) {
@@ -31,10 +30,10 @@ function GenerateScriptDivFilter(props) {
     divsArr.push(divObjToInsert);
   });
   let stringDivs = JSON.stringify(divsArr);
-  stringDivs = stringDivs.replace("/'", "'");
+  stringDivs = stringDivs.replace("&quot;", "'");
   console.log("stringDivs", stringDivs);
   //   return <script>const stringDivs={{ stringDivs }}</script>;
-  return <script>{"const stringDivs=" + stringDivs + ";"}</script>;
+  return <div></div>;
 }
 
 module.exports = GenerateScriptDivFilter;

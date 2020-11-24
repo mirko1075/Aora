@@ -29,7 +29,7 @@ function Filter(props) {
   // console.log("uniqueEquipment", uniqueEquipment);
   // console.log("classEquipmentArr", classEquipmentArr);
   return (
-    <div id="filter" className="filter">
+    <div id="filter" className="filterHidden">
       <h3>Filter</h3>
       <form action="/private/calendar" method="get">
         <label for="classType">Class type</label>
