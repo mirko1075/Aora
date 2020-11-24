@@ -15,8 +15,18 @@ function Schedule(props) {
 
         {props.user[0].scheduledClasses.map((oneScheduledClass, i) => {
           return (
+            !props.user[0].scheduledClasses
+            ?
+            <h1>You haven't book any classes yet.</h1>
+            :
             <li key={i}>
-              <p>{humanizeDay(oneScheduledClass.scheduled.getDay())}, {humanizeMonth(oneScheduledClass.scheduled.getMonth())} {addZeroBefore(oneScheduledClass.scheduled.getDate())} </p>
+              {// print date only when new date
+                i>0 && props.user[0].scheduledClasses[i].scheduled.getDay() === props.user[0].scheduledClasses[i-1].scheduled.getDay() 
+                ?
+                null 
+                :
+                <p id="schedule-date">{humanizeDay(oneScheduledClass.scheduled.getDay())}, {humanizeMonth(oneScheduledClass.scheduled.getMonth())} {addZeroBefore(oneScheduledClass.scheduled.getDate())}</p>
+              }
               <h2>{addZeroBefore(oneScheduledClass.scheduled.getHours())}:{addZeroBefore(oneScheduledClass.scheduled.getMinutes())} | {oneScheduledClass.classType}</h2>
               <p>{oneScheduledClass.duration} | {oneScheduledClass.trainer[0].name}</p>
             </li>
