@@ -16,6 +16,13 @@ a {
   color: var(--text-color);
   text-decoration: none;
 }
+h1 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  margin-left: 25px;
+}
+/* --------------------------------------------------------- */
 .calendarbar {
   display: flex;
   width: 100%;
@@ -40,6 +47,18 @@ a {
 .classcontainer {
   height: auto;
 }
+/* HEADER STYLE ----------------------------------- */
+.header {
+  height: 90px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #666666;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+/* END of HEADER STYLE ----------------------------- */
 /* NAV / FOOTER STYLING---------------------- */
 nav {
   font-style: normal;
@@ -70,10 +89,26 @@ nav img {
   margin: 1px;
 }
 /* END of NAV / FOOTER------------------------------ */
-
+/* SCHEDULE STYLING----------------------------- */
 #schedule-date {
   text-transform: uppercase;
 }
+.scroll-container {
+  position: absolute;
+  top: 90px;
+  line-height: auto;
+  overflow-y: scroll;
+  z-index:-1;
+}
+.class-card{
+  background-color: #333;
+  margin-bottom: 1px;
+  height: 90px;
+  width: 100vw;
+}
+/* --------------------------- */
+
+
 .filterShow {
   background-color: white;
   display: block;

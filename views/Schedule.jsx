@@ -7,8 +7,11 @@ function Schedule(props) {
 
   return (
     <Layout title="Schedule">
-      <h1>My Schedule</h1>
+      <div class="header">
+        <h1>My Schedule</h1>
+      </div>
       {/* <h2>Data received for user: {props.user[0].email} </h2> */}
+      <div class="scroll-container">
       <ul>
 
         {props.user[0].scheduledClasses.map((oneScheduledClass, i) => {
@@ -25,12 +28,16 @@ function Schedule(props) {
                 :
                 <p id="schedule-date">{humanizeDay(oneScheduledClass.scheduled.getDay())}, {humanizeMonth(oneScheduledClass.scheduled.getMonth())} {addZeroBefore(oneScheduledClass.scheduled.getDate())}</p>
               }
-              <h2>{addZeroBefore(oneScheduledClass.scheduled.getHours())}:{addZeroBefore(oneScheduledClass.scheduled.getMinutes())} | {oneScheduledClass.classType}</h2>
-              <p>{oneScheduledClass.duration} | {oneScheduledClass.trainer[0].name}</p>
+              <div class="class-card">
+                <div><img src="/images/face1.png"></img></div>
+                <h2>{addZeroBefore(oneScheduledClass.scheduled.getHours())}:{addZeroBefore(oneScheduledClass.scheduled.getMinutes())} | {oneScheduledClass.classType}</h2>
+                <p>{oneScheduledClass.duration} | {oneScheduledClass.trainer[0].name}</p>
+              </div>
             </li>
           );
         })} 
       </ul>
+      </div>
     </Layout>
   );
 }
