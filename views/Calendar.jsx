@@ -3,10 +3,15 @@ const Layout = require("./Layout");
 const { isLoggedIn, addDate, unifyArray } = require("../utils/utils");
 
 // Class for Calendar creation
+<<<<<<< HEAD
 const CalendarClass = require("../utils/CalendarClass");
+=======
+const CalendarClass = require("../modules/CalendarClass");
+>>>>>>> bcb00fdfd236e75e61206b960f554632c0c20336
 const Filter = require("./components/Filter");
 const ClassCalendar = require("./components/Classcalendar");
 const CalendarBar = require("./components/CalendarBar");
+const GenerateScriptDivFilter = require("./components/GenerateScriptDivFilter");
 console.log("isLoggedIn", isLoggedIn);
 //CREATION OF CALENDAR BAR
 const calendar = new CalendarClass();
@@ -28,6 +33,9 @@ function Calendar(props) {
       <Filter classesArr={classesArr} unifyArray={unifyArray}></Filter>
       <br></br>
       <br></br>
+      <GenerateScriptDivFilter
+        classesArr={classesArr}
+      ></GenerateScriptDivFilter>
     </Layout>
   );
 }

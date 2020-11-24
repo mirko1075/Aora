@@ -1,3 +1,4 @@
+require("dotenv").config();
 const mongoose = require("mongoose");
 const User = require("./../models/User.model");
 const Class = require("./../models/Class.model");
@@ -5,8 +6,8 @@ const usersArr = require("./user-mockup");
 const classesArr = require("./class-mockup");
 
 //Connection to DB parameters
-const DB_NAME = "AORA-DB";
-const DB_CONN_STR = `mongodb://localhost:27017/${DB_NAME}`;
+const DB_NAME = process.env.DB_NAME.toString();
+const DB_CONN_STR = process.env.MONGODB_URI.toString();
 
 // SEED SEQUENCE
 

@@ -12,16 +12,28 @@ const User = require("./../models/User.model");
 // GET > CALENDAR HOME
 
 siteRouter.get("/", (req, res, next) => {
-  res.render("Calendar");
+  res.redirect("/private/Calendar");
+});
+siteRouter.get("/home", (req, res, next) => {
+  res.redirect("/private/Calendar");
 });
 
 siteRouter.get("/calendar", (req, res, next) => {
-  //   getUserBySession(req, res, next);
-  Class.find()
+  const { classType, trainer, duration, difficulty, equipment } = req.query;
+  let queryObj = {};
+  // console.log("Params:", classType, trainer, duration, difficulty, equipment);
+  classType ? (queryObj.classType = classType) : null;
+  trainer ? (queryObj.trainer = trainer) : null;
+  duration ? (queryObj.duration = duration) : null;
+  difficulty ? (queryObj.difficulty = difficulty) : null;
+  equipment ? (queryObj.equipment = equipment) : null;
+
+  Class.find(queryObj)
     .sort("scheduled")
     .populate("trainer")
     .then((foundClasses) => {
-      const props = { foundClasses: foundClasses };
+      // console.log("foundClasses", foundClasses);
+      const props = { foundClasses };
       res.render("Calendar", props);
     })
     .catch((error) =>
@@ -37,13 +49,36 @@ siteRouter.get("/calendar", (req, res, next) => {
 // ROUTE FOR CLASS DETAILS SHOW
 siteRouter.get("/classDetail/:idClass", (req, res, next) => {
   const idCLass = req.params.idClass;
-  // console.log("IdClass: ", idCLass);
-  Class.findById(idCLass)
-    .populate("trainer")
-    .then((foundClass) => {
-      const props = { foundClass: foundClass, req: req, res: res, next: next };
-      // console.log("Props:", props);
-      res.render("ClassDetail", props);
+  const idUser = req.session.currentUser._id;
+  let isBooked = null;
+  const pr = User.findById(idUser)
+    .then((foundUser) => {
+      // console.log(
+      //   "idCLass:",
+      //   idCLass,
+      //   "foundUser.scheduledClasses",
+      //   foundUser.scheduledClasses
+      // );
+      if (foundUser.scheduledClasses.indexOf(idCLass) != -1) {
+        console.log("Found");
+        isBooked = true;
+      } else {
+        console.log("Not found");
+        isBooked = false;
+      }
+      return isBooked;
+    })
+    .then((foundUser) => {
+      Class.findById(idCLass)
+        .populate("trainer")
+        .then((foundClass) => {
+          const props = {
+            foundClass: foundClass,
+            isBooked: isBooked,
+          };
+          console.log("Props from promise:", props);
+          res.render("ClassDetail", props);
+        });
     })
     .catch((error) =>
       console.log(
@@ -61,7 +96,7 @@ siteRouter.get("/classDetail/:idClass", (req, res, next) => {
 // ROUTE FOR CLASS BOOK
 siteRouter.get("/classDetail/add/:idClass", (req, res, next) => {
   const idClass = req.params.idClass;
-  const idUser = getUserBySession(req, res, next);
+  const idUser = req.session.currentUser._id;
   // console.log("idUser:", idUser, "idClass:", idClass);
   User.findByIdAndUpdate(idUser, {
     $addToSet: { scheduledClasses: [idClass] },
@@ -80,7 +115,7 @@ siteRouter.get("/classDetail/add/:idClass", (req, res, next) => {
 // ROUTE FOR CLASS  UNBOOK
 siteRouter.get("/classDetail/delete/:idClass", (req, res, next) => {
   const idClass = req.params.idClass;
-  const idUser = getUserBySession(req, res, next);
+  const idUser = req.session.currentUser._id;
   // console.log("Delete/n idUser:", idUser, "idClass:", idClass);
   User.findByIdAndUpdate(idUser, {
     $pull: { scheduledClasses: idClass },
@@ -97,14 +132,45 @@ siteRouter.get("/classDetail/delete/:idClass", (req, res, next) => {
 });
 
 // GET LIVE-CLASS ROUTE
-siteRouter.get("/live-class/:classId", (req, res, next) => {
+siteRouter.get("/live-class/:idCLass", (req, res, next) => {
   res.render("Liveclass");
 });
 
 // GET SCHEDULE ROUTE
 siteRouter.get("/schedule", (req, res, next) => {
-  const props = req.session.currentUser;
-  res.render("Schedule", props);
+  const id = req.session.currentUser._id;
+  User.find({ _id: id })
+    //.populate("scheduledClasses").populate(["trainer"])
+    .populate([
+      {
+        path: "scheduledClasses",
+        populate: {
+          path: "trainer",
+        },
+      },
+    ])
+
+    .then((user) => {
+      //console.log("user" + user)
+      console.log("USER.EMAIL: " + user[0].email);
+      console.log(
+        "USER classes duration: " + user[0].scheduledClasses[0].duration
+      );
+      console.log(
+        "///////USER classes trainer: " +
+          user[0].scheduledClasses[0].trainer[0].name
+      );
+      //const props = req.session.currentUser;
+      const props = { user: user };
+
+      res.render("Schedule", props);
+    })
+    .catch((error) =>
+      console.log(
+        "Something went wrong when finding a user id @ get schedule route",
+        error
+      )
+    );
 });
 // GET PROGRESS ROUTE
 siteRouter.get("/progress", (req, res, next) => {
@@ -112,9 +178,17 @@ siteRouter.get("/progress", (req, res, next) => {
   res.render("Progress", props);
 });
 
-// GET Progress ROUTE I (which one should stay?)
+// GET PROFILE ROUTE I (which one should stay?)
 siteRouter.get("/progress/:userId", (req, res, next) => {
   res.render("Progress");
+});
+// GET PROFILE ROUTE II (which one should stay?)
+siteRouter.get("/profile", (req, res, next) => {
+  res.render("Profile");
+});
+// POST PROFILE EDIT ROUTE
+siteRouter.post("/edit-user/:userId", (req, res, next) => {
+  res.render("Profile");
 });
 
 // GET PROFILE ROUTE II (which one should stay?)

@@ -4,10 +4,9 @@ const { isBooked, getUserBySession } = require("../utils/utils");
 
 function ClassDetail(props) {
   // console.log("!!!!!!!PROPS from ClassDetail:", props);
-  const res = props.res;
-  const req = props.req;
-  const next = props.next;
   props = props.foundClass;
+  const isBooked = props.isBooked;
+  console.log("isBooked", isBooked);
   return (
     <Layout>
       <div className="classcontainer">
@@ -37,7 +36,7 @@ function ClassDetail(props) {
         <br></br>
         <br></br>
 
-        {isBooked(props._id, getUserBySession(req, res, next)) ? (
+        {isBooked === true ? (
           <a href={"/private/classDetail/delete/" + props._id}>Unbook</a>
         ) : (
           <a href={"/private/classDetail/add/" + props._id}>Book</a>

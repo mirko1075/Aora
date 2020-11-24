@@ -13,7 +13,7 @@ function changeDay(day) {
   day = day.slice(day.indexOf("-") + 1, day.length);
   // day = day.slice(4, 8);
   // day = day;
-  console.log("Change the day to: " + day);
+  // console.log("Change the day to: " + day);
   const elementsToShow = document.querySelectorAll(".class");
 
   if (elementsToShow) {
@@ -26,10 +26,10 @@ function hideAllDivs(todayDivId) {
   const allDivs = document.querySelectorAll(".class");
   for (i = 0; i < allDivs.length; i++) {
     let btnId = allDivs[i].id;
-    console.log("Hide: allDivs[i].id:", allDivs[i].id);
+    // console.log("Hide: allDivs[i].id:", allDivs[i].id);
     btnId = btnId.slice(btnId.indexOf("-", -1) + 1, btnId.length);
     btnId = btnId.slice(btnId.indexOf("-") + 1, btnId.length);
-    console.log("Hide: classId", btnId, "todayDivId", todayDivId);
+    // console.log("Hide: classId", btnId, "todayDivId", todayDivId);
     if (btnId != todayDivId) {
       allDivs[i].style.display = "none";
     }
@@ -40,10 +40,10 @@ function displayDiv(day) {
   const classes = document.querySelectorAll(".class");
   for (i = 0; i < classes.length; i++) {
     let classId = classes[i].id;
-    console.log("Display: classes[i].id:", classes[i].id);
+    // console.log("Display: classes[i].id:", classes[i].id);
     classId = classId.slice(classId.indexOf("-", -1) + 1, classId.length);
     classId = classId.slice(classId.indexOf("-") + 1, classId.length);
-    console.log("Display: classId", classId, "day", day);
+    // console.log("Display: classId", classId, "day", day);
     if (classId == day) {
       classes[i].style.display = "block";
     }
