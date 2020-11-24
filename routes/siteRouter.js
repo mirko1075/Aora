@@ -197,20 +197,33 @@ siteRouter.get("/progress", (req, res, next) => {
 // GET PROFILE ROUTE
 siteRouter.get("/profile", (req, res, next) => {
   const id = req.session.currentUser._id;
-  User.find({ _id: id })
-    .then((user) => {
-      // const props={userFound:userFound};
-      console.log("hello, its me again");
-      res.render("Profile", props);
-    })
-    .catch((err) => {
-      console.log("Something went wrong connecting to the DB");
-    });
+  console.log("hola juan miguel", id);
+  User.find({_id:id})
+  
+  
+  .then((user)=>{
+    console.log("hello, its me again");
+    const props = { user: user };
+    console.log("email", props.user[0].email);
+    console.log("email", props.user[0].name);
+    
+    res.render("Profile", props);
+  })
+  .catch((err)=>{
+    console.log("Something went wrong connecting to the DB")
+  })
+});
+
+// GET PROFILE FORM ROUTE
+siteRouter.get("/profileform", (req, res, next) => {
+  const props = req.session.currentUser;
+  res.render("ProfileForm", props);
 });
 
 // POST PROFILE EDIT ROUTE
 siteRouter.post("/edit-user/:userId", (req, res, next) => {
-  res.render("Profile");
+  console.log("email", props.user[0].name);
+  res.render("ProfileForm");
 });
 
 module.exports = siteRouter;
