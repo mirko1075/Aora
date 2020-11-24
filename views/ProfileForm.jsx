@@ -3,7 +3,7 @@ const Layout = require("./Layout");
 
 function ProfileForm (props) {
     return(
-        <Layout>
+        <Layout title="Profile">
             <form id="form" action="/private/profileform" method="POST">
                 {/* <i href="">PROFILE PICTURE</i>
                 <button type="submit">LOG OUT</button>

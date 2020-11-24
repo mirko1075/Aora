@@ -9,7 +9,7 @@ function ClassDetail(props) {
 
   console.log("isBooked from ClassDetail", isBooked);
   return (
-    <Layout>
+    <Layout title="Calendar">
       <div className="classcontainer">
         <h3 className="classname">{props.name}</h3>
         <p>
