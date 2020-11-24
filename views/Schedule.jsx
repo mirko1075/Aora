@@ -29,9 +29,13 @@ function Schedule(props) {
                 <p id="schedule-date">{humanizeDay(oneScheduledClass.scheduled.getDay())}, {humanizeMonth(oneScheduledClass.scheduled.getMonth())} {addZeroBefore(oneScheduledClass.scheduled.getDate())}</p>
               }
               <div class="class-card">
-                <div><img src="/images/face1.png"></img></div>
-                <h2>{addZeroBefore(oneScheduledClass.scheduled.getHours())}:{addZeroBefore(oneScheduledClass.scheduled.getMinutes())} | {oneScheduledClass.classType}</h2>
-                <p>{oneScheduledClass.duration} | {oneScheduledClass.trainer[0].name}</p>
+                <div>
+                  <img src="/images/face1.png"></img>
+                </div>
+                <div>
+                  <h3>{addZeroBefore(oneScheduledClass.scheduled.getHours())}:{addZeroBefore(oneScheduledClass.scheduled.getMinutes())} | {oneScheduledClass.classType}</h3>
+                  <p class="small-info">{oneScheduledClass.duration} min. | {oneScheduledClass.trainer[0].name}</p>
+                </div>
               </div>
             </li>
           );
