@@ -11,22 +11,34 @@ const User = require("./../models/User.model");
 
 // GET > CALENDAR HOME
 
+siteRouter.get("/", (req, res, next) => {
+  res.redirect("/private/Calendar");
+});
 siteRouter.get("/home", (req, res, next) => {
-  //   getUserBySession(req, res, next);
-  Class.find()
+  res.redirect("/private/Calendar");
+});
+
+siteRouter.get("/calendar", (req, res, next) => {
+  const { classType, trainer, duration, difficulty, equipment } = req.query;
+  let queryObj = {};
+  console.log("Params:", classType, trainer, duration, difficulty, equipment);
+  classType ? (queryObj.classType = classType) : null;
+  trainer ? (queryObj.trainer = trainer) : null;
+  duration ? (queryObj.duration = duration) : null;
+  difficulty ? (queryObj.difficulty = difficulty) : null;
+  equipment ? (queryObj.equipment = equipment) : null;
+
+  Class.find(queryObj)
     .sort("scheduled")
     .populate("trainer")
     .then((foundClasses) => {
-      const props = { foundClasses: foundClasses };
+      console.log("foundClasses", foundClasses);
+      const props = { foundClasses };
       res.render("Calendar", props);
     })
     .catch((error) =>
       console.log("Something went wrong when retrieving an access token", error)
     );
-});
-
-siteRouter.get("/calendar", (req, res, next) => {
-  res.redirect("/private/Home");
 });
 
 // NOT NEEDED

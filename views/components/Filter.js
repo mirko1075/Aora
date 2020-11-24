@@ -15,25 +15,28 @@ function Filter(props) {
   let classDifficultyArr = classesArr.map((elem) => {
     return elem.difficulty;
   });
-  let classEquipmentArr = classesArr.map((elem) => {
-    const equipment = elem.equipment.map((equipObj) => {
-      return equipObj;
+  let classEquipmentArr = [];
+  let tempClassEquipmentArr = classesArr.map((elem) => {
+    const elemStr = elem.equipment.map((equipObj) => {
+      classEquipmentArr.push(equipObj);
     });
-    console.log("elem", elem);
   });
   const uniqueTrainers = unifyArray(trainersArr);
   const uniqueClassesTypes = unifyArray(classesArrTypes);
   const uniqueClassDuration = unifyArray(classDurationArr);
   const uniqueDifficulty = unifyArray(classDifficultyArr);
   const uniqueEquipment = unifyArray(classEquipmentArr);
-  console.log("uniqueEquipment", uniqueEquipment);
+  // console.log("uniqueEquipment", uniqueEquipment);
+  // console.log("classEquipmentArr", classEquipmentArr);
   return (
     <div id="filter" className="filter">
       <h3>Filter</h3>
-      <form>
+      <form action="">
         <label for="classType">Class type</label>
-        <select name="classType" id="classType">
-          <option value="">Select class type</option>
+        <select name="classType" id="classType" multiple>
+          <option value="" disabled>
+            Select class type
+          </option>
           {uniqueClassesTypes.map((elem) => {
             return <option value={elem}>{elem}</option>;
           })}
@@ -41,8 +44,10 @@ function Filter(props) {
         <br></br>
         <br></br>
         <label for="trainer">Trainer</label>
-        <select name="trainer" id="trainer">
-          <option value="">Select Trainer</option>
+        <select name="trainer" id="trainer" multiple>
+          <option value="" disabled>
+            Select Trainer
+          </option>
           {uniqueTrainers.map((elem) => {
             return <option value={elem._id}>{elem.name}</option>;
           })}
@@ -50,8 +55,10 @@ function Filter(props) {
         <br></br>
         <br></br>
         <label for="duration">Duration</label>
-        <select name="duration">
-          <option value="">Select duration</option>
+        <select name="duration" multiple>
+          <option value="" disabled>
+            Select duration
+          </option>
           {uniqueClassDuration.map((elem) => {
             return <option value={elem}>{elem}</option>;
           })}
@@ -59,21 +66,29 @@ function Filter(props) {
         <br></br>
         <br></br>
         <label for="difficulty">Difficulty</label>
-        <select name="difficulty">
-          <option value="">Select difficulty</option>
+        <select name="difficulty" multiple>
+          <option value="" disabled>
+            Select difficulty
+          </option>
           {uniqueDifficulty.map((elem) => {
             return <option value={elem}>{elem}</option>;
           })}
         </select>{" "}
         <br></br>
         <br></br>
-        <label for="equipment">Equipment</label>
-        <select name="equipment">
-          <option value="">Select equipment</option>
+        <label for="equipment">Required equipment</label>
+        <select name="equipment" multiple>
+          <option value="" disabled>
+            Select equipment
+          </option>
           {uniqueEquipment.map((elem) => {
             return <option value={elem}>{elem}</option>;
           })}
         </select>
+        <br></br>
+        <br></br>
+        <input type="button" id="addFilter" value="Filter" />
+        <input type="button" id="removeFilter" value="Remove filter" />
       </form>
     </div>
   );

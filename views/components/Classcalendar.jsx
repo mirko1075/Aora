@@ -19,9 +19,6 @@ function ClassCalendar(props) {
     <div>
       {classesArr.map((obj, i) => {
         obj.scheduled != actualDay ? (actualDay = obj.scheduled) : null;
-        {
-          /* console.log("actualday", actualDay); */
-        }
         return (
           <div
             className={
