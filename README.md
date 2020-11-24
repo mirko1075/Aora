@@ -103,6 +103,10 @@ CLASSES
 
 [Our Trello board](https://trello.com/b/yAu4Puzc/aora)
 
+#### Slides
+
+[Our slide show](https://docs.google.com/presentation/d/1rhgCc_YME-1Z9I68bBdCm8Mg-atVrasFP5CgQL9745M/edit?usp=sharing)
+
 #### Figma
 
 [Jaw dropper](https://www.figma.com/file/xDs3PWFw0z6c81lIGlABfs/AORA-%40-Ironhack?node-id=872%3A21155)
