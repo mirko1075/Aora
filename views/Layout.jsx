@@ -6,6 +6,7 @@ function Layout(props) {
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <title> {props.title ? props.title : "My App"} </title>
         <link rel="stylesheet" href="/stylesheets/cssreset.css" />
         <link rel="stylesheet" href="/stylesheets/style.css" />

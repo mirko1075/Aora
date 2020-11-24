@@ -10,8 +10,6 @@ function Schedule(props) {
       <h1>My Schedule</h1>
       {/* <h2>Data received for user: {props.user[0].email} </h2> */}
       <ul>
-        
-        <br />
 
         {props.user[0].scheduledClasses.map((oneScheduledClass, i) => {
           return (
