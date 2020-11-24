@@ -8,6 +8,7 @@ const zxcvbn = require("zxcvbn");
 const { isLoggedIn } = require("./../utils/utils");
 const saltRound = 10;
 
+
 // ROUTES
 
 // GET > SIGN UP ROUTE
@@ -95,7 +96,7 @@ authRouter.post("/login", (req, res, next) => {
   const { email, password } = req.body;
 
   if (email === "" || password === "") {
-    const props = { errorMessage: "Indicate email and password" };
+    const props = { errorMessage: "Please email and password" };
     res.render("Login", props);
     return;
   }

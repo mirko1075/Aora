@@ -2,6 +2,9 @@ const React = require("react");
 const Layout = require("./Layout");
 
 function Profile (props) {
+    const foundUser=props.foundUser;
+    
+    console.log(props)
     return(
         <Layout>
             <form id="form" action="/auth/login" method="POST">
@@ -9,30 +12,29 @@ function Profile (props) {
                 <button type="submit">LOG OUT</button>
                 <button type="submit">EDIT</button>
                 <br/>
-                <input type="text" name="name" placeholder="name" />
+                {/* <input type="text" name="name" placeholder="name" value="{foundUser.name}" /> */}
+                {/* <p>"${foundUser.email}"</p> */}
+                <i href="">PROFILE PICTURE</i>
+                
+                {/* <button type="submit">LOG OUT</button>
+                <button type="submit">EDIT PROFILE</button>
                 <br/>
-                <input type="text" name="lastName" placeholder="lastName" />
+                <p>NAME</p>
                 <br/>
-                <input type="email" name="email" placeholder="email" />
+                <p>{foundUser.name}</p>
                 <br/>
-                <input type="radio" name="gender" value="male"/>Male
-                <input type="radio" name="gender" value="female"/>Female
-                <input type="radio" name="gender" value="other"/>Other
+                <p>{foundUser.lastName}</p>
                 <br/>
-                <input type="date" name="bithdate" />
+                <p>{foundUser.email}</p>
                 <br/>
-                <input type="text" name="email" placeholder="ENTER EMAIL" />
+                <p>{foundUser.gender}</p>
                 <br/>
-                <input type="text" name="city" placeholder="city" />
+                <p>{foundUser.birthDate}</p>
                 <br/>
-                <input type="text" name="country" placeholder="country" />
+                <p>{foundUser.city}</p>
                 <br/>
-                <input type="password" name="password" placeholder="Enter password" />
-                <br/>
-                <input type="text" name="weight" placeholder="Weight" />
-                <br/>
-                <input type="text" name="height" placeholder="Height" />
-                <br/>
+                <p>{foundUser.country}</p>
+                <br/> */}
 
                 {
                 props.errorMessage 
@@ -46,19 +48,3 @@ function Profile (props) {
 
 module.exports = Profile;
 
-//vista de informacion
-// botton edit que cambia a modificar los campos
-
-//     city: String,
-//     country: String,
-//     password: String,
-//     userType: { type: String, enum: ["user", "trainer"] },
-//     userGoal: {
-//       type: String,
-//       default: "",
-//       enum: [
-//         "Strenght",
-//         "Weight loss",
-//         "Mass gain",
-//         "General health",
-//         "",

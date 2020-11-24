@@ -11,7 +11,11 @@ const User = require("./../models/User.model");
 
 // GET > CALENDAR HOME
 
-siteRouter.get("/home", (req, res, next) => {
+siteRouter.get("/", (req, res, next) => {
+  res.render("Calendar");
+});
+
+siteRouter.get("/calendar", (req, res, next) => {
   //   getUserBySession(req, res, next);
   Class.find()
     .sort("scheduled")
@@ -23,10 +27,6 @@ siteRouter.get("/home", (req, res, next) => {
     .catch((error) =>
       console.log("Something went wrong when retrieving an access token", error)
     );
-});
-
-siteRouter.get("/calendar", (req, res, next) => {
-  res.redirect("/private/Home");
 });
 
 // NOT NEEDED
@@ -95,17 +95,51 @@ siteRouter.get("/classDetail/delete/:idClass", (req, res, next) => {
       )
     );
 });
-siteRouter.get("/profile", (req, res, next) => {
-  res.render("Profile");
-});
-siteRouter.post("/edit-user/:userId", (req, res, next) => {
-  res.render("Profile");
-});
+
+// GET LIVE-CLASS ROUTE
 siteRouter.get("/live-class/:classId", (req, res, next) => {
   res.render("Liveclass");
 });
+
+// GET SCHEDULE ROUTE
+siteRouter.get("/schedule", (req, res, next) => {
+  const props = req.session.currentUser;
+  res.render("Schedule", props);
+});
+// GET PROGRESS ROUTE
+siteRouter.get("/progress", (req, res, next) => {
+  const props = req.session.currentUser;
+  res.render("Progress", props);
+});
+
+// GET Progress ROUTE I (which one should stay?)
 siteRouter.get("/progress/:userId", (req, res, next) => {
   res.render("Progress");
+});
+
+// GET PROFILE ROUTE II (which one should stay?)
+// siteRouter.get("/profile", (req, res, next) => {
+//   res.render("ProfileForm");
+// });
+
+// GET PROFILE ROUTE II (which one should stay?)
+siteRouter.get("/profile", (req, res, next) => {
+  // const idUser= getUserBySession(req, res, next);
+  const id = req.session.currentUser._id;
+  User.find({_id:id})
+  .then((user)=>{
+    // const props={userFound:userFound};
+    console.log("hello, its me again");
+    res.render("Profile", props);
+  })
+  .catch((err)=>{
+    console.log("Something went wrong connecting to the DB")
+  })
+});
+
+// POST PROFILE EDIT ROUTE
+siteRouter.post("/edit-user/:userId", (req, res, next) => {
+  res.render("Profile");
 });
 
 module.exports = siteRouter;

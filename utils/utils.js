@@ -1,8 +1,8 @@
 //Function to check if classed is booked
 function isBooked(classId, userId) {
   const User = require("./../models/User.model");
-  let result = false;
-  User.findById(userId)
+
+  const pr = User.findById(userId)
     .then((foundUser) => {
       console.log(
         "ClassId:",
@@ -12,12 +12,11 @@ function isBooked(classId, userId) {
       );
       if (foundUser.scheduledClasses.indexOf(classId) != -1) {
         console.log("Found");
-        result = true;
+        return true;
       } else {
         console.log("Not found");
-        result = false;
+        return false;
       }
-      return result;
     })
     .catch((error) =>
       console.log(
@@ -25,7 +24,6 @@ function isBooked(classId, userId) {
         error
       )
     );
-  return true;
 }
 
 // Function gets userId from Session
@@ -45,5 +43,12 @@ function isLoggedIn(req, res, next) {
     res.redirect("/auth/login");
   }
 }
+function unifyArray(array) {
+  const unique = (value, index, self) => {
+    return self.indexOf(value) === index;
+  };
 
-module.exports = { getUserBySession, isBooked, isLoggedIn };
+  const uniqueArray = array.filter(unique);
+  return uniqueArray;
+}
+module.exports = { getUserBySession, isBooked, isLoggedIn, unifyArray };

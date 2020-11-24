@@ -14,6 +14,7 @@ function Layout(props) {
       <body>
         {props.children}
         <Footer></Footer>
+
         <script type="text/javascript" src="/javascripts/script.js"></script>
       </body>
     </html>
