@@ -4,7 +4,6 @@ const {addZeroBefore} = require("../../utils/utils");
 function ClassCalendar(props) {
   const classesArr = props.classesArr.foundClasses;
   let actualDay = null;
-
   // Receives parameters:
   // ID Class -- idClass
   // Class name -- name
@@ -76,7 +75,15 @@ function ClassCalendar(props) {
           </article>
           </li>
         );
+        let listCount = i;
       })}
+      {/*Allow scrolling of last item past the filter */}
+      {<div className="empty-class-card"></div>}
+      {<div className="empty-class-card"></div>}
+      {<div className="empty-class-card"></div>}
+      {<div className="empty-class-card"></div>}
+      {<div className="empty-class-card"></div>}
+      {<div className="empty-class-card"></div>}
       </ul>
     </div>
   );

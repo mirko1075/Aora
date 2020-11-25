@@ -188,7 +188,15 @@ nav img {
   justify-content: flex-end;
   margin-right: 32px;
 }
-
+.empty-class-card {
+  background-color: #333;
+  opacity: 50%;
+  margin-bottom: 1px;
+  height: 90px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
 /* --------------------------- */
 
 .filterShow {

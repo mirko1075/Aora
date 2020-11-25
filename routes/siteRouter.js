@@ -77,7 +77,7 @@ siteRouter.get("/classDetail/:idClass", isLoggedIn, (req, res, next) => {
             foundClass: foundClass,
             isBooked: isBooked,
           };
-          console.log("IsBooked:", props.isBooked);
+          //console.log("IsBooked:", props.isBooked);
           // console.log("Props from promise:", props);
           res.render("ClassDetail", props);
         });

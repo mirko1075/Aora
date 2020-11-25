@@ -10,7 +10,6 @@ function Schedule(props) {
       <div className="header">
         <h1>My Schedule</h1>
       </div>
-      {/* <h2>Data received for user: {props.user[0].email} </h2> */}
       <div className="scroll-container">
       <ul>
 
@@ -42,7 +41,14 @@ function Schedule(props) {
               </a>
             </li>)
           );
-        })} 
+        })}
+          {/*Allow scrolling of last item past the filter */}
+          {<div className="empty-class-card"></div>}
+          {<div className="empty-class-card"></div>}
+          {<div className="empty-class-card"></div>}
+          {<div className="empty-class-card"></div>}
+          {<div className="empty-class-card"></div>}
+          {<div className="empty-class-card"></div>}
       </ul>
       </div>
     </Layout>
