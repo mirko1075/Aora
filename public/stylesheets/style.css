@@ -16,6 +16,9 @@ a {
   color: var(--text-color);
   text-decoration: none;
 }
+button:focus {
+  outline:0;
+}
 h1 {
   font-style: normal;
   font-weight: 500;
@@ -49,12 +52,30 @@ h3 {
   width: 50px;
 }
 .daysBtnOn {
+  width: 40px;
+  height: 40px;
+  font-style: normal;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
   color: black;
-  background-color: yellow;
+  background-color: #FF0066;
+  border-radius: 20px;
+  border: none;
+  z-index: 1;
 }
 .daysBtnOff {
-  color: #e5e5e5;
+  width: 40px;
+  height: 40px;
+  font-style: normal;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #E5E5E5;
   background-color: black;
+  border-radius: 20px;
+  border: none;
+  z-index: 0;
 }
 .day,
 .month {
