@@ -29,7 +29,7 @@ function Schedule(props) {
                 <p id="schedule-date">{humanizeDay(oneScheduledClass.scheduled.getDay())}, {humanizeMonth(oneScheduledClass.scheduled.getMonth())} {addZeroBefore(oneScheduledClass.scheduled.getDate())}</p>
               }
               <div className="class-card">
-                <div>
+                <div class="profile-pic">
                   <img src="/images/face1.png"></img>
                 </div>
                 <div>

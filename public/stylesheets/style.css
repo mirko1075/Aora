@@ -169,18 +169,26 @@ nav img {
 .class-card div {
   margin-left: 16px;
 }
-.class-card img {
+.profile-pic img {
   width: 72px;
   height: auto;
   background-color: white;
   clip-path: circle(36px at center);
 }
 .small-info {
+  width: 60vw;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
   text-transform: uppercase;
 }
+.flechita {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 32px;
+}
+
 /* --------------------------- */
 
 .filterShow {

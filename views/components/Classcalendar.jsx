@@ -60,16 +60,19 @@ function ClassCalendar(props) {
             {obj.equipment.map((equipObj) => {
               return <p>{equipObj}</p>;
             })} */}
-            <div className="class-card">
-                <div>
+            <a href={"/private/classDetail/" + obj._id} className="class-card">
+                <div class="profile-pic">
                   <img src="/images/face1.png"></img>
                 </div>
                 <div>
                   <h3>{addZeroBefore(obj.scheduled.getHours())}:{addZeroBefore(obj.scheduled.getMinutes())} | {obj.classType}</h3>
                   <p className="small-info">{obj.duration} min. | {obj.trainer[0].name} {obj.trainer[0].lastName}</p>
                 </div>
-            </div>
-            <a href={"/private/classDetail/" + obj._id}>Detail</a>
+                <div class="flechita"><div>
+                  <img src="/images/flechita.svg"></img>
+                </div></div>
+            </a>
+            
           </article>
           </li>
         );
