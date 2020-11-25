@@ -22,6 +22,17 @@ function changeDay(day) {
   if (elementsToShow) {
     hideAllDivs(day, false);
     displayAllDivs(day, false);
+    const btnArray = document.querySelectorAll(".daysBtn");
+    for (let i = 0; i < btnArray.length; i++) {
+      let btnId = btnArray[i].id;
+      btnId = btnId.slice(btnId.indexOf("-") + 1, btnId.length);
+      // console.log("btnId", btnId, "day", day);
+      if (btnId != day) {
+        btnArray[i].classList.remove("daysBtn-on");
+      } else {
+        btnArray[i].classList.add("daysBtn-on");
+      }
+    }
   }
 }
 
@@ -30,10 +41,10 @@ function hideAllDivs(todayDivId, filtered) {
   if (!filtered) {
     for (let i = 0; i < allDivs.length; i++) {
       let btnId = allDivs[i].id;
-      console.log("Hide: allDivs[i].id:", allDivs[i].id);
+      // console.log("Hide: allDivs[i].id:", allDivs[i].id);
       btnId = btnId.slice(btnId.indexOf("-", -1) + 1, btnId.length);
       btnId = btnId.slice(btnId.indexOf("-") + 1, btnId.length);
-      console.log("Hide: classId", btnId, "todayDivId", todayDivId);
+      // console.log("Hide: classId", btnId, "todayDivId", todayDivId);
       if (btnId != todayDivId) {
         allDivs[i].style.display = "none";
       }
@@ -71,7 +82,7 @@ function showFilter(div) {
   }
 }
 function applyFilter() {
-  // console.log("Apply Filter", divsToHide, divsToShow);
+  console.log("Apply Filter", divsToHide, divsToShow);
   for (let i = 0; i < divsToHide.length; i++) {
     divsToHide[i].style.display = "none";
   }
@@ -80,13 +91,13 @@ function applyFilter() {
   }
   filterDiv.classList.add("filterHidden");
   filterDiv.classList.remove("filterShow");
-  hideAllDivs(day, true);
-  displayAllDivs(day, true);
+  // hideAllDivs(actualDate, true);
+  // displayAllDivs(actualDate, true);
 }
 
-function unApplyFilter() {
-  console.log("Apply Filter");
-}
+// function unApplyFilter() {
+//   console.log("Unapply Filter");
+// }
 
 const selectionObj = {
   classType: "",
@@ -96,23 +107,33 @@ const selectionObj = {
   equipment: "",
 };
 
-const divsToHide = [];
-const divsToShow = [];
+let divsToHide = [];
+let divsToShow = [];
 
 function filter(field, fieldValue) {
+  divsToHide = [];
+  divsToShow = [];
   // console.log("Parameters:", field, fieldValue);
   const divsArr = document.querySelectorAll("article");
+  console.log("actual Date:", actualDate);
   for (let i = 0; i < divsArr.length; i++) {
     const elem = divsArr[i];
-    // console.log(
-    //   "Class type all:",
-    //   divsArr[i].attributes["data-classType"].value
-    // );
+
+    console.log(
+      "Class type all:",
+      "Id:" + divsArr[i].id,
+      "Field value:" + divsArr[i].attributes[`data-${field}`].value,
+      "Scheduled:" + divsArr[i].attributes["data-scheduled"].value
+    );
     if (
       divsArr[i].attributes[`data-${field}`].value === fieldValue &&
       divsArr[i].attributes["data-scheduled"].value == actualDate
     ) {
-      // console.log("Here i am", divsArr[i].attributes["data-classType"].value);
+      // console.log(
+      //   "Here i am",
+      //   divsArr[i].id,
+      //   divsArr[i].attributes[`data-${field}`].value
+      // );
       divsToShow.push(divsArr[i]);
     } else {
       divsToHide.push(divsArr[i]);
@@ -129,11 +150,15 @@ for (let i = 0; i < btnArray.length; i++) {
 }
 
 // IDENTIFYING ELEMENTS BY ID
+// DIV WITH THE FILTER FORM
 const filterDiv = document.getElementById("filter");
+//BUTTON FILTER INSIDE Calendar
 const filterBtn = document.getElementById("filterBtn");
-const addFilter = document.getElementById("addFilter");
-const removeFilter = document.getElementById("removeFilter");
-const closeFilter = document.getElementById("closeFilter");
+//Button to apply filter
+const applyFilterBtn = document.getElementById("applyFilterBtn");
+
+const removeFilterBtn = document.getElementById("removeFilterBtn");
+const closeFilterBtn = document.getElementById("closeFilterBtn");
 const article = document.getElementById("electriccars");
 const classType = document.getElementById("classType");
 const trainer = document.getElementById("trainer");
@@ -142,21 +167,21 @@ const difficulty = document.getElementById("difficulty");
 const equipment = document.getElementById("equipment");
 
 // LISTENERS
-window.addEventListener("load", hideAllDivs(calculateToday(), false));
+window.addEventListener("load", changeDay(calculateToday()));
 
 filterBtn.addEventListener("click", function () {
   showFilter(filterDiv);
 });
 
-addFilter.addEventListener("click", function () {
+applyFilterBtn.addEventListener("click", function () {
   applyFilter();
 });
 
-filterBtn.addEventListener("click", function () {
-  unApplyFilter();
-});
+// filterBtn.addEventListener("click", function () {
+//   unApplyFilter();
+// });
 
-closeFilter.addEventListener("click", function () {
+closeFilterBtn.addEventListener("click", function () {
   showFilter(filterDiv);
 });
 

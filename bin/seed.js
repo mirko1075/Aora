@@ -2,8 +2,8 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const User = require("./../models/User.model");
 const Class = require("./../models/Class.model");
-// const usersArr = require("./user-mockup");
-// const classesArr = require("./class-mockup");
+const usersArr = require("./user-mockup");
+const classesArr = require("./class-mockup");
 
 //Connection to DB parameters
 const DB_NAME = process.env.DB_NAME.toString();
@@ -31,62 +31,62 @@ const lastNamesArr = [
   "Ramirez",
   "Rossi",
 ];
-const usersArr = [];
-const classesArr = [];
-for (let i = 0; i < USERS; i++) {
-  const userObj = {
-    name: randomize(namesArr),
-    lastName: randomize(lastNamesArr),
-    email: randomWord(1) + "." + randomWord(1) + "@" + randomWord(1) + ".com",
-    gender: randomize(["Male", "Female", "Other"]),
-    birthDate: new Date("1975-10-30"),
-    city: "Barcelona",
-    country: "Spain",
-    password: "1234567",
-    userType: randomize(["user", "trainer"]),
-    picUrl: "",
-    userHeight: 178,
-    userWeight: 72,
-    userGoal: randomize([
-      "Strenght",
-      "Weight loss",
-      "Mass gain",
-      "General health",
-    ]),
-    userBodyType: randomize(["Ectomorph", "Endomorph", "Mesomorph"]),
-    userWeightGoal: 80,
-    trainerBio: null,
-    trainerRate: null,
-    scheduledClasses: [],
-  };
-  usersArr.push(userObj);
-}
+// const usersArr = [];
+// const classesArr = [];
+// for (let i = 0; i < USERS; i++) {
+//   const userObj = {
+//     name: randomize(namesArr),
+//     lastName: randomize(lastNamesArr),
+//     email: randomWord(1) + "." + randomWord(1) + "@" + randomWord(1) + ".com",
+//     gender: randomize(["Male", "Female", "Other"]),
+//     birthDate: new Date("1975-10-30"),
+//     city: "Barcelona",
+//     country: "Spain",
+//     password: "1234567",
+//     userType: randomize(["user", "trainer"]),
+//     picUrl: "",
+//     userHeight: 178,
+//     userWeight: 72,
+//     userGoal: randomize([
+//       "Strenght",
+//       "Weight loss",
+//       "Mass gain",
+//       "General health",
+//     ]),
+//     userBodyType: randomize(["Ectomorph", "Endomorph", "Mesomorph"]),
+//     userWeightGoal: 80,
+//     trainerBio: null,
+//     trainerRate: null,
+//     scheduledClasses: [],
+//   };
+//   usersArr.push(userObj);
+// }
 
-for (let i = 0; i < CLASSES; i++) {
-  const classObj = {
-    name: randomWord(1),
-    description: randomWord(5),
-    closureMessage: randomWord(5),
-    scheduled: addDays(new Date(), randomize([1, 2, 3, 4, 5, 6, 7])),
-    duration: randomize([30, 60, 90, 120]),
-    classType: randomize(["Hiit", "Strenght", "Stretch"]),
-    difficulty: randomize(["Hard", "Medium", "Easy"]),
-    url: randomize([
-      "https://www.youtube.com/embed/qWy_aOlB45Y",
-      "https://youtu.be/qULTwquOuT4",
-      "https://youtu.be/7Vb3xB3cJxM",
-    ]),
-    equipment: randomize([
-      ["Yoga mat"],
-      ["Yoga mat", "Dumbells"],
-      ["Yoga mat", "Dumbells", "Elastic band"],
-      ["Dumbells"],
-      ["Elastic band"],
-      ["None"],
-    ]),
-  };
-  classesArr.push(classObj);
-}
+// for (let i = 0; i < CLASSES; i++) {
+//   const classObj = {
+//     name: randomWord(1),
+//     description: randomWord(5),
+//     closureMessage: randomWord(5),
+//     scheduled: addDays(new Date(), randomize([1, 2, 3, 4, 5, 6, 7])),
+//     duration: randomize([30, 60, 90, 120]),
+//     classType: randomize(["Hiit", "Strenght", "Stretch"]),
+//     difficulty: randomize(["Hard", "Medium", "Easy"]),
+//     url: randomize([
+//       "https://www.youtube.com/embed/qWy_aOlB45Y",
+//       "https://youtu.be/qULTwquOuT4",
+//       "https://youtu.be/7Vb3xB3cJxM",
+//     ]),
+//     equipment: randomize([
+//       ["Yoga mat"],
+//       ["Yoga mat", "Dumbells"],
+//       ["Yoga mat", "Dumbells", "Elastic band"],
+//       ["Dumbells"],
+//       ["Elastic band"],
+//       ["None"],
+//     ]),
+//   };
+//   classesArr.push(classObj);
+// }
 
 function addDays(dateObj, numDays) {
   let num = Math.round(Math.random() * numDays - 0);

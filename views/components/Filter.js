@@ -55,7 +55,7 @@ function Filter(props) {
           {uniqueTrainers.map((elem, i) => {
             return (
               <option key={i} value={elem._id}>
-                {elem.name}
+                {elem.name} {elem.lastName}
               </option>
             );
           })}
@@ -107,9 +107,9 @@ function Filter(props) {
         </select>
         <br></br>
         <br></br>
-        <input type="button" id="addFilter" value="Filter" />
-        <input type="reset" id="removeFilter" value="Reset filter" />
-        <input type="button" id="closeFilter" value="Close filter" />
+        <input type="button" id="applyFilterBtn" value="Apply filter" />
+        <input type="reset" id="removeFilterBtn" value="Reset filter" />
+        <input type="button" id="closeFilterBtn" value="Close filter" />
       </form>
     </div>
   );

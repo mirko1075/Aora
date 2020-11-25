@@ -28,30 +28,80 @@ h3 {
   font-size: 18px;
   line-height: 24px;
 }
-/* --------------------------------------------------------- */
+/* --CALENDAR / CLASSES STYLING------------------------------------- */
+.header-calendar {
+  height: 90px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #666666;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
 .calendarbar {
   display: flex;
-  width: 100%;
 }
 .datebox {
   display: flex;
   flex-direction: column;
   width: 50px;
 }
-
+.daysBtn-on {
+  font-style: normal;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #e5e5e5;
+  background-color: #ff0066;
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+  border: none;
+}
+.daysBtn {
+  font-style: normal;
+  font-size: 12px;
+  line-height: 14px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #e5e5e5;
+  background-color: black;
+  border-radius: 100px;
+  width: 40px;
+  height: 40px;
+  border: none;
+}
 .day,
 .month {
   padding: 5px;
-  border: 1px solid var(--text-color);
   text-align: center;
 }
-
 .classname {
   font-weight: 700;
 }
-
 .classcontainer {
   height: auto;
+}
+.btn-container {
+  width: 100vw;
+  position: fixed;
+  bottom: 100px;
+  margin-left: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.btn-container button {
+  font-weight: 900;
+  font-size: 14px;
+  text-transform: uppercase;
+  width: 164px;
+  height: 60px;
+  background: #c4c4c4;
+  border-radius: 60px;
+  border: none;
 }
 /* HEADER STYLE ----------------------------------- */
 .header {
@@ -113,7 +163,7 @@ nav img {
   display: flex;
   align-items: center;
 }
-.class-card div{
+.class-card div {
   margin-left: 16px;
 }
 .class-card img {
