@@ -14,9 +14,14 @@ function GenerateScriptDivFilter(props) {
       return { equipObj };
     });
     const id =
-      "class-" + i + "-" + actualDay.getDate() + "" + actualDay.getMonth();
+      "class-" +
+      i +
+      "-" +
+      actualDay.getDate() +
+      "" +
+      (actualDay.getMonth() + 1);
     const className =
-      "class " + actualDay.getDate() + "" + actualDay.getMonth();
+      "class " + actualDay.getDate() + "" + (actualDay.getMonth() + 1);
 
     divObjToInsert.id = id;
     divObjToInsert.className = className;

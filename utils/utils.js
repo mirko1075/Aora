@@ -1,31 +1,31 @@
 //Function to check if classed is booked
-function isBooked(classId, userId) {
-  const User = require("./../models/User.model");
+// function isBooked(classId, userId) {
+//   const User = require("./../models/User.model");
 
-  const pr = User.findById(userId)
-    .then((foundUser) => {
-      console.log(
-        "ClassId:",
-        classId,
-        "foundUser.scheduledClasses",
-        foundUser.scheduledClasses
-      );
-      if (foundUser.scheduledClasses.indexOf(classId) != -1) {
-        console.log("Found");
-        return true;
-      } else {
-        console.log("Not found");
-        return false;
-      }
-    })
-    .catch((error) =>
-      console.log(
-        "Something went wrong when retrieving an access token in Isbooked",
-        error
-      )
-    );
-  return pr;
-}
+//   const pr = User.findById(userId)
+//     .then((foundUser) => {
+//       console.log(
+//         "ClassId:",
+//         classId,
+//         "foundUser.scheduledClasses",
+//         foundUser.scheduledClasses
+//       );
+//       if (foundUser.scheduledClasses.indexOf(classId) != -1) {
+//         console.log("Found");
+//         return true;
+//       } else {
+//         console.log("Not found");
+//         return false;
+//       }
+//     })
+//     .catch((error) =>
+//       console.log(
+//         "Something went wrong when retrieving an access token in Isbooked",
+//         error
+//       )
+//     );
+//   return pr;
+// }
 
 // Function gets userId from Session
 function getUserBySession(req) {
@@ -37,6 +37,27 @@ function getUserBySession(req) {
   }
 }
 
+function isOnline(classesArr, idClass) {
+  const date = new Date();
+
+  for (let i = 0; i < classesArr.length; i++) {
+    if (classesArr[i]._id == idClass) {
+      if (classesArr[i].sheduled > date) {
+        return true;
+      }
+    }
+  }
+  return false;
+}
+
+function isBooked(classesArr, idClass) {
+  for (let i = 0; i < classesArr.length; i++) {
+    if (classesArr[i]._id == idClass) {
+      return true;
+    }
+  }
+  return false;
+}
 // Function middleware for blocking access to unauthorized
 function isLoggedIn(req, res, next) {
   if (req.session.currentUser) {
@@ -54,33 +75,61 @@ function unifyArray(array) {
   return uniqueArray;
 }
 function addZeroBefore(n) {
-  return (n < 10 ? '0' : '') + n;
+  return (n < 10 ? "0" : "") + n;
 }
 function humanizeDay(day) {
   switch (day) {
-    case 0: return "Sunday";
-    case 1: return "Monday";
-    case 2: return "Tuesday";
-    case 3: return "Wednesday";
-    case 4: return "Thursday";
-    case 5: return "Friday";
-    case 6: return "Saturday";
+    case 0:
+      return "Sunday";
+    case 1:
+      return "Monday";
+    case 2:
+      return "Tuesday";
+    case 3:
+      return "Wednesday";
+    case 4:
+      return "Thursday";
+    case 5:
+      return "Friday";
+    case 6:
+      return "Saturday";
   }
 }
 function humanizeMonth(month) {
   switch (month) {
-    case 0: return "Jan.";
-    case 1: return "Feb.";
-    case 2: return "Mar.";
-    case 3: return "Apr.";
-    case 4: return "May.";
-    case 5: return "Jun.";
-    case 6: return "Jul.";
-    case 7: return "Ago.";
-    case 8: return "Sep.";
-    case 9: return "Oct.";
-    case 10: return "Nov.";
-    case 11: return "Dec.";
+    case 0:
+      return "Jan.";
+    case 1:
+      return "Feb.";
+    case 2:
+      return "Mar.";
+    case 3:
+      return "Apr.";
+    case 4:
+      return "May.";
+    case 5:
+      return "Jun.";
+    case 6:
+      return "Jul.";
+    case 7:
+      return "Ago.";
+    case 8:
+      return "Sep.";
+    case 9:
+      return "Oct.";
+    case 10:
+      return "Nov.";
+    case 11:
+      return "Dec.";
   }
 }
-module.exports = { getUserBySession, isBooked, isLoggedIn, unifyArray, addZeroBefore, humanizeDay, humanizeMonth };
+module.exports = {
+  getUserBySession,
+  isBooked,
+  isOnline,
+  isLoggedIn,
+  unifyArray,
+  addZeroBefore,
+  humanizeDay,
+  humanizeMonth,
+};

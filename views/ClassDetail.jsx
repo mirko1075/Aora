@@ -4,7 +4,9 @@ const { isBooked, getUserBySession } = require("../utils/utils");
 
 function ClassDetail(props) {
   // console.log("!!!!!!!PROPS from ClassDetail:", props);
-  const isBooked = props.isBooked;
+  const isBookedRes = props.isBookedRes;
+  let isOnlineRes = props.isOnlineRes;
+  isOnlineRes = true;
   props = props.foundClass;
 
   console.log("isBooked from ClassDetail", isBooked);
@@ -37,8 +39,12 @@ function ClassDetail(props) {
         <br></br>
         <br></br>
 
-        {isBooked === true ? (
-          <a href={"/private/classDetail/delete/" + props._id}>Unbook</a>
+        {isBookedRes === true ? (
+          isOnlineRes == true ? (
+            <a href={"/private/liveClass/" + props._id}>Join</a>
+          ) : (
+            <a href={"/private/classDetail/delete/" + props._id}>Unbook</a>
+          )
         ) : (
           <a href={"/private/classDetail/add/" + props._id}>Book</a>
         )}

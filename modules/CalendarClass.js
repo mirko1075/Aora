@@ -36,7 +36,7 @@ class CalendarClass {
       dayOfMonth = dateToPrint.getDate();
       dayOfWeek = this.dayNames[dateToPrint.getDay()];
       monthOfYearName = this.monthNames[dateToPrint.getMonth()];
-      monthOfYear = dateToPrint.getMonth();
+      monthOfYear = dateToPrint.getMonth() + 1;
       datesArr.push({ dayOfWeek, dayOfMonth, monthOfYearName, monthOfYear });
     }
     return datesArr;
