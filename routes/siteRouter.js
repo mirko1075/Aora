@@ -193,7 +193,6 @@ siteRouter.get("/profile", isLoggedIn, (req, res, next) => {
 // GET > PROFILE FORM ROUTE
 siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
-  const { email } = req.body;
   User.find({ _id: id })
 
     .then((user) => {
@@ -208,9 +207,9 @@ siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
 // POST > PROFILE FORM EDIT ROUTE
 siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
-  const { email } = req.body;
+  const { name, lastName, email, city, country } = req.body;
   
-  User.dinByIdAndUpdate(id,{email},{new:tr})
+  User.findByIdAndUpdate(id,{name, lastName, email, city, country},{new:true})
     .then( (updateUser) => {
       res.redirect('/private/profile')
     })

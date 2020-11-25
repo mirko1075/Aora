@@ -15,7 +15,7 @@ function Profile (props) {
                 <p>{props.user[0].name}</p>
                 <br/>
                 <h2>LAST NAME</h2>
-                <p>{props.user[0].lasName}</p>
+                <p>{props.user[0].lastName}</p>
                 <br/>
                 <h2>EMAIL</h2>
                 <p>{props.user[0].email}</p>
