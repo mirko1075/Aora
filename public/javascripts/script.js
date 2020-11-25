@@ -22,15 +22,18 @@ function changeDay(day) {
   if (elementsToShow) {
     hideAllDivs(day, false);
     displayAllDivs(day, false);
-    const btnArray = document.querySelectorAll(".daysBtn");
+    const btnArray = document.querySelectorAll(".dayVoid");
+    console.log(btnArray);
     for (let i = 0; i < btnArray.length; i++) {
       let btnId = btnArray[i].id;
       btnId = btnId.slice(btnId.indexOf("-") + 1, btnId.length);
       console.log("btnId", btnId, "day", day);
       if (btnId != day) {
-        btnArray[i].classList.remove("btnOn");
+        btnArray[i].classList.remove("daysBtnOn");
+        btnArray[i].classList.add("daysBtnOff");
       } else {
-        btnArray[i].classList.add("btnOn");
+        btnArray[i].classList.add("daysBtnOn");
+        btnArray[i].classList.remove("daysBtnOff");
       }
     }
   }
@@ -144,7 +147,7 @@ function filter(field, fieldValue) {
   formObj.reset();
 }
 //// Add listeners
-const btnArray = document.querySelectorAll(".daysBtn");
+const btnArray = document.querySelectorAll(".dayVoid");
 for (let i = 0; i < btnArray.length; i++) {
   const btnId = btnArray[i].id;
   btnArray[i].addEventListener("click", function () {

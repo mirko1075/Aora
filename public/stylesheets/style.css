@@ -48,12 +48,13 @@ h3 {
   flex-direction: column;
   width: 50px;
 }
-.btnOn {
+.daysBtnOn {
   color: black;
   background-color: yellow;
 }
-.daysBtn {
+.daysBtnOff {
   color: #e5e5e5;
+  background-color: black;
 }
 .day,
 .month {

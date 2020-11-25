@@ -13,7 +13,7 @@ function CalendarBar(props) {
           >
             {/* <div className="day"> */}
             <button
-              className="daysBtn"
+              className="dayVoid"
               id={
                 "btn-" +
                 String(dateObj.dayOfMonth) +
