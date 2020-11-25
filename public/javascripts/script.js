@@ -98,25 +98,13 @@ function applyFilter() {
   // displayAllDivs(actualDate, true);
 }
 
-// function unApplyFilter() {
-//   console.log("Unapply Filter");
-// }
-
-const selectionObj = {
-  classType: "",
-  trainer: "",
-  duration: "",
-  difficulty: "",
-  equipment: "",
-};
-
 let divsToHide = [];
 let divsToShow = [];
 
 function filter(field, fieldValue) {
   divsToHide = [];
   divsToShow = [];
-  // console.log("Parameters:", field, fieldValue);
+  console.log("Parameters:", field, fieldValue);
   const divsArr = document.querySelectorAll("article");
   console.log("actual Date:", actualDate);
   for (let i = 0; i < divsArr.length; i++) {
@@ -142,7 +130,7 @@ function filter(field, fieldValue) {
       divsToHide.push(divsArr[i]);
     }
   }
-  const formObj = document.getElementById("filter");
+  const formObj = document.getElementById("filterForm");
   console.log(formObj);
   formObj.reset();
 }
@@ -165,12 +153,11 @@ const applyFilterBtn = document.getElementById("applyFilterBtn");
 
 const removeFilterBtn = document.getElementById("removeFilterBtn");
 const closeFilterBtn = document.getElementById("closeFilterBtn");
-const article = document.getElementById("electriccars");
 const classType = document.getElementById("classType");
 const trainer = document.getElementById("trainer");
 const duration = document.getElementById("duration");
 const difficulty = document.getElementById("difficulty");
-const equipment = document.getElementById("equipment");
+// const equipment = document.getElementById("equipment");
 
 // LISTENERS
 window.addEventListener("load", changeDay(calculateToday()));
@@ -207,6 +194,6 @@ difficulty.addEventListener("change", function () {
   filter(difficulty.id, difficulty.value);
 });
 
-equipment.addEventListener("change", function () {
-  filter(equipment.id, equipment.value);
-});
+// equipment.addEventListener("change", function () {
+//   filter(equipment.id, equipment.value);
+// });

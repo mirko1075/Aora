@@ -35,6 +35,9 @@ function ClassCalendar(props) {
             data-duration={obj.duration}
             data-difficulty={obj.difficulty}
             data-trainer={obj.trainer[0]._id}
+            // data-equipment={obj.equipment.map((equipObj) => {
+            //   return {equipObj};
+            // })}
             className={
               "classArticle " + actualDay.getDate() + "" + actualDay.getMonth()
             }

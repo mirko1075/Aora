@@ -1,5 +1,4 @@
 var express = require("express");
-const fetch = require("node-fetch");
 
 var siteRouter = express.Router();
 
@@ -139,7 +138,6 @@ siteRouter.get("/live-class/:idCLass", isLoggedIn, (req, res, next) => {
 siteRouter.get("/schedule", isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
   User.find({ _id: id })
-    //.populate("scheduledClasses").populate(["trainer"])
     .populate([
       {
         path: "scheduledClasses",
@@ -151,14 +149,14 @@ siteRouter.get("/schedule", isLoggedIn, (req, res, next) => {
 
     .then((user) => {
       //console.log("user" + user)
-      console.log("USER.EMAIL: " + user[0].email);
-      console.log(
-        "USER classes duration: " + user[0].scheduledClasses[0].duration
-      );
-      console.log(
-        "///////USER classes trainer: " +
-          user[0].scheduledClasses[0].trainer[0].name
-      );
+      // console.log("USER.EMAIL: " + user[0].email);
+      // console.log(
+      //   "USER classes duration: " + user[0].scheduledClasses[0].duration
+      // );
+      // console.log(
+      //   "///////USER classes trainer: " +
+      //     user[0].scheduledClasses[0].trainer[0].name
+      // );
       //const props = req.session.currentUser;
       const props = { user: user };
 
