@@ -48,31 +48,12 @@ h3 {
   flex-direction: column;
   width: 50px;
 }
-.daysBtn-on {
-  font-style: normal;
-  font-size: 12px;
-  line-height: 14px;
-  text-align: center;
-  text-transform: uppercase;
-  color: #e5e5e5;
-  background-color: #ff0066;
-  border-radius: 100px;
-  width: 40px;
-  height: 40px;
-  border: none;
+.btnOn {
+  color: black;
+  background-color: yellow;
 }
 .daysBtn {
-  font-style: normal;
-  font-size: 12px;
-  line-height: 14px;
-  text-align: center;
-  text-transform: uppercase;
   color: #e5e5e5;
-  background-color: black;
-  border-radius: 100px;
-  width: 40px;
-  height: 40px;
-  border: none;
 }
 .day,
 .month {

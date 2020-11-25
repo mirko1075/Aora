@@ -26,11 +26,11 @@ function changeDay(day) {
     for (let i = 0; i < btnArray.length; i++) {
       let btnId = btnArray[i].id;
       btnId = btnId.slice(btnId.indexOf("-") + 1, btnId.length);
-      // console.log("btnId", btnId, "day", day);
+      console.log("btnId", btnId, "day", day);
       if (btnId != day) {
-        btnArray[i].classList.remove("daysBtn-on");
+        btnArray[i].classList.remove("btnOn");
       } else {
-        btnArray[i].classList.add("daysBtn-on");
+        btnArray[i].classList.add("btnOn");
       }
     }
   }
@@ -139,6 +139,9 @@ function filter(field, fieldValue) {
       divsToHide.push(divsArr[i]);
     }
   }
+  const formObj = document.getElementById("filter");
+  console.log(formObj);
+  formObj.reset();
 }
 //// Add listeners
 const btnArray = document.querySelectorAll(".daysBtn");
