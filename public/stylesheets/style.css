@@ -85,9 +85,6 @@ h3 {
 .classname {
   font-weight: 700;
 }
-.classcontainer {
-  height: auto;
-}
 .btn-container {
   width: 100vw;
   position: fixed;
@@ -105,6 +102,47 @@ h3 {
   background: #c4c4c4;
   border-radius: 60px;
   border: none;
+}
+/* CLASS DETAIL STYLING-------------------------------------------------- */
+/* --same as above but used in class detail <a> link-- */
+.btn-container a {
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  width: 164px;
+  height: 60px;
+  border-radius: 60px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, .2);
+}
+.ahref-btn-off {
+  color: #333;
+  background-color: #c4c4c4;
+}
+.ahref-btn-on {
+  color: white;
+  background-color: #FF0066;
+}
+
+.classcontainer {
+  height: 100vh;
+  background-color: #E5E5E5;
+  color: #333333;
+}
+.profile-hero {
+  height: 34vh;
+  width: 100vw;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.profile-hero img {
+  height: 34vh;
+  width: auto;
 }
 /* HEADER STYLE ----------------------------------- */
 .header {
@@ -176,7 +214,7 @@ nav img {
   clip-path: circle(36px at center);
 }
 .small-info {
-  width: 60vw;
+  width: 50vw;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
@@ -194,8 +232,6 @@ nav img {
   margin-bottom: 1px;
   height: 90px;
   width: 100vw;
-  display: flex;
-  align-items: center;
 }
 /* --------------------------- */
 

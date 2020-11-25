@@ -75,7 +75,6 @@ function ClassCalendar(props) {
           </article>
           </li>
         );
-        let listCount = i;
       })}
       {/*Allow scrolling of last item past the filter */}
       {<div className="empty-class-card"></div>}
