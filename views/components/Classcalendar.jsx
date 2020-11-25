@@ -32,9 +32,9 @@ function ClassCalendar(props) {
             }
             data-scheduled={actualDay.getDate() + "" + actualDay.getMonth()}
             data-classType={obj.classType}
-            data-trainer={obj.trainer.name}
             data-duration={obj.duration}
             data-difficulty={obj.difficulty}
+            data-trainer={obj.trainer[0]._id}
             className={
               "classArticle " + actualDay.getDate() + "" + actualDay.getMonth()
             }
