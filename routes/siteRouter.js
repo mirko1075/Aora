@@ -1,5 +1,5 @@
 var express = require("express");
-
+const fetch = require("node-fetch");
 var siteRouter = express.Router();
 
 const bcrypt = require("bcrypt");
@@ -192,7 +192,9 @@ siteRouter.get("/profile", isLoggedIn, (req, res, next) => {
 
 // GET > PROFILE FORM ROUTE
 siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
-  fetch(
+  const id = req.session.currentUser._id;
+  console.log("id", id);
+  const pr = fetch(
     "https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=10&order=name&include=country&keys=name,country,country.name,country.emoji,country.code,population,location,cityId,adminCode",
     {
       method: "GET",
@@ -202,19 +204,22 @@ siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
       },
     }
   )
-    .then((response) => response.json())
+    .then((response) => {
+      response.json();
+      return pr;
+    })
     .then((data) => {
       // console.log(data);
       return data;
-    });
-
-  const id = req.session.currentUser._id;
-  User.find({ _id: id })
-
+    })
+    .then(() => {
+      User.findById(id);
+    })
     .then((user) => {
       const props = { user: user, data: data };
       res.render("ProfileForm", props);
     })
+
     .catch((err) => {
       console.log("Something went wrong connecting to the DB");
     });
