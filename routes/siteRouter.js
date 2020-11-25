@@ -12,14 +12,14 @@ const User = require("./../models/User.model");
 // ROUTES
 
 // GET > CALENDAR HOME
-siteRouter.get("/", (req, res, next) => {
+siteRouter.get("/", isLoggedIn, (req, res, next) => {
   res.redirect("/private/Calendar");
 });
-siteRouter.get("/home", (req, res, next) => {
+siteRouter.get("/home", isLoggedIn, (req, res, next) => {
   res.redirect("/private/Calendar");
 });
 
-siteRouter.get("/calendar", (req, res, next) => {
+siteRouter.get("/calendar", isLoggedIn, (req, res, next) => {
   const { classType, trainer, duration, difficulty, equipment } = req.query;
   let queryObj = {};
   // console.log("Params:", classType, trainer, duration, difficulty, equipment);
@@ -68,7 +68,7 @@ siteRouter.get("/calendar", (req, res, next) => {
 // });
 
 // ROUTE FOR CLASS DETAILS SHOW
-siteRouter.get("/classDetail/:idClass", (req, res, next) => {
+siteRouter.get("/classDetail/:idClass", isLoggedIn, (req, res, next) => {
   const idCLass = req.params.idClass;
   const idUser = req.session.currentUser._id;
   let isBooked = null;
@@ -111,7 +111,7 @@ siteRouter.get("/classDetail/:idClass", (req, res, next) => {
 });
 
 // ROUTE FOR CLASS BOOK
-siteRouter.get("/classDetail/add/:idClass", (req, res, next) => {
+siteRouter.get("/classDetail/add/:idClass", isLoggedIn, (req, res, next) => {
   const idClass = req.params.idClass;
   const idUser = req.session.currentUser._id;
   // console.log("idUser:", idUser, "idClass:", idClass);
@@ -130,7 +130,7 @@ siteRouter.get("/classDetail/add/:idClass", (req, res, next) => {
 });
 
 // ROUTE > FOR CLASS  UNBOOK
-siteRouter.get("/classDetail/delete/:idClass", (req, res, next) => {
+siteRouter.get("/classDetail/delete/:idClass", isLoggedIn, (req, res, next) => {
   const idClass = req.params.idClass;
   const idUser = req.session.currentUser._id;
   // console.log("Delete/n idUser:", idUser, "idClass:", idClass);
@@ -149,12 +149,12 @@ siteRouter.get("/classDetail/delete/:idClass", (req, res, next) => {
 });
 
 // GET > LIVE-CLASS ROUTE
-siteRouter.get("/live-class/:idCLass", (req, res, next) => {
+siteRouter.get("/live-class/:idCLass", isLoggedIn, (req, res, next) => {
   res.render("Liveclass");
 });
 
 // GET > SCHEDULE ROUTE
-siteRouter.get("/schedule", (req, res, next) => {
+siteRouter.get("/schedule", isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
   User.find({ _id: id })
     //.populate("scheduledClasses").populate(["trainer"])
@@ -191,13 +191,13 @@ siteRouter.get("/schedule", (req, res, next) => {
 });
 
 // GET > PROGRESS ROUTE
-siteRouter.get("/progress", (req, res, next) => {
+siteRouter.get("/progress", isLoggedIn, (req, res, next) => {
   const props = req.session.currentUser;
   res.render("Progress", props);
 });
 
 // GET > PROFILE ROUTE
-siteRouter.get("/profile", (req, res, next) => {
+siteRouter.get("/profile", isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
   User.find({ _id: id })
 
@@ -211,7 +211,7 @@ siteRouter.get("/profile", (req, res, next) => {
 });
 
 // GET PROFILE FORM ROUTE
-siteRouter.get("/profileform", (req, res, next) => {
+siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
   User.find({ _id: id })
 
@@ -225,7 +225,7 @@ siteRouter.get("/profileform", (req, res, next) => {
 });
 
 // POST PROFILE EDIT ROUTE
-siteRouter.post("/profileform", (req, res, next) => {
+siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
   res.render("ProfileForm");
 });
 

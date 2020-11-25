@@ -11,13 +11,32 @@ const DB_CONN_STR = process.env.MONGODB_URI.toString();
 const USERS = process.env.USERS;
 const CLASSES = process.env.CLASSES;
 // CREATING ARRAYS
-
+const namesArr = [
+  "Marc",
+  "Antony",
+  "George",
+  "Marco",
+  "Tom",
+  "Lucia",
+  "Stephanie",
+  "Diana",
+];
+const lastNamesArr = [
+  "Smith",
+  "Lopez",
+  "Sanchez",
+  "Bredley",
+  "Bianchi",
+  "Lopis",
+  "Ramirez",
+  "Rossi",
+];
 const usersArr = [];
 const classesArr = [];
 for (let i = 0; i < USERS; i++) {
   const userObj = {
-    name: randomWord(1),
-    lastName: randomWord(1),
+    name: randomize(namesArr),
+    lastName: randomize(lastNamesArr),
     email: randomWord(1) + "." + randomWord(1) + "@" + randomWord(1) + ".com",
     gender: randomize(["Male", "Female", "Other"]),
     birthDate: new Date("1975-10-30"),
@@ -46,13 +65,17 @@ for (let i = 0; i < USERS; i++) {
 for (let i = 0; i < CLASSES; i++) {
   const classObj = {
     name: randomWord(1),
-    description: randomWord(10),
-    closureMessage: randomWord(10),
+    description: randomWord(5),
+    closureMessage: randomWord(5),
     scheduled: addDays(new Date(), randomize([1, 2, 3, 4, 5, 6, 7])),
     duration: randomize([30, 60, 90, 120]),
     classType: randomize(["Hiit", "Strenght", "Stretch"]),
     difficulty: randomize(["Hard", "Medium", "Easy"]),
-    url: String,
+    url: randomize([
+      "https://www.youtube.com/embed/qWy_aOlB45Y",
+      "https://youtu.be/qULTwquOuT4",
+      "https://youtu.be/7Vb3xB3cJxM",
+    ]),
     equipment: randomize([
       ["Yoga mat"],
       ["Yoga mat", "Dumbells"],
@@ -66,27 +89,32 @@ for (let i = 0; i < CLASSES; i++) {
 }
 
 function addDays(dateObj, numDays) {
-  let num = Math.round(Math.random() * numDays);
+  let num = Math.round(Math.random() * numDays - 0);
   dateObj.setDate(dateObj.getDate() + num);
-  // console.log("dateObj", dateObj);
+  // console.log("dateObj", dateObj, "num", num, "numDays", numDays);
   return dateObj;
 }
 function randomWord(wordsNum) {
-  let str = Math.random()
-    .toString(36)
-    .replace(/[^a-z]+/g, "");
+  let str = "";
   if (wordsNum > 1) {
+    str = Math.random()
+      .toString(36)
+      .replace(/[^a-z]+/g, "");
     for (let i = 0; i < wordsNum; i++) {
       str += " " + str;
     }
+  } else {
+    str = Math.random()
+      .toString(36)
+      .replace(/[^a-z]+/g, "");
   }
   return str;
 }
 
 function randomize(arr) {
-  let num = Math.round(Math.random() * (arr.length - 1) + 1);
-  // console.log("num", num);
-  return arr[num];
+  let numRandom = Math.round(Math.random() * (arr.length - 1));
+  // console.log("numRandom", numRandom);
+  return arr[numRandom];
 }
 
 // SEED SEQUENCE
@@ -121,7 +149,7 @@ mongoose
       }
     });
     // console.log("trainersArr", trainersArr);
-
+    // console.log("classesArr", classesArr);
     const updatedClasses = classesArr.map((classObj) => {
       let randomNum = Math.floor(Math.random() * trainersArr.length);
       // console.log("trainersArr.length", trainersArr.length);
@@ -130,7 +158,7 @@ mongoose
       classObj.trainer = trainersArr[randomNum]._id;
       return classObj;
     });
-    console.log("updatedClasses", updatedClasses);
+    console.log("updatedClasses to import: " + updatedClasses.length);
     const pr = Class.create(updatedClasses);
     return pr;
   })
