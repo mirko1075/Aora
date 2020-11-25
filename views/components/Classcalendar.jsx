@@ -4,7 +4,6 @@ const { addZeroBefore } = require("../../utils/utils");
 function ClassCalendar(props) {
   const classesArr = props.classesArr.foundClasses;
   let actualDay = null;
-
   // Receives parameters:
   // ID Class -- idClass
   // Class name -- name
@@ -75,8 +74,11 @@ function ClassCalendar(props) {
             {obj.equipment.map((equipObj) => {
               return <p>{equipObj}</p>;
             })} */}
-                <div className="class-card">
-                  <div>
+                <a
+                  href={"/private/classDetail/" + obj._id}
+                  className="class-card"
+                >
+                  <div class="profile-pic">
                     <img src="/images/face1.png"></img>
                   </div>
                   <div>
@@ -90,12 +92,23 @@ function ClassCalendar(props) {
                       {obj.trainer[0].lastName}
                     </p>
                   </div>
-                </div>
-                <a href={"/private/classDetail/" + obj._id}>Detail</a>
+                  <div class="flechita">
+                    <div>
+                      <img src="/images/flechita.svg"></img>
+                    </div>
+                  </div>
+                </a>
               </article>
             </li>
           );
         })}
+        {/*Allow scrolling of last item past the filter */}
+        {<div className="empty-class-card"></div>}
+        {<div className="empty-class-card"></div>}
+        {<div className="empty-class-card"></div>}
+        {<div className="empty-class-card"></div>}
+        {<div className="empty-class-card"></div>}
+        {<div className="empty-class-card"></div>}
       </ul>
     </div>
   );

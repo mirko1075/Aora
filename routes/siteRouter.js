@@ -1,5 +1,4 @@
 var express = require("express");
-const fetch = require("node-fetch");
 var siteRouter = express.Router();
 
 const bcrypt = require("bcrypt");
@@ -98,7 +97,7 @@ siteRouter.get("/classDetail/:idClass", isLoggedIn, (req, res, next) => {
             isBookedRes: isBookedRes,
             isOnLineRes: isOnLineRes,
           };
-          // console.log("IsBooked:", props.isBooked);
+          //console.log("IsBooked:", props.isBooked);
           // console.log("Props from promise:", props);
           res.render("ClassDetail", props);
         });

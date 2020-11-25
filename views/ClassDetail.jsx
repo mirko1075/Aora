@@ -13,6 +13,9 @@ function ClassDetail(props) {
   return (
     <Layout title="Calendar">
       <div className="classcontainer">
+        <div class="profile-hero">
+          <img src="/images/face1.png"></img>
+        </div>
         <h3 className="classname">{props.name}</h3>
         <p>
           <b>Trainer:</b>{" "}
@@ -39,14 +42,31 @@ function ClassDetail(props) {
         <br></br>
         <br></br>
 
-        {isBookedRes === true ? (
+        {isBooked === true ? (
           isOnlineRes == true ? (
-            <a href={"/private/liveClass/" + props._id}>Join</a>
+            <div class="btn-container">
+              <a href={"/private/liveClass/" + props._id}>Join</a>
+              <a
+                class="ahref-btn-off"
+                href={"/private/classDetail/delete/" + props._id}
+              >
+                Unbook
+              </a>
+            </div>
           ) : (
-            <a href={"/private/classDetail/delete/" + props._id}>Unbook</a>
+            <div class="btn-container">
+              <a href={"/private/classDetail/delete/" + props._id}>Unbook</a>
+            </div>
           )
         ) : (
-          <a href={"/private/classDetail/add/" + props._id}>Book</a>
+          <div class="btn-container">
+            <a
+              class="ahref-btn-on"
+              href={"/private/classDetail/add/" + props._id}
+            >
+              Book
+            </a>
+          </div>
         )}
         <br></br>
         <a href="/private/calendar">Back to calendar</a>

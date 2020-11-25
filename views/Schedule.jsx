@@ -8,7 +8,6 @@ function Schedule(props) {
       <div className="header">
         <h1>My Schedule</h1>
       </div>
-      {/* <h2>Data received for user: {props.user[0].email} </h2> */}
       <div className="scroll-container">
         <ul>
           {props.user[0].scheduledClasses.map((oneScheduledClass, i) => {
@@ -25,15 +24,16 @@ function Schedule(props) {
                     ].scheduled.getDay() ? null : (
                     <p id="schedule-date">
                       {humanizeDay(oneScheduledClass.scheduled.getDay())},{" "}
-                      {humanizeMonth(
-                        oneScheduledClass.scheduled.getMonth() + 1
-                      )}{" "}
+                      {humanizeMonth(oneScheduledClass.scheduled.getMonth())}{" "}
                       {addZeroBefore(oneScheduledClass.scheduled.getDate())}
                     </p>
                   )
                 }
-                <div className="class-card">
-                  <div>
+                <a
+                  href={"/private/classDetail/" + oneScheduledClass._id}
+                  className="class-card"
+                >
+                  <div class="profile-pic">
                     <img src="/images/face1.png"></img>
                   </div>
                   <div>
@@ -48,10 +48,22 @@ function Schedule(props) {
                       {oneScheduledClass.trainer[0].lastName}
                     </p>
                   </div>
-                </div>
+                  <div class="flechita">
+                    <div>
+                      <img src="/images/flechita.svg"></img>
+                    </div>
+                  </div>
+                </a>
               </li>
             );
           })}
+          {/*Allow scrolling of last item past the filter */}
+          {<div className="empty-class-card"></div>}
+          {<div className="empty-class-card"></div>}
+          {<div className="empty-class-card"></div>}
+          {<div className="empty-class-card"></div>}
+          {<div className="empty-class-card"></div>}
+          {<div className="empty-class-card"></div>}
         </ul>
       </div>
     </Layout>
