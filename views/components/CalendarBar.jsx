@@ -11,20 +11,20 @@ function CalendarBar(props) {
             id={String(dateObj.dayOfMonth) + String(dateObj.monthOfYear)}
             className="datebox"
           >
-            
             {/* <div className="day"> */}
-              <button
-                className="daysBtn"
-                id={
-                  "btn-" +
-                  String(dateObj.dayOfMonth) +
-                  String(dateObj.monthOfYear)
-                }
-              >
+            <button
+              className="dayVoid"
+              id={
+                "btn-" +
+                String(dateObj.dayOfMonth) +
+                String(dateObj.monthOfYear)
+              }
+            >
               {/* <div className="day">{String(dateObj.dayOfWeek).slice(0, 3)}</div> */}
-              {String(dateObj.dayOfWeek).slice(0, 3)}<br />
-              {String(addZeroBefore(dateObj.dayOfMonth) )}
-              </button>
+              {String(dateObj.dayOfWeek).slice(0, 3)}
+              <br />
+              {String(addZeroBefore(dateObj.dayOfMonth))}
+            </button>
             {/* </div> */}
           </div>
         );
