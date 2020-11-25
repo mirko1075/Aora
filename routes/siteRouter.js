@@ -1,5 +1,4 @@
 var express = require("express");
-const fetch = require("node-fetch");
 var siteRouter = express.Router();
 
 const bcrypt = require("bcrypt");

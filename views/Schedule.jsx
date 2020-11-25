@@ -28,7 +28,7 @@ function Schedule(props) {
                 :
                 <p id="schedule-date">{humanizeDay(oneScheduledClass.scheduled.getDay())}, {humanizeMonth(oneScheduledClass.scheduled.getMonth())} {addZeroBefore(oneScheduledClass.scheduled.getDate())}</p>
               }
-              <div className="class-card">
+              <a href={"/private/classDetail/" + oneScheduledClass._id} className="class-card">
                 <div class="profile-pic">
                   <img src="/images/face1.png"></img>
                 </div>
@@ -36,7 +36,10 @@ function Schedule(props) {
                   <h3>{addZeroBefore(oneScheduledClass.scheduled.getHours())}:{addZeroBefore(oneScheduledClass.scheduled.getMinutes())} | {oneScheduledClass.classType}</h3>
                   <p className="small-info">{oneScheduledClass.duration} min. | {oneScheduledClass.trainer[0].name} {oneScheduledClass.trainer[0].lastName}</p>
                 </div>
-              </div>
+                <div class="flechita"><div>
+                  <img src="/images/flechita.svg"></img>
+                </div></div>
+              </a>
             </li>)
           );
         })} 
