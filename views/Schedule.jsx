@@ -20,7 +20,7 @@ function Schedule(props) {
             ?
             <h1>You haven't book any classes yet.</h1>
             :
-            <li key={i}>
+            (<li key={i}>
               {// print date only when new date
                 i>0 && props.user[0].scheduledClasses[i].scheduled.getDay() === props.user[0].scheduledClasses[i-1].scheduled.getDay() 
                 ?
@@ -37,7 +37,7 @@ function Schedule(props) {
                   <p class="small-info">{oneScheduledClass.duration} min. | {oneScheduledClass.trainer[0].name}</p>
                 </div>
               </div>
-            </li>
+            </li>)
           );
         })} 
       </ul>
