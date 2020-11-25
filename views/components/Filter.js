@@ -108,7 +108,7 @@ function Filter(props) {
         <br></br>
         <br></br>
         <input type="button" id="addFilter" value="Filter" />
-        <input type="button" id="removeFilter" value="Reset filter" />
+        <input type="reset" id="removeFilter" value="Reset filter" />
         <input type="button" id="closeFilter" value="Close filter" />
       </form>
     </div>
