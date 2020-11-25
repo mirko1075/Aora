@@ -1,6 +1,6 @@
 "use strict";
 /// VARIABLES
-let actualDate = null;
+let actualDate = calculateToday();
 // Function to change the day
 
 function calculateToday() {
@@ -27,13 +27,13 @@ function changeDay(day) {
 
 function hideAllDivs(todayDivId, filtered) {
   const allDivs = document.querySelectorAll(".classArticle");
-  if (filtered) {
+  if (!filtered) {
     for (let i = 0; i < allDivs.length; i++) {
       let btnId = allDivs[i].id;
-      // console.log("Hide: allDivs[i].id:", allDivs[i].id);
+      console.log("Hide: allDivs[i].id:", allDivs[i].id);
       btnId = btnId.slice(btnId.indexOf("-", -1) + 1, btnId.length);
       btnId = btnId.slice(btnId.indexOf("-") + 1, btnId.length);
-      // console.log("Hide: classId", btnId, "todayDivId", todayDivId);
+      console.log("Hide: classId", btnId, "todayDivId", todayDivId);
       if (btnId != todayDivId) {
         allDivs[i].style.display = "none";
       }
@@ -45,7 +45,7 @@ function hideAllDivs(todayDivId, filtered) {
 
 function displayAllDivs(day, filtered) {
   const classes = document.querySelectorAll(".classArticle");
-  if (filtered) {
+  if (!filtered) {
     for (let i = 0; i < classes.length; i++) {
       let classId = classes[i].id;
       // console.log("Display: classes[i].id:", classes[i].id);
@@ -108,34 +108,16 @@ function filter(field, fieldValue) {
     //   "Class type all:",
     //   divsArr[i].attributes["data-classType"].value
     // );
-    if (divsArr[i].attributes["data-classType"].value === fieldValue) {
+    if (
+      divsArr[i].attributes[`data-${field}`].value === fieldValue &&
+      divsArr[i].attributes["data-scheduled"].value == actualDate
+    ) {
       // console.log("Here i am", divsArr[i].attributes["data-classType"].value);
       divsToShow.push(divsArr[i]);
     } else {
       divsToHide.push(divsArr[i]);
     }
   }
-  // switch (field) {
-  //   case "classType":
-  //     console.log("Here I am");
-  //     selectionObj["classType"] = fieldValue;
-  //     break;
-  //   case "trainer":
-  //     selectionObj["trainer"] = fieldValue;
-  //     break;
-  //   case "duration":
-  //     selectionObj["duration"] = fieldValue;
-  //     break;
-  //   case "difficulty":
-  //     selectionObj["difficulty"] = fieldValue;
-  //     break;
-  //   case "equipment":
-  //     selectionObj["equipment"] = fieldValue;
-  //     break;
-  // }
-  // console.log("selectionObj", selectionObj);
-
-  // return selectionObj;
 }
 //// Add listeners
 const btnArray = document.querySelectorAll(".daysBtn");
@@ -160,7 +142,7 @@ const difficulty = document.getElementById("difficulty");
 const equipment = document.getElementById("equipment");
 
 // LISTENERS
-window.addEventListener("load", hideAllDivs(calculateToday()), false);
+window.addEventListener("load", hideAllDivs(calculateToday(), false));
 
 filterBtn.addEventListener("click", function () {
   showFilter(filterDiv);
