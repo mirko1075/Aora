@@ -4,7 +4,7 @@ const Layout = require("./Layout");
 function ProfileForm (props) {
     return(
         <Layout title="Profile">
-            <form id="form" action="/private/profileform" method="POST">
+            <form id="form" action={`/private/profileform?userid=${props.user[0]._id}`} method="POST">
                 {/* <i href="">PROFILE PICTURE</i>
                 <button type="submit">LOG OUT</button>
                 <br/> */}
@@ -17,7 +17,7 @@ function ProfileForm (props) {
                 <input type="text" name="lastName" placeholder="lastName" />
                 <br/> */}
                 <h2>EMAIL</h2>
-                <input type="email" name="email" placeholder={props.user[0].email} />
+                <input type="email" name="email" value={props.user[0].email} />
                 <br/>
                 {/* <h2>GENDER</h2>
                 <p>{props.user[0].gender}</p>
@@ -55,8 +55,8 @@ function ProfileForm (props) {
                 <p>{props.user[0].height}</p>
                 <input type="text" name="height" placeholder="Height" />
                 <br/> */}
-                {/* <button type="submit">UPDATE</button>
-                <br/> */}
+                <button type="submit">UPDATE</button>
+                <br/>
 
                 {
                 props.errorMessage 

@@ -210,9 +210,10 @@ siteRouter.get("/profile", isLoggedIn, (req, res, next) => {
     });
 });
 
-// GET PROFILE FORM ROUTE
+// GET > PROFILE FORM ROUTE
 siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
+  const { email } = req.body;
   User.find({ _id: id })
 
     .then((user) => {
@@ -224,9 +225,17 @@ siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
     });
 });
 
-// POST PROFILE EDIT ROUTE
+// POST > PROFILE FORM EDIT ROUTE
 siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
-  res.render("ProfileForm");
+  const id = req.session.currentUser._id;
+  const { email } = req.body;
+  
+  User.dinByIdAndUpdate(id,{email},{new:tr})
+    .then( (updateUser) => {
+      res.redirect('/private/profile')
+    })
+    .catch((err) => console.log(err));
+  
 });
 
 module.exports = siteRouter;
