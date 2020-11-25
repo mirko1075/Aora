@@ -8,8 +8,8 @@ function Profile (props) {
             <form id="form" action="/private/profile" method="POST">
                 <i href="{props.user[0].picUrl}">PROFILE PICTURE</i>
                 
-                <button type="submit">LOG OUT</button>
-                <button type="submit">EDIT</button>
+                <a href="/auth/logout">Log out</a>
+                <a href="/private/profileform">Edit profile</a>
                 <br/>
                 <h2>NAME</h2>
                 <p>{props.user[0].name}</p>
