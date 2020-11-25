@@ -1,6 +1,6 @@
 "use strict";
 /// VARIABLES
-
+let actualDate = null;
 // Function to change the day
 
 function calculateToday() {
@@ -18,38 +18,46 @@ function changeDay(day) {
   // day = day;
   // console.log("Change the day to: " + day);
   const elementsToShow = document.querySelectorAll(".classArticle");
-
+  actualDate = day;
   if (elementsToShow) {
-    hideAllDivs(day);
-    displayDiv(day);
+    hideAllDivs(day, false);
+    displayAllDivs(day, false);
   }
 }
 
-function hideAllDivs(todayDivId) {
+function hideAllDivs(todayDivId, filtered) {
   const allDivs = document.querySelectorAll(".classArticle");
-  for (let i = 0; i < allDivs.length; i++) {
-    let btnId = allDivs[i].id;
-    // console.log("Hide: allDivs[i].id:", allDivs[i].id);
-    btnId = btnId.slice(btnId.indexOf("-", -1) + 1, btnId.length);
-    btnId = btnId.slice(btnId.indexOf("-") + 1, btnId.length);
-    // console.log("Hide: classId", btnId, "todayDivId", todayDivId);
-    if (btnId != todayDivId) {
-      allDivs[i].style.display = "none";
+  if (filtered) {
+    for (let i = 0; i < allDivs.length; i++) {
+      let btnId = allDivs[i].id;
+      // console.log("Hide: allDivs[i].id:", allDivs[i].id);
+      btnId = btnId.slice(btnId.indexOf("-", -1) + 1, btnId.length);
+      btnId = btnId.slice(btnId.indexOf("-") + 1, btnId.length);
+      // console.log("Hide: classId", btnId, "todayDivId", todayDivId);
+      if (btnId != todayDivId) {
+        allDivs[i].style.display = "none";
+      }
     }
+  } else {
+    /// CREAR BLOCCO PER DISPLAY FILTRO PER GIORNO
   }
 }
 
-function displayDiv(day) {
+function displayAllDivs(day, filtered) {
   const classes = document.querySelectorAll(".classArticle");
-  for (let i = 0; i < classes.length; i++) {
-    let classId = classes[i].id;
-    // console.log("Display: classes[i].id:", classes[i].id);
-    classId = classId.slice(classId.indexOf("-", -1) + 1, classId.length);
-    classId = classId.slice(classId.indexOf("-") + 1, classId.length);
-    // console.log("Display: classId", classId, "day", day);
-    if (classId == day) {
-      classes[i].style.display = "block";
+  if (filtered) {
+    for (let i = 0; i < classes.length; i++) {
+      let classId = classes[i].id;
+      // console.log("Display: classes[i].id:", classes[i].id);
+      classId = classId.slice(classId.indexOf("-", -1) + 1, classId.length);
+      classId = classId.slice(classId.indexOf("-") + 1, classId.length);
+      // console.log("Display: classId", classId, "day", day);
+      if (classId == day) {
+        classes[i].style.display = "block";
+      }
     }
+  } else {
+    /// CREAR BLOCCO PER DISPLAY FILTRO PER GIORNO
   }
 }
 
@@ -72,10 +80,14 @@ function applyFilter() {
   }
   filterDiv.classList.add("filterHidden");
   filterDiv.classList.remove("filterShow");
+  hideAllDivs(day, true);
+  displayAllDivs(day, true);
 }
+
 function unApplyFilter() {
   console.log("Apply Filter");
 }
+
 const selectionObj = {
   classType: "",
   trainer: "",
@@ -83,6 +95,7 @@ const selectionObj = {
   difficulty: "",
   equipment: "",
 };
+
 const divsToHide = [];
 const divsToShow = [];
 
@@ -147,7 +160,7 @@ const difficulty = document.getElementById("difficulty");
 const equipment = document.getElementById("equipment");
 
 // LISTENERS
-window.addEventListener("load", hideAllDivs(calculateToday()));
+window.addEventListener("load", hideAllDivs(calculateToday()), false);
 
 filterBtn.addEventListener("click", function () {
   showFilter(filterDiv);

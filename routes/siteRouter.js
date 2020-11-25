@@ -50,8 +50,8 @@ siteRouter.get("/calendar", (req, res, next) => {
   //     );
   // });
   const pr = Class.find(queryObj)
-    .sort("scheduled")
     .populate("trainer")
+    .sort("scheduled")
     .then((foundClasses) => {
       // console.log("foundClasses", foundClasses);
       const props = { foundClasses };
@@ -199,29 +199,29 @@ siteRouter.get("/progress", (req, res, next) => {
 // GET > PROFILE ROUTE
 siteRouter.get("/profile", (req, res, next) => {
   const id = req.session.currentUser._id;
-  User.find({_id:id})
-  
-  .then((user)=>{
-    const props = { user: user };
-    res.render("Profile", props);
-  })
-  .catch((err)=>{
-    console.log("Something went wrong connecting to the DB")
-  })
+  User.find({ _id: id })
+
+    .then((user) => {
+      const props = { user: user };
+      res.render("Profile", props);
+    })
+    .catch((err) => {
+      console.log("Something went wrong connecting to the DB");
+    });
 });
 
 // GET PROFILE FORM ROUTE
 siteRouter.get("/profileform", (req, res, next) => {
   const id = req.session.currentUser._id;
-  User.find({_id:id})
-  
-  .then((user)=>{
-    const props = {user: user};
-    res.render("ProfileForm", props);
-  })
-  .catch((err)=>{
-    console.log("Something went wrong connecting to the DB")
-  })
+  User.find({ _id: id })
+
+    .then((user) => {
+      const props = { user: user };
+      res.render("ProfileForm", props);
+    })
+    .catch((err) => {
+      console.log("Something went wrong connecting to the DB");
+    });
 });
 
 // POST PROFILE EDIT ROUTE

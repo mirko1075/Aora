@@ -39,12 +39,16 @@ function ClassCalendar(props) {
             }
           >
             <h1>{obj.name}</h1>
+            <p>Class type: {obj.classType}</p>
             <p>
+              Trainer: {obj.trainer.name} {obj.trainer.lastName}
+            </p>
+            <p>
+              Scheduled:
               {obj.scheduled.getDate() + "/" + (obj.scheduled.getMonth() + 1)}
             </p>
-            <p>{obj.trainer.name}</p>
-            <p>{obj.duration}</p>
-            <p>{obj.classType}</p>
+            <p>Duration: {obj.duration}</p>
+            <p>Equipment:</p>
             {obj.equipment.map((equipObj) => {
               return <p>{equipObj}</p>;
             })}
