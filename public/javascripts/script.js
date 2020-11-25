@@ -22,6 +22,17 @@ function changeDay(day) {
   if (elementsToShow) {
     hideAllDivs(day, false);
     displayAllDivs(day, false);
+    const btnArray = document.querySelectorAll(".daysBtn");
+    for (let i = 0; i < btnArray.length; i++) {
+      let btnId = btnArray[i].id;
+      btnId = btnId.slice(btnId.indexOf("-") + 1, btnId.length);
+      console.log("btnId", btnId, "day", day);
+      if (btnId != day) {
+        btnArray[i].classList.remove("btnOn");
+      } else {
+        btnArray[i].classList.add("btnOn");
+      }
+    }
   }
 }
 
@@ -30,10 +41,10 @@ function hideAllDivs(todayDivId, filtered) {
   if (!filtered) {
     for (let i = 0; i < allDivs.length; i++) {
       let btnId = allDivs[i].id;
-      console.log("Hide: allDivs[i].id:", allDivs[i].id);
+      // console.log("Hide: allDivs[i].id:", allDivs[i].id);
       btnId = btnId.slice(btnId.indexOf("-", -1) + 1, btnId.length);
       btnId = btnId.slice(btnId.indexOf("-") + 1, btnId.length);
-      console.log("Hide: classId", btnId, "todayDivId", todayDivId);
+      // console.log("Hide: classId", btnId, "todayDivId", todayDivId);
       if (btnId != todayDivId) {
         allDivs[i].style.display = "none";
       }
@@ -80,8 +91,8 @@ function applyFilter() {
   }
   filterDiv.classList.add("filterHidden");
   filterDiv.classList.remove("filterShow");
-  hideAllDivs(day, true);
-  displayAllDivs(day, true);
+  hideAllDivs(actualDate, true);
+  displayAllDivs(actualDate, true);
 }
 
 function unApplyFilter() {

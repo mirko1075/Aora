@@ -38,7 +38,9 @@ h3 {
   flex-direction: column;
   width: 50px;
 }
-
+.btnOn {
+  background-color: yellow;
+}
 .day,
 .month {
   padding: 5px;
@@ -113,7 +115,7 @@ nav img {
   display: flex;
   align-items: center;
 }
-.class-card div{
+.class-card div {
   margin-left: 16px;
 }
 .class-card img {
