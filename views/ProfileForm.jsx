@@ -17,8 +17,7 @@ function ProfileForm (props) {
                 <input type="text" name="lastName" placeholder="lastName" />
                 <br/> */}
                 <h2>EMAIL</h2>
-                <p>{props.user[0].email}</p>
-                {/* <input type="email" name="email" placeholder="email" /> */}
+                <input type="email" name="email" placeholder={props.user[0].email} />
                 <br/>
                 {/* <h2>GENDER</h2>
                 <p>{props.user[0].gender}</p>
