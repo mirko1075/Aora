@@ -4,7 +4,7 @@ const Layout = require("./Layout");
 function Profile (props) {
     console.log(props)
     return(
-        <Layout>
+        <Layout title="Profile">
             <form id="form" action="/private/profile" method="POST">
                 <i href="{props.user[0].picUrl}">PROFILE PICTURE</i>
                 

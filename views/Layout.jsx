@@ -2,6 +2,7 @@ const React = require("react");
 const Footer = require("./components/Footer");
 
 function Layout(props) {
+
   return (
     <html lang="en">
       <head>
@@ -14,7 +15,7 @@ function Layout(props) {
 
       <body>
         {props.children}
-        <Footer>
+        <Footer title={props.title}>
         </Footer>
         <script type="text/javascript" src="/javascripts/script.js"></script>
       </body>

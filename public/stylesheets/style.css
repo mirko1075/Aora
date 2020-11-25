@@ -1,10 +1,9 @@
-Import FONT from GOOGLEAPI
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 /* --- CSS VARIABLES --- */
 /* https://developer.mozilla.org/en-US/docs/Web/CSS/var */
 :root {
-  --text-color: white;;
+  --text-color: white;
 }
 
 body {
@@ -17,6 +16,19 @@ a {
   color: var(--text-color);
   text-decoration: none;
 }
+h1 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 36px;
+  margin-left: 25px;
+}
+h3 {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 24px;
+}
+/* --------------------------------------------------------- */
 .calendarbar {
   display: flex;
   width: 100%;
@@ -41,6 +53,18 @@ a {
 .classcontainer {
   height: auto;
 }
+/* HEADER STYLE ----------------------------------- */
+.header {
+  height: 90px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #666666;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
+/* END of HEADER STYLE ----------------------------- */
 /* NAV / FOOTER STYLING---------------------- */
 nav {
   font-style: normal;
@@ -58,7 +82,6 @@ nav {
   align-items: flex-end;
   position: fixed;
   bottom: 0px;
-  
 }
 
 nav div {
@@ -71,10 +94,42 @@ nav img {
   margin: 1px;
 }
 /* END of NAV / FOOTER------------------------------ */
-
+/* SCHEDULE STYLING----------------------------- */
 #schedule-date {
   text-transform: uppercase;
+  margin: 5px 16px;
 }
+.scroll-container {
+  position: absolute;
+  top: 90px;
+  overflow-y: scroll;
+  z-index: -1;
+}
+.class-card {
+  background-color: #333;
+  margin-bottom: 1px;
+  height: 90px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+.class-card div{
+  margin-left: 16px;
+}
+.class-card img {
+  width: 72px;
+  height: auto;
+  background-color: white;
+  clip-path: circle(36px at center);
+}
+.small-info {
+  font-style: normal;
+  font-weight: normal;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+/* --------------------------- */
+
 .filterShow {
   background-color: white;
   display: block;

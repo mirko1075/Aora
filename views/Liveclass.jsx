@@ -3,7 +3,7 @@ const Layout = require("./Layout");
 
 function LiveClass() {
   return (
-    <Layout>
+    <Layout title="Calendar">
       <h1>Go to LiveClass MF</h1>
     </Layout>
   );
