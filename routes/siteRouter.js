@@ -1,5 +1,5 @@
 var express = require("express");
-
+const fetch = require("node-fetch");
 var siteRouter = express.Router();
 
 const bcrypt = require("bcrypt");
@@ -192,27 +192,12 @@ siteRouter.get("/profile", isLoggedIn, (req, res, next) => {
 
 // GET > PROFILE FORM ROUTE
 siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
-  fetch(
-    "https://parseapi.back4app.com/classes/Continentscountriescities_City?limit=10&order=name&include=country&keys=name,country,country.name,country.emoji,country.code,population,location,cityId,adminCode",
-    {
-      method: "GET",
-      headers: {
-        "X-Parse-Application-Id": "MTFZkywNAyvSbODylKc5J0AIGcpffcJtnTrEZXVN", // This is your app's application id
-        "X-Parse-REST-API-Key": "EZoOrVtG2Y6rHFeI4tIuwHPcWODS5Omo2xkoxdB4", // This is your app's REST API key
-      },
-    }
-  )
-    .then((response) => response.json())
-    .then((data) => {
-      // console.log(data);
-      return data;
-    });
-
   const id = req.session.currentUser._id;
+
   User.find({ _id: id })
 
     .then((user) => {
-      const props = { user: user, data: data };
+      const props = { user: user };
       res.render("ProfileForm", props);
     })
     .catch((err) => {

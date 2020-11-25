@@ -8,47 +8,23 @@ function ProfileForm(props) {
     <Layout title="Profile">
       <form
         id="form"
-        action={`/private/profileform?userid=${props.user[0]._id}`}
+        action={`/private/profileform?userid=${props.user._id}`}
         method="POST"
       >
-        <label for="countries">Country</label>
-        <select name="countries">
-          {citiesAndCountries.map((elem) => {
-            return (
-              <option id={citiesAndCountries.country.name}>
-                {citiesAndCountries.country.name}
-              </option>
-            );
-          })}
-        </select>
-        <label for="cities">City</label>
-        <select name="cities">
-          {citiesAndCountries.map((elem) => {
-            return (
-              <option id={citiesAndCountries.name}>
-                {citiesAndCountries.name}
-              </option>
-            );
-          })}
-        </select>
         {/* <i href="">PROFILE PICTURE</i>
                 <button type="submit">LOG OUT</button>
                 <br/> */}
         <h2>NAME</h2>
-        <input type="text" name="name" defaultValue={props.user[0].name} />
+        <input type="text" name="name" defaultValue={props.user.name} />
         <br />
         <h2>LAST NAME</h2>
-        <input
-          type="text"
-          name="lastName"
-          defaultValue={props.user[0].lastName}
-        />
+        <input type="text" name="lastName" defaultValue={props.user.lastName} />
         <br />
         <h2>EMAIL</h2>
-        <input type="email" name="email" defaultValue={props.user[0].email} />
+        <input type="email" name="email" defaultValue={props.user.email} />
         <br />
         {/* <h2>GENDER</h2>
-                <p>{props.user[0].gender}</p>
+                <p>{props.user.gender}</p>
                 <input type="radio" name="gender" value="male"/>Male
                 <input type="radio" name="gender" value="female"/>Female
                 <input type="radio" name="gender" value="other"/>Other
@@ -57,21 +33,17 @@ function ProfileForm(props) {
         <input
           type="date"
           name="birthDate"
-          defaultValue={props.user[0].birthDate}
+          defaultValue={props.user.birthDate}
         />
         <br />
         <h2>CITY</h2>
-        <input type="text" name="city" defaultValue={props.user[0].city} />
+        <input type="text" name="city" defaultValue={props.user.city} />
         <br />
         <h2>COUNTRY</h2>
-        <input
-          type="text"
-          name="country"
-          defaultValue={props.user[0].country}
-        />
+        <input type="text" name="country" defaultValue={props.user.country} />
         <br />
         {/* <h2>CURRENT PASSWORD</h2>
-                <p>{props.user[0].password}</p>
+                <p>{props.user.password}</p>
                 <input type="password" name="password" placeholder="Enter current password" />
                 <br/>
                 <h2>NEW PASSWORD</h2>
@@ -81,11 +53,11 @@ function ProfileForm(props) {
                 <input type="password" name="repeat" placeholder="Repeat password"/>
                 <br/> */}
         {/* <h2>WEIGHT</h2>
-                <p>{props.user[0].weight}</p>
+                <p>{props.user.weight}</p>
                 <input type="text" name="weight" placeholder="Weight" />
                 <br/> */}
         {/* <h2>HEIGHT</h2>
-                <p>{props.user[0].height}</p>
+                <p>{props.user.height}</p>
                 <input type="text" name="height" placeholder="Height" />
                 <br/> */}
         <button type="submit">UPDATE</button>
