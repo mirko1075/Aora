@@ -66,7 +66,7 @@ function ClassCalendar(props) {
                 </div>
                 <div>
                   <h3>{addZeroBefore(obj.scheduled.getHours())}:{addZeroBefore(obj.scheduled.getMinutes())} | {obj.classType}</h3>
-                  <p className="small-info">{obj.duration} min. | {obj.trainer[0].name}</p>
+                  <p className="small-info">{obj.duration} min. | {obj.trainer[0].name} {obj.trainer[0].lastName}</p>
                 </div>
             </div>
             <a href={"/private/classDetail/" + obj._id}>Detail</a>
