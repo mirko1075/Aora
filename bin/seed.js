@@ -91,7 +91,7 @@ for (let i = 0; i < CLASSES; i++) {
 function addDays(dateObj, numDays) {
   let num = Math.round(Math.random() * numDays - 0);
   dateObj.setDate(dateObj.getDate() + num);
-  // console.log("dateObj", dateObj, "num", num, "numDays", numDays);
+  //// console.log("dateObj", dateObj, "num", num, "numDays", numDays);
   return dateObj;
 }
 function randomWord(wordsNum) {
