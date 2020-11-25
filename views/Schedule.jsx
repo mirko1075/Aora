@@ -34,7 +34,7 @@ function Schedule(props) {
                 </div>
                 <div>
                   <h3>{addZeroBefore(oneScheduledClass.scheduled.getHours())}:{addZeroBefore(oneScheduledClass.scheduled.getMinutes())} | {oneScheduledClass.classType}</h3>
-                  <p className="small-info">{oneScheduledClass.duration} min. | {oneScheduledClass.trainer[0].name}</p>
+                  <p className="small-info">{oneScheduledClass.duration} min. | {oneScheduledClass.trainer[0].name} {oneScheduledClass.trainer[0].lastName}</p>
                 </div>
               </div>
             </li>)
