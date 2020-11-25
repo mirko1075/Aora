@@ -1,4 +1,5 @@
 const React = require("react");
+const {addZeroBefore} = require("../../utils/utils");
 
 function ClassCalendar(props) {
   const classesArr = props.classesArr.foundClasses;
@@ -17,9 +18,11 @@ function ClassCalendar(props) {
   // console.log("classesArr", classesArr);
   return (
     <div>
+      <ul>
       {classesArr.map((obj, i) => {
         obj.scheduled != actualDay ? (actualDay = obj.scheduled) : null;
         return (
+          <li>
           <article
             key={i}
             id={
@@ -39,7 +42,7 @@ function ClassCalendar(props) {
               "classArticle " + actualDay.getDate() + "" + actualDay.getMonth()
             }
           >
-            <h1>{obj.name}</h1>
+            {/* <h1>{obj.name}</h1>
             <p>Class type: {obj.classType}</p>
             <p>
               Trainer: {obj.trainer[0].name} {obj.trainer[0].lastName}
@@ -53,11 +56,22 @@ function ClassCalendar(props) {
             <p>Equipment:</p>
             {obj.equipment.map((equipObj) => {
               return <p>{equipObj}</p>;
-            })}
+            })} */}
+            <div className="class-card">
+                <div>
+                  <img src="/images/face1.png"></img>
+                </div>
+                <div>
+                  <h3>{addZeroBefore(obj.scheduled.getHours())}:{addZeroBefore(obj.scheduled.getMinutes())} | {obj.classType}</h3>
+                  <p className="small-info">{obj.duration} min. | {obj.trainer[0].name}</p>
+                </div>
+            </div>
             <a href={"/private/classDetail/" + obj._id}>Detail</a>
           </article>
+          </li>
         );
       })}
+      </ul>
     </div>
   );
 }
