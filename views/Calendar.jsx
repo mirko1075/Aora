@@ -22,13 +22,13 @@ function Calendar(props) {
   return (
     <Layout title="Calendar">
       <Filter classesArr={classesArr} unifyArray={unifyArray}></Filter>
-      <div class="header-calendar">
+      <div className="header-calendar">
         <CalendarBar datesArr={datesArr}></CalendarBar>
       </div>
-      <div class="btn-container">
+      <div className="btn-container">
         <button id="filterBtn">Filter</button>
       </div>
-      <div class="scroll-container">
+      <div className="scroll-container">
         <ClassCalendar classesArr={classesArr}></ClassCalendar>
       </div>
     </Layout>
