@@ -248,9 +248,20 @@ siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
 // POST > PROFILE FORM EDIT ROUTE
 siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
-  let { name, lastName, email, city, country, birthDate, gender, userHeight, userWeight, password, newPassword } = req.body;
-  console.log("req.body", req.body)
-
+  let {
+    name,
+    lastName,
+    email,
+    city,
+    country,
+    birthDate,
+    gender,
+    userHeight,
+    userWeight,
+    password,
+    newPassword,
+  } = req.body;
+  console.log("req.body", req.body);
 
   // if (!birthDate) {
   //   birthDate = req.session.currentUser.birthDate;
@@ -266,7 +277,7 @@ siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
     res.render("ProfileForm", props);
     return;
   }
-  
+
   // // REQUIRE DATA INPUT ON ALL FIELDS
   // if (newPassword === "" || repeat === "") {
   //   const props = { errorMessage: "Please complete form" };
@@ -281,39 +292,61 @@ siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
   //   return;
   // }
 
-     //FIND USER IN DATABASE AND CHECK IF PASSWORD MATCHES
-  User.findById(id)
-  .then((user) => {
+  //FIND USER IN DATABASE AND CHECK IF PASSWORD MATCHES
+  User.findById(id).then((user) => {
     const props = { user: user };
     if (password && newPassword) {
-    //CHECK IF PASSWORD USED MATCHES THE ONE FOR THE USER SAVED IN THE DATABASE
-    const passwordCorrect = bcrypt.compareSync(password, user.password);
+      //CHECK IF PASSWORD USED MATCHES THE ONE FOR THE USER SAVED IN THE DATABASE
+      const passwordCorrect = bcrypt.compareSync(password, user.password);
 
-    //CREATE COOKIE & SEND TO HOME OR SHOW ERROR INSTEAD
-    if (passwordCorrect) {
+      //CREATE COOKIE & SEND TO HOME OR SHOW ERROR INSTEAD
+      if (passwordCorrect) {
         // User.findByIdAndUpdate(id,{name, lastName, email, city, country, birthDate , gender, height, weight, password:newPassword},{new:true})
         // User.findByIdAndUpdate(id,{name, lastName, email, city, country, birthDate: req.body.birthDate ? req.body.birthDate : req.session.currentUser.birthDate , gender, height, weight, password},{new:true})
         let objToUpdate = new Object();
-        console.log(newPassword)
+        console.log(newPassword);
         if (newPassword) {
-          objToUpdate = {name, lastName, email, city, country, birthDate , gender, userHeight, userWeight, password:newPassword}
+          objToUpdate = {
+            name,
+            lastName,
+            email,
+            city,
+            country,
+            birthDate,
+            gender,
+            userHeight,
+            userWeight,
+            password: newPassword,
+          };
         } else {
-          objToUpdate = {name, lastName, email, city, country, birthDate , gender, userWeight, userHeight}
+          objToUpdate = {
+            name,
+            lastName,
+            email,
+            city,
+            country,
+            birthDate,
+            gender,
+            userWeight,
+            userHeight,
+          };
         }
-        console.log("objectUpdated", objToUpdate)
-        User.findByIdAndUpdate(id, objToUpdate ,{new:true})
-      .then( (updateUser) => {
-        res.redirect('/private/profile')
-      .catch((err) => console.log(err));
-      })
+        console.log("objectUpdated", objToUpdate);
+        User.findByIdAndUpdate(id, objToUpdate, { new: true }).then(
+          (updateUser) => {
+            res.redirect("/private/profile").catch((err) => console.log(err));
+          }
+        );
       } else {
         res.render("ProfileForm", { errorMessage: "Incorrect password", user });
-        
       }
-
-    } else {res.render("ProfileForm", { errorMessage: "You need to provide the new password", user });}
+    } else {
+      res.render("ProfileForm", {
+        errorMessage: "You need to provide the new password",
+        user,
+      });
+    }
   });
-  
 });
 
 module.exports = siteRouter;
