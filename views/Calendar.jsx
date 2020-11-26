@@ -21,18 +21,20 @@ function Calendar(props) {
   // console.log("Props from calendar", props);
   return (
     <Layout title="Calendar">
-      <h1>Home Page</h1>
-      <br></br>
-      <button id="filterBtn">Filter</button>
-      <br></br>
-      <br></br>
-      <CalendarBar datesArr={datesArr}></CalendarBar>
-      <ClassCalendar classesArr={classesArr}></ClassCalendar>
-      <br></br>
-      <br></br>
-      <Filter classesArr={classesArr} unifyArray={unifyArray}></Filter>
-      <br></br>
-      <br></br>
+      <div class="header-calendar">
+        <CalendarBar datesArr={datesArr}></CalendarBar>
+      </div>
+      <div class="btn-container">
+        <button id="filterBtn">Filter</button>
+      </div>
+      <div class="scroll-container">
+        <ClassCalendar classesArr={classesArr}></ClassCalendar>
+        <br></br>
+        <br></br>
+        <Filter classesArr={classesArr} unifyArray={unifyArray}></Filter>
+        <br></br>
+        <br></br>
+      </div>
     </Layout>
   );
 }

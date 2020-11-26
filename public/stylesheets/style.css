@@ -16,6 +16,9 @@ a {
   color: var(--text-color);
   text-decoration: none;
 }
+button:focus {
+  outline:0;
+}
 h1 {
   font-style: normal;
   font-weight: 500;
@@ -28,32 +31,118 @@ h3 {
   font-size: 18px;
   line-height: 24px;
 }
-/* --------------------------------------------------------- */
+/* --CALENDAR / CLASSES STYLING------------------------------------- */
+.header-calendar {
+  height: 90px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid #666666;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
 .calendarbar {
   display: flex;
-  width: 100%;
 }
 .datebox {
   display: flex;
   flex-direction: column;
   width: 50px;
 }
-.btnOn {
-  background-color: yellow;
+.daysBtnOn {
+  width: 40px;
+  height: 40px;
+  font-style: normal;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
+  background-color: #FF0066;
+  border-radius: 20px;
+  border: none;
+  z-index: 1;
+}
+.daysBtnOff {
+  width: 40px;
+  height: 40px;
+  font-style: normal;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #E5E5E5;
+  background-color: black;
+  border-radius: 20px;
+  border: none;
+  z-index: 0;
 }
 .day,
 .month {
   padding: 5px;
-  border: 1px solid var(--text-color);
   text-align: center;
 }
-
 .classname {
   font-weight: 700;
 }
+.btn-container {
+  width: 100vw;
+  position: fixed;
+  bottom: 100px;
+  margin-left: 0 auto;
+  display: flex;
+  justify-content: center;
+}
+.btn-container button {
+  font-weight: 900;
+  font-size: 14px;
+  text-transform: uppercase;
+  width: 164px;
+  height: 60px;
+  background: #c4c4c4;
+  border-radius: 60px;
+  border: none;
+}
+/* CLASS DETAIL STYLING-------------------------------------------------- */
+/* --same as above but used in class detail <a> link-- */
+.btn-container a {
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  width: 164px;
+  height: 60px;
+  border-radius: 60px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, .2);
+}
+.ahref-btn-off {
+  color: #333;
+  background-color: #c4c4c4;
+}
+.ahref-btn-on {
+  color: white;
+  background-color: #FF0066;
+}
 
 .classcontainer {
-  height: auto;
+  height: 100vh;
+  background-color: #E5E5E5;
+  color: #333333;
+}
+.profile-hero {
+  height: 34vh;
+  width: 100vw;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.profile-hero img {
+  height: 34vh;
+  width: auto;
 }
 /* HEADER STYLE ----------------------------------- */
 .header {
@@ -118,17 +207,31 @@ nav img {
 .class-card div {
   margin-left: 16px;
 }
-.class-card img {
+.profile-pic img {
   width: 72px;
   height: auto;
   background-color: white;
   clip-path: circle(36px at center);
 }
 .small-info {
+  width: 50vw;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
   text-transform: uppercase;
+}
+.flechita {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 32px;
+}
+.empty-class-card {
+  background-color: #333;
+  opacity: 50%;
+  margin-bottom: 1px;
+  height: 90px;
+  width: 100vw;
 }
 /* --------------------------- */
 

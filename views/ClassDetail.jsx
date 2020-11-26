@@ -3,14 +3,20 @@ const Layout = require("./Layout");
 const { isBooked, getUserBySession } = require("../utils/utils");
 
 function ClassDetail(props) {
-  // console.log("!!!!!!!PROPS from ClassDetail:", props);
-  const isBooked = props.isBooked;
+  console.log("!!!!!!!PROPS from ClassDetail:", props);
+  const isBookedRes = props.isBookedRes;
+  let isOnLineRes = props.isOnLineRes;
+  // isOnlineRes = true;
   props = props.foundClass;
 
-  console.log("isBooked from ClassDetail", isBooked);
+  console.log("isBooked from ClassDetail", isBookedRes);
+  console.log("isOnline from ClassDetail", isOnLineRes);
   return (
-    <Layout title="Calendar">
+    <Layout title="Class detail">
       <div className="classcontainer">
+        <div class="profile-hero">
+          <img src="/images/face1.png"></img>
+        </div>
         <h3 className="classname">{props.name}</h3>
         <p>
           <b>Trainer:</b>{" "}
@@ -37,10 +43,25 @@ function ClassDetail(props) {
         <br></br>
         <br></br>
 
-        {isBooked === true ? (
-          <a href={"/private/classDetail/delete/" + props._id}>Unbook</a>
+        {isBookedRes === true ? (
+          isOnLineRes == true ? (
+            <div class="btn-container">
+              <a href={"/private/liveClass/" + props._id}>Join</a>
+            </div>
+          ) : (
+            <div class="btn-container">
+              <a href={"/private/classDetail/delete/" + props._id}>Unbook</a>
+            </div>
+          )
         ) : (
-          <a href={"/private/classDetail/add/" + props._id}>Book</a>
+          <div class="btn-container">
+            <a
+              class="ahref-btn-on"
+              href={"/private/classDetail/add/" + props._id}
+            >
+              Book
+            </a>
+          </div>
         )}
         <br></br>
         <a href="/private/calendar">Back to calendar</a>

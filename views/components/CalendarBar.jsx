@@ -1,4 +1,5 @@
 const React = require("react");
+const { addZeroBefore } = require("../../utils/utils");
 
 function CalendarBar(props) {
   return (
@@ -10,22 +11,21 @@ function CalendarBar(props) {
             id={String(dateObj.dayOfMonth) + String(dateObj.monthOfYear)}
             className="datebox"
           >
-            <div className="month">
-              {String(dateObj.monthOfYearName).slice(0, 3)}
-            </div>
-            <div className="day">{String(dateObj.dayOfWeek).slice(0, 3)}</div>
-            <div className="day">
-              <button
-                className="daysBtn"
-                id={
-                  "btn-" +
-                  String(dateObj.dayOfMonth) +
-                  String(dateObj.monthOfYear)
-                }
-              >
-                {String(dateObj.dayOfMonth)}
-              </button>
-            </div>
+            {/* <div className="day"> */}
+            <button
+              className="dayVoid"
+              id={
+                "btn-" +
+                String(dateObj.dayOfMonth) +
+                String(dateObj.monthOfYear)
+              }
+            >
+              {/* <div className="day">{String(dateObj.dayOfWeek).slice(0, 3)}</div> */}
+              {String(dateObj.dayOfWeek).slice(0, 3)}
+              <br />
+              {String(addZeroBefore(dateObj.dayOfMonth))}
+            </button>
+            {/* </div> */}
           </div>
         );
       })}

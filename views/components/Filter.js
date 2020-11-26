@@ -31,7 +31,7 @@ function Filter(props) {
   return (
     <div id="filter" className="filterHidden">
       <h3>Filter</h3>
-      <form action="/private/calendar" method="get">
+      <form action="/private/calendar" method="get" id="filterForm">
         <label for="classType">Class type</label>
         <select name="classType" id="classType">
           <option value="" selected>
@@ -55,7 +55,7 @@ function Filter(props) {
           {uniqueTrainers.map((elem, i) => {
             return (
               <option key={i} value={elem._id}>
-                {elem.name}
+                {elem.name} {elem.lastName}
               </option>
             );
           })}
@@ -92,7 +92,7 @@ function Filter(props) {
         </select>{" "}
         <br></br>
         <br></br>
-        <label for="equipment">Required equipment</label>
+        {/* <label for="equipment">Required equipment</label>
         <select name="equipment" id="equipment">
           <option value="" selected>
             Select equipment
@@ -104,12 +104,12 @@ function Filter(props) {
               </option>
             );
           })}
-        </select>
+        </select> */}
         <br></br>
         <br></br>
-        <input type="button" id="addFilter" value="Filter" />
-        <input type="reset" id="removeFilter" value="Reset filter" />
-        <input type="button" id="closeFilter" value="Close filter" />
+        <input type="button" id="applyFilterBtn" value="Apply filter" />
+        <input type="reset" id="removeFilterBtn" value="Reset filter" />
+        <input type="button" id="closeFilterBtn" value="Close filter" />
       </form>
     </div>
   );
