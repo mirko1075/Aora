@@ -12,6 +12,7 @@ function Profile(props) {
             <a href="/private/profileform">Edit profile</a>
           <div className="profile-pic">
             <img src="/images/JuanMiguelSansininea.jpg" alt="User Profile"></img>
+            <img src={props.user.picUrl} alt="User Profile"></img>
           </div>
       </div>
       <div className="scroll-container">

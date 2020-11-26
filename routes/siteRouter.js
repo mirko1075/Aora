@@ -1,6 +1,8 @@
 var express = require("express");
 var siteRouter = express.Router();
 
+const parser = require('./../config/cloudinary');
+
 const bcrypt = require("bcrypt");
 const zxcvbn = require("zxcvbn");
 const {
@@ -246,49 +248,51 @@ siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
 });
 
 // POST > PROFILE FORM EDIT ROUTE
-siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
+siteRouter.post("/profileform", parser.single('profilepic'), isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
   let { name, lastName, email, city, country, birthDate, gender, userHeight, userWeight, password, newPassword } = req.body;
+  const cloudImageUrl = req.file.secure_url;
   console.log("req.body", req.body)
-
-
-  // if (!birthDate) {
-  //   birthDate = req.session.currentUser.birthDate;
-  // }
-
-  // NEW PASSWORD STRENGTH
-  // if (zxcvbn(password).score < 3) {    // TO UNCOMMENT, COMMENTED TO KEEP WORKING WITH CLASSES
-  console.log("Score: ", zxcvbn(password));
-  if (zxcvbn(newPassword).score > 0) {
-    //TO COMMENT
-    const suggestions = zxcvbn(newPassword).feedback.suggestions;
-    const props = { errorMessage: suggestions[0] };
-    res.render("ProfileForm", props);
-    return;
-  }
   
-  // // REQUIRE DATA INPUT ON ALL FIELDS
-  // if (newPassword === "" || repeat === "") {
-  //   const props = { errorMessage: "Please complete form" };
-  //   res.render("ProfileForm", props);
-  //   return;
-  // }
-
-  // ENTER PASSWORD AND REPEAT PASSWORD FIELDS MATCH VALIDATION
-  // if (newPassword !== repeat) {
-  //   const props = { errorMessage: `New passwords don't match!` };
-  //   res.render("ProfileForm", props);
-  //   return;
-  // }
-
-     //FIND USER IN DATABASE AND CHECK IF PASSWORD MATCHES
-  User.findById(id)
-  .then((user) => {
-    const props = { user: user };
-    if (password && newPassword) {
-    //CHECK IF PASSWORD USED MATCHES THE ONE FOR THE USER SAVED IN THE DATABASE
-    const passwordCorrect = bcrypt.compareSync(password, user.password);
-    const salt = bcrypt.genSaltSync(saltRound);
+  
+  // if (!birthDate) {
+    //   birthDate = req.session.currentUser.birthDate;
+    // }
+    
+    // NEW PASSWORD STRENGTH
+    // if (zxcvbn(password).score < 3) {    // TO UNCOMMENT, COMMENTED TO KEEP WORKING WITH CLASSES
+    console.log("Score: ", zxcvbn(password));
+    if (zxcvbn(newPassword).score > 0) {
+      //TO COMMENT
+      const suggestions = zxcvbn(newPassword).feedback.suggestions;
+      const props = { errorMessage: suggestions[0] };
+      res.render("ProfileForm", props);
+      return;
+    }
+    
+    // // REQUIRE DATA INPUT ON ALL FIELDS
+    // if (newPassword === "" || repeat === "") {
+      //   const props = { errorMessage: "Please complete form" };
+      //   res.render("ProfileForm", props);
+      //   return;
+      // }
+      
+      // ENTER PASSWORD AND REPEAT PASSWORD FIELDS MATCH VALIDATION
+      // if (newPassword !== repeat) {
+        //   const props = { errorMessage: `New passwords don't match!` };
+        //   res.render("ProfileForm", props);
+        //   return;
+        // }
+        
+        //FIND USER IN DATABASE AND CHECK IF PASSWORD MATCHES
+        User.findById(id)
+        .then((user) => {
+          const props = { user: user };
+          const cloudImageUrl = req.file.secure_url;
+          if (password && newPassword) {
+            //CHECK IF PASSWORD USED MATCHES THE ONE FOR THE USER SAVED IN THE DATABASE
+            const passwordCorrect = bcrypt.compareSync(password, user.password);
+            const salt = bcrypt.genSaltSync(saltRound);
     const hashedPassword = bcrypt.hashSync(newPassword, salt);
 
     //MAKE CHANGES TU THE USER DB & SEND TO PROFILE OR SHOW ERROR INSTEAD
@@ -297,7 +301,7 @@ siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
         let objToUpdate = new Object();
         console.log(newPassword)
         if (newPassword) {
-          objToUpdate = {name, lastName, email, city, country, birthDate , gender, userHeight, userWeight, password:hashedPassword}
+          objToUpdate = {name, lastName, email, city, country, birthDate , gender, userHeight, userWeight, password:hashedPassword, picUrl:cloudImageUrl }
         } else {
           objToUpdate = {name, lastName, email, city, country, birthDate , gender, userWeight, userHeight}
         }

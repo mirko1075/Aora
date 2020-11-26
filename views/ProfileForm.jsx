@@ -14,6 +14,7 @@ function ProfileForm(props) {
                         <a href="/auth/logout">Log out</a>
                   <div className="profile-pic">
                     <img src="/images/JuanMiguelSansininea.jpg" alt="User Profile"></img>
+                    {/* <img src={props.user.picUrl} alt="User Picture"></img> */}
                   </div>
             </div>
             <div className="scroll-container">
@@ -32,11 +33,11 @@ function ProfileForm(props) {
                       <h3>GENDER</h3>
                       {
                         props.user.gender = "Male" ? (
-                          <div>
-                            <input type="radio" name="gender" value="Male" checked="checked" /> Male
-                            <input type="radio" name="gender" value="Female" /> Female
-                            <input type="radio" name="gender" value="Other" /> Other
-                          </div>
+                            <div>
+                              <input type="radio" name="gender" value="Male" checked="checked" /> Male
+                              <input type="radio" name="gender" value="Female" /> Female
+                              <input type="radio" name="gender" value="Other" /> Other
+                            </div>
                             )
                             : props.user.gender = "Female" ? (
                           <div>
@@ -61,7 +62,10 @@ function ProfileForm(props) {
                               )
                       }
                       <br/>
-                      <h3>BIRTHDATE</h3>
+                      {/* <h3>CHANGE PROFILE PICTURE</h3>
+                      <input type='file' name='picUrl'/>
+                      <br/> */}
+                      {/* <h3>BIRTHDATE</h3> */}
                       {/* <input type="date" name="birthDate" min="1900-01-01" max="2020-06-30" dateformat="YYYY-MM-DD" defaultValue={props.user.birthDate} required/> */}
                       {/* <input type="date" name="birthDate" data-date={props.user.birthDate} data-date-format="YYYY-MM-DD" value={props.user.birthDate}></input> */}
                       {/* {props.user.birthDate 

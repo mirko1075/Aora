@@ -33,11 +33,15 @@ function Filter(props) {
       <h2 id="filter-title">Filter Results</h2>
       <img id="closeFilterBtn" class="close-button" src="/images/clsx.svg"></img>
       <br></br>
+      <br></br>
+
       <form action="/private/calendar" method="get" id="filterForm">
+
         <select name="classType" id="classType" className="select-css">
           <option value="" selected>
-            Select class type
+            Select class type 
           </option>
+          <img src="/images/clsx.svg"></img>
           {uniqueClassesTypes.map((elem, i) => {
             return (
               <option key={i} value={elem}>
@@ -85,10 +89,10 @@ function Filter(props) {
             );
           })}
         </select>{" "}
-        <div className="filterButtonsCont">
-          <input type="button" id="applyFilterBtn" value="Apply filter" />
-          <div id="resultsFound"></div>
-          <input type="reset" id="removeFilterBtn" value="Reset filter" />
+        <div className="filterButtonsCont" className="input-container">
+          <input type="reset" id="removeFilterBtn" className="reset-filter" value="Reset filter" />
+          <input type="button" id="applyFilterBtn" className="apply-filter" value="Apply filter" />
+          {/* <div id="resultsFound"></div> */}
           {/* <input type="button" id="closeFilterBtn" value="Close filter" /> */}
         </div>
       </form>
