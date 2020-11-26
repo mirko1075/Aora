@@ -279,7 +279,21 @@ nav img {
   height: 90px;
   width: 100vw;
 }
-/* --------------------------- */
+/* --FILTER STYLING------------------------- */
+#filter{
+  background-color: white;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+}
+#filter-title{
+  margin: 20px 16px;
+  color: #333;
+}
+
 
 .filterShow {
   background-color: black;
@@ -297,7 +311,7 @@ nav img {
   display: none;
 }
 
-.select-css {
+/* .select-css {
   display: block;
   font-size: 16px;
   font-family: sans-serif;
@@ -321,7 +335,20 @@ nav img {
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
+} */
+.select-css{
+
+  width: 86vw;
+  height: 60px;
+  border: none;
+  border-radius: 30px;
+  background-color:#E5E5E5;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
 }
+
 .select-css::-ms-expand {
   display: none;
 }

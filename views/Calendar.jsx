@@ -21,6 +21,7 @@ function Calendar(props) {
   // console.log("Props from calendar", props);
   return (
     <Layout title="Calendar">
+      <Filter classesArr={classesArr} unifyArray={unifyArray}></Filter>
       <div class="header-calendar">
         <CalendarBar datesArr={datesArr}></CalendarBar>
       </div>
@@ -29,11 +30,6 @@ function Calendar(props) {
       </div>
       <div class="scroll-container">
         <ClassCalendar classesArr={classesArr}></ClassCalendar>
-        <br></br>
-        <br></br>
-        <Filter classesArr={classesArr} unifyArray={unifyArray}></Filter>
-        <br></br>
-        <br></br>
       </div>
     </Layout>
   );
