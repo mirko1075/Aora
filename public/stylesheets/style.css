@@ -47,9 +47,15 @@ h3 {
   display: flex;
 }
 .resultsSpan {
-  color: red;
-  font-style: italic bold;
-  background-color: yellow;
+  width: 20px;
+  font-style: normal;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
+  background-color: #ff0066;
+  border-radius: 20px;
+  border: none;
 }
 
 .datebox {

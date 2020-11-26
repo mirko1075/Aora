@@ -258,7 +258,7 @@ function filter(field, fieldValue) {
   // console.log("divsToHide", divsToHide);
   // formObj.reset();
   resultsFound.innerHTML =
-    "<span class='resultsSpan'>" + divsToShow.length + "</span>";
+    "<div class='resultsSpan'>" + divsToShow.length + "</div>";
   applyFilter();
 }
 
