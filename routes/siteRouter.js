@@ -95,6 +95,7 @@ siteRouter.get("/classDetail/:idClass", isLoggedIn, (req, res, next) => {
             foundClass: foundClass,
             isBookedRes: isBookedRes,
             isOnLineRes: isOnLineRes,
+            callBack: "/private/Calendar",
           };
           //console.log("IsBooked:", props.isBooked);
           // console.log("Props from promise:", props);
@@ -180,18 +181,7 @@ siteRouter.get("/schedule", isLoggedIn, (req, res, next) => {
     ])
 
     .then((user) => {
-      //console.log("user" + user)
-      // console.log("USER.EMAIL: " + user[0].email);
-      // console.log(
-      //   "USER classes duration: " + user[0].scheduledClasses[0].duration
-      // );
-      // console.log(
-      //   "///////USER classes trainer: " +
-      //     user[0].scheduledClasses[0].trainer[0].name
-      // );
-      //const props = req.session.currentUser;
-      const props = { user: user };
-
+      const props = { user };
       res.render("Schedule", props);
     })
     .catch((error) =>

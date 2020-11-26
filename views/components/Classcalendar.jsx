@@ -59,21 +59,6 @@ function ClassCalendar(props) {
                   (actualDay.getMonth() + 1)
                 }
               >
-                {/* <h1>{obj.name}</h1>
-            <p>Class type: {obj.classType}</p>
-            <p>
-              Trainer: {obj.trainer[0].name} {obj.trainer[0].lastName}
-            </p>
-            <p>
-              Scheduled:
-              {obj.scheduled.getDate() + "/" + (obj.scheduled.getMonth() + 1)}
-            </p>
-            <p>Duration: {obj.duration}</p>
-            <p>Difficulty: {obj.difficulty}</p>
-            <p>Equipment:</p>
-            {obj.equipment.map((equipObj) => {
-              return <p>{equipObj}</p>;
-            })} */}
                 <a
                   href={"/private/classDetail/" + obj._id}
                   className="class-card"

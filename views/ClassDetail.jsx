@@ -1,13 +1,20 @@
 const React = require("react");
 const Layout = require("./Layout");
-const { isBooked, getUserBySession } = require("../utils/utils");
+const {
+  addZeroBefore,
+  humanizeDay,
+  humanizeDayMini,
+  humanizeMonth,
+  isBooked,
+  getUserBySession,
+} = require("../utils/utils");
 
 function ClassDetail(props) {
-  console.log("!!!!!!!PROPS from ClassDetail:", props);
   const isBookedRes = props.isBookedRes;
   let isOnLineRes = props.isOnLineRes;
-  // isOnlineRes = true;
+  const callBack = props.callBack;
   props = props.foundClass;
+  
 
   console.log("isBooked from ClassDetail", isBookedRes);
   console.log("isOnline from ClassDetail", isOnLineRes);
@@ -17,45 +24,65 @@ function ClassDetail(props) {
         <div class="profile-hero">
           <img src="/images/face1.png"></img>
         </div>
-        <h3 className="classname">{props.name}</h3>
-        <p>
-          <b>Trainer:</b>{" "}
-          {props.trainer[0].name + " " + props.trainer[0].lastName}
-        </p>
-        <p>
-          <b>Description: </b>
-          {props.description}
-        </p>
-        <br></br>
-        <br></br>
-        <p>
-          <b>Duration:</b> {props.duration} mins
-        </p>
-        <p>
-          <b>Dificulty:</b> {props.difficulty}
-        </p>
-        <p>
-          <b>Equipment:</b>
-          {props.equipment.map((equipObj, i) => {
-            return <span id={i}>{equipObj},</span>;
-          })}
-        </p>
-        <br></br>
-        <br></br>
+        <h2 class="pink-h2">
+          {humanizeDayMini(props.scheduled.getDay())}{" "}
+          {addZeroBefore(props.scheduled.getDate())}
+          <br />
+          {addZeroBefore(props.scheduled.getHours())}:
+          {addZeroBefore(props.scheduled.getMinutes())}h
+        </h2>
+        <a href={callBack} class="clsx"><img src="/images/clsx.svg"></img></a>
+        <div class="class-content">
+          <h2 className="classname">{props.name}</h2>
+          <p>
+            <b>Trainer:</b>{" "}
+            {props.trainer[0].name + " " + props.trainer[0].lastName}
+          </p>
+          <p>
+            <b>Description: </b>
+            {props.description}
+          </p>
+          <br></br>
+          <br></br>
+          <p>
+            <b>Duration:</b> {props.duration} mins
+          </p>
+          <p>
+            <b>Dificulty:</b> {props.difficulty}
+          </p>
+          <p>
+            <b>Equipment:</b>
+            {props.equipment.map((equipObj, i) => {
+              return <span id={i}>{equipObj},</span>;
+            })}
+          </p>
+        </div>
 
         {isBookedRes === true ? (
           isOnLineRes == true ? (
             <div class="btn-container">
-              <a class="ahref-btn-on" href={"/private/liveClass/" + props._id}>Join</a>
+              <a class="ahref-btn-on" href={"/private/liveClass/" + props._id}>
+                Join
+              </a>
             </div>
           ) : (
             <div class="btn-container">
-              <a class="ahref-btn-off" href={"/private/classDetail/delete/" + props._id}>Unbook</a>
+              <a
+                class="ahref-btn-off"
+                href={"/private/classDetail/delete/" + props._id}
+              >
+                Unbook
+              </a>
             </div>
           )
         ) : (
           <div class="btn-container">
-            <a class="ahref-btn-on" href={"/private/classDetail/add/" + props._id}>Book</a>
+            <a
+              class="ahref-btn-on"
+              href={"/private/classDetail/add/" + props._id}
+            >
+              Book
+            </a>
           </div>
         )}
         <br></br>

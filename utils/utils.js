@@ -101,6 +101,24 @@ function humanizeDay(day) {
       return "Saturday";
   }
 }
+function humanizeDayMini (day) {
+  switch (day) {
+    case 0:
+      return "Sun";
+    case 1:
+      return "Mon";
+    case 2:
+      return "Tue";
+    case 3:
+      return "Wed";
+    case 4:
+      return "Thu";
+    case 5:
+      return "Fri";
+    case 6:
+      return "Sat";
+  }
+}
 function humanizeMonth(month) {
   switch (month) {
     case 0:
@@ -137,5 +155,6 @@ module.exports = {
   unifyArray,
   addZeroBefore,
   humanizeDay,
+  humanizeDayMini,
   humanizeMonth,
 };
