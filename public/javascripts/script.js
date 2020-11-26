@@ -3,7 +3,7 @@
 
 let divsToHide = [];
 let divsToShow = [];
-const filtersObj = new Object();
+let filtersObj = new Object();
 let actualDate = calculateToday();
 
 //LEGACY FUNCTIONS
@@ -129,6 +129,12 @@ function showFilter(div) {
   }
 }
 
+function resetFilter() {
+  filtersObj = {};
+  filtersObj.scheduled = actualDate;
+  applyFilter();
+}
+
 // Change the day in the calendarBar and apply a filter for scheduled
 function changeDay(day) {
   console.log("Dat before parsing:", day);
@@ -174,19 +180,6 @@ function filter(field, fieldValue) {
       "Field value:" + divsArr[i].attributes[`data-${field}`].value,
       "Scheduled:" + divsArr[i].attributes["data-scheduled"].value
     );
-    //   if (
-    //     divsArr[i].attributes[`data-${field}`].value === fieldValue &&
-    //     divsArr[i].attributes["data-scheduled"].value == actualDate
-    //   ) {
-    //     // console.log(
-    //     //   "Here i am",
-    //     //   divsArr[i].id,
-    //     //   divsArr[i].attributes[`data-${field}`].value
-    //     // );
-    //     divsToShow.push(divsArr[i]);
-    //   } else {
-    //     divsToHide.push(divsArr[i]);
-    //   }
   }
   filtersObj[field] = fieldValue;
   console.log("filtersObj", filtersObj);
@@ -217,12 +210,20 @@ function applyFilter() {
             console.log("trainer filter");
             divsToShow.push(divsArr[i]);
             continue;
+          } else {
+            console.log("trainer filter not passed");
+            divsToHide.push(divsArr[i]);
+            continue;
           }
         }
         if (classType) {
           if (divsArr[i].attributes["data-classType"].value === classType) {
             console.log("classType filter");
             divsToShow.push(divsArr[i]);
+            continue;
+          } else {
+            console.log("classType filter not passed");
+            divsToHide.push(divsArr[i]);
             continue;
           }
         }
@@ -231,6 +232,10 @@ function applyFilter() {
             console.log("duration filter");
             divsToShow.push(divsArr[i]);
             continue;
+          } else {
+            console.log("duration filter not passed");
+            divsToHide.push(divsArr[i]);
+            continue;
           }
         }
         if (difficulty) {
@@ -238,8 +243,13 @@ function applyFilter() {
             console.log("difficulty filter");
             divsToShow.push(divsArr[i]);
             continue;
+          } else {
+            console.log("difficulty filter not passed");
+            divsToHide.push(divsArr[i]);
+            continue;
           }
         }
+
         console.log("scheduled filter");
         divsToShow.push(divsArr[i]);
         continue;
@@ -309,7 +319,9 @@ filterBtn.addEventListener("click", function () {
 applyFilterBtn.addEventListener("click", function () {
   applyFilter();
 });
-
+removeFilterBtn.addEventListener("click", function () {
+  resetFilter();
+});
 // filterBtn.addEventListener("click", function () {
 //   unApplyFilter();
 // });
