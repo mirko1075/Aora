@@ -5,7 +5,7 @@ function Profile(props) {
   return (
     <Layout title="Profile">
       <form id="form" action="/private/profile" method="POST">
-        <img src={props.user.picUrl}>PROFILE PICTURE</img>
+        {/* <img src={props.user.picUrl}>PROFILE PICTURE</img> */}
         <a href="/auth/logout">Log out</a>
         <a href="/private/profileform">Edit profile</a>
         <br />

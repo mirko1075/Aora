@@ -288,6 +288,8 @@ siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
     if (password && newPassword) {
     //CHECK IF PASSWORD USED MATCHES THE ONE FOR THE USER SAVED IN THE DATABASE
     const passwordCorrect = bcrypt.compareSync(password, user.password);
+    const salt = bcrypt.genSaltSync(saltRound);
+    const hashedPassword = bcrypt.hashSync(newPassword, salt);
 
     //CREATE COOKIE & SEND TO HOME OR SHOW ERROR INSTEAD
     if (passwordCorrect) {
@@ -296,7 +298,7 @@ siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
         let objToUpdate = new Object();
         console.log(newPassword)
         if (newPassword) {
-          objToUpdate = {name, lastName, email, city, country, birthDate , gender, userHeight, userWeight, password:newPassword}
+          objToUpdate = {name, lastName, email, city, country, birthDate , gender, userHeight, userWeight, password:hashedPassword}
         } else {
           objToUpdate = {name, lastName, email, city, country, birthDate , gender, userWeight, userHeight}
         }
