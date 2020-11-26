@@ -3,7 +3,7 @@ const Layout = require("./Layout");
 
 function Home() {
   return (
-    <Layout title="Home Page">
+    <Layout title="Home page">
       <div id="home">
         <img src="/images/logo.svg" className="logo" />
       </div>
