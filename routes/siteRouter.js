@@ -234,7 +234,7 @@ siteRouter.get("/profile", isLoggedIn, (req, res, next) => {
 // GET > PROFILE FORM ROUTE
 siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
-  User.findById(id)
+  User.findById({ _id: id })
 
     .then((user) => {
       const props = { user: user };
