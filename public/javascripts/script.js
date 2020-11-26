@@ -162,46 +162,41 @@ function changeDay(day) {
       btnArray[i].classList.remove("daysBtnOff");
     }
   }
-  applyFilter();
+  filter(scheduled, day);
 }
 
 function filter(field, fieldValue) {
   divsToHide = [];
   divsToShow = [];
-  console.log("Parameters:", field, fieldValue);
+  // console.log("Parameters:", field, fieldValue);
   const divsArr = document.querySelectorAll("article");
-  console.log("actual Date:", actualDate);
+  // console.log("actual Date:", actualDate);
+  filtersObj[field] = fieldValue;
+  // console.log("filtersObj", filtersObj);
+  const { trainer, scheduled, classType, duration, difficulty } = filtersObj;
+  // console.log(
+  //   "Deconstructor",
+  //   trainer,
+  //   scheduled,
+  //   classType,
+  //   duration,
+  //   difficulty
+  // );
   for (let i = 0; i < divsArr.length; i++) {
     const elem = divsArr[i];
-
-    console.log(
-      "Class type all:",
-      "Id:" + divsArr[i].id,
-      "Field value:" + divsArr[i].attributes[`data-${field}`].value,
-      "Scheduled:" + divsArr[i].attributes["data-scheduled"].value
-    );
+    // console.log(
+    //   "Class type all:",
+    //   "Id:" + divsArr[i].id,
+    //   "Field value:" + divsArr[i].attributes[`data-${field}`].value,
+    //   "Scheduled:" + divsArr[i].attributes["data-scheduled"].value
+    // );
   }
-  filtersObj[field] = fieldValue;
-  console.log("filtersObj", filtersObj);
-  // formObj.reset();
-}
 
-function applyFilter() {
-  const { trainer, scheduled, classType, duration, difficulty } = filtersObj;
-  console.log(
-    "Deconstructor",
-    trainer,
-    scheduled,
-    classType,
-    duration,
-    difficulty
-  );
-  console.log("Apply Filter");
-  const divsArr = document.querySelectorAll("article");
-  divsToShow = [];
+  // console.log("Apply Filter");
+
   // CHECK IF THE FILTERS APPLY TO EACH DIV, IF YES I CREATE A divsToShow ARRAY THAT I'LL DISPLAY WITH SHOWDIV FUNCTION
   for (let i = 0; i < divsArr.length; i++) {
-    console.log(divsArr[i]);
+    // console.log(divsArr[i]);
 
     if (scheduled) {
       if (divsArr[i].attributes["data-scheduled"].value === scheduled) {
@@ -259,14 +254,23 @@ function applyFilter() {
     console.log("No filter");
     divsToHide.push(divsArr[i]);
   }
-  console.log("divsToShow", divsToShow);
-  console.log("divsToHide", divsToHide);
-  filterDiv.classList.add("filterHidden");
-  filterDiv.classList.remove("filterShow");
+  console.log("divsToShow", divsToShow.length);
+  // console.log("divsToHide", divsToHide);
+  // formObj.reset();
+  resultsFound.innerHTML =
+    "<span class='resultsSpan'>" + divsToShow.length + "</span>";
+  applyFilter();
+}
+
+function applyFilter() {
   hideAllDivs(actualDate, true);
   displayAllDivs(actualDate, true);
 }
-
+function applyFilterFromBtn() {
+  filterDiv.classList.add("filterHidden");
+  filterDiv.classList.remove("filterShow");
+  applyFilter();
+}
 function displayAllDivs(day, filtered) {
   for (let i = 0; i < divsToShow.length; i++) {
     let btnId = divsToShow[i].id;
@@ -307,6 +311,7 @@ const trainer = document.getElementById("trainer");
 const duration = document.getElementById("duration");
 const difficulty = document.getElementById("difficulty");
 const formObj = document.getElementById("filterForm");
+const resultsFound = document.getElementById("resultsFound");
 // const equipment = document.getElementById("equipment");
 
 // LISTENERS
@@ -317,7 +322,7 @@ filterBtn.addEventListener("click", function () {
 });
 
 applyFilterBtn.addEventListener("click", function () {
-  applyFilter();
+  applyFilterFromBtn();
 });
 removeFilterBtn.addEventListener("click", function () {
   resetFilter();
