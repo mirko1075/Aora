@@ -115,6 +115,20 @@ h3 {
   border-radius: 60px;
   border: none;
 }
+
+/* LOGIN FORM AND SOIGNUP FORM */
+.loginDiv,
+.signupDiv {
+  background-color: black;
+  margin-bottom: 1px;
+  height: 90px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+/* END OF LOGIN FORM AND SOIGNUP FORM */
+
 /* CLASS DETAIL STYLING-------------------------------------------------- */
 /* --same as above but used in class detail <a> link-- */
 .btn-container a {

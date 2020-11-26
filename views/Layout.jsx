@@ -18,7 +18,10 @@ function Layout(props) {
 
       <body>
         {props.children}
-        <Footer title={props.title}></Footer>
+        {props.title != "Login" && props.title != "Signup" ? (
+          <Footer title={props.title}></Footer>
+        ) : null}
+
         {props.title === "Calendar" ? (
           <script type="text/javascript" src="/javascripts/script.js"></script>
         ) : null}
