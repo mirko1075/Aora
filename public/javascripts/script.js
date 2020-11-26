@@ -257,8 +257,8 @@ function filter(field, fieldValue) {
   console.log("divsToShow", divsToShow.length);
   // console.log("divsToHide", divsToHide);
   // formObj.reset();
-  resultsFound.innerHTML =
-    "<div class='resultsSpan'>" + divsToShow.length + "</div>";
+  // resultsFound.innerHTML =
+  //   "<div class='resultsSpan'>" + divsToShow.length + "</div>";
   applyFilter();
 }
 
@@ -348,5 +348,6 @@ duration.addEventListener("change", function () {
 difficulty.addEventListener("change", function () {
   filter(difficulty.id, difficulty.value);
 });
+
 
 
