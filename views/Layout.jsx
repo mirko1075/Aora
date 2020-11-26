@@ -25,6 +25,9 @@ function Layout(props) {
         {props.title === "Calendar" ? (
           <script type="text/javascript" src="/javascripts/script.js"></script>
         ) : null}
+        {props.title === "Signup" ? (
+          <script type="text/javascript" src="/javascripts/signup.js"></script>
+        ) : null}
         <script type="text/javascript" src="/javascripts/utils.js"></script>
       </body>
     </html>
