@@ -12,7 +12,6 @@ const {
 function ClassDetail(props) {
   const isBookedRes = props.isBookedRes;
   let isOnLineRes = props.isOnLineRes;
-  const callBack = props.callBack;
   props = props.foundClass;
   
 
@@ -31,7 +30,7 @@ function ClassDetail(props) {
           {addZeroBefore(props.scheduled.getHours())}:
           {addZeroBefore(props.scheduled.getMinutes())}h
         </h2>
-        <a href={callBack} class="clsx"><img src="/images/clsx.svg"></img></a>
+        <img id="close-button" class="close-button" src="/images/clsx.svg"></img>
         <div class="class-content">
           <h2 className="classname">{props.name}</h2>
           <p>

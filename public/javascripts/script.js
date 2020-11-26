@@ -312,6 +312,7 @@ const duration = document.getElementById("duration");
 const difficulty = document.getElementById("difficulty");
 const formObj = document.getElementById("filterForm");
 const resultsFound = document.getElementById("resultsFound");
+
 // const equipment = document.getElementById("equipment");
 
 // LISTENERS
@@ -347,3 +348,5 @@ duration.addEventListener("change", function () {
 difficulty.addEventListener("change", function () {
   filter(difficulty.id, difficulty.value);
 });
+
+

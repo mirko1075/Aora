@@ -21,14 +21,16 @@ function Layout(props) {
         {props.title != "Login" && props.title != "Signup" ? (
           <Footer title={props.title}></Footer>
         ) : null}
-
         {props.title === "Calendar" ? (
           <script type="text/javascript" src="/javascripts/script.js"></script>
         ) : null}
         {props.title === "Signup" ? (
           <script type="text/javascript" src="/javascripts/signup.js"></script>
         ) : null}
-        <script type="text/javascript" src="/javascripts/utils.js"></script>
+        {props.title === "Class detail" ? (
+          <script type="text/javascript" src="/javascripts/classDetail.js"></script>
+        ) : null}
+        <script type="text/javascript" src="/javascripts/common.js"></script>
       </body>
     </html>
   );

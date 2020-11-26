@@ -95,7 +95,6 @@ siteRouter.get("/classDetail/:idClass", isLoggedIn, (req, res, next) => {
             foundClass: foundClass,
             isBookedRes: isBookedRes,
             isOnLineRes: isOnLineRes,
-            callBack: "/private/Calendar",
           };
           //console.log("IsBooked:", props.isBooked);
           // console.log("Props from promise:", props);
