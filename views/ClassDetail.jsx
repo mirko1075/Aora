@@ -13,7 +13,6 @@ function ClassDetail(props) {
   const isBookedRes = props.isBookedRes;
   let isOnLineRes = props.isOnLineRes;
   props = props.foundClass;
-  
 
   console.log("isBooked from ClassDetail", isBookedRes);
   console.log("isOnline from ClassDetail", isOnLineRes);
@@ -30,7 +29,11 @@ function ClassDetail(props) {
           {addZeroBefore(props.scheduled.getHours())}:
           {addZeroBefore(props.scheduled.getMinutes())}h
         </h2>
-        <img id="close-button" class="close-button" src="/images/clsx.svg"></img>
+        <img
+          id="close-button"
+          class="close-button"
+          src="/images/clsx.svg"
+        ></img>
         <div class="class-content">
           <h2 className="classname">{props.name}</h2>
           <p>
@@ -84,8 +87,6 @@ function ClassDetail(props) {
             </a>
           </div>
         )}
-        <br></br>
-        <a href="/private/calendar">Back to calendar</a>
       </div>
     </Layout>
   );
