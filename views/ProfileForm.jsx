@@ -85,14 +85,12 @@ function ProfileForm(props) {
                 <input type="password" name="repeat" placeholder="Repeat password"/>
                 <button type="submit">UPDATE</button>
 
-                {
-                props.errorMessage 
-                    ? <div className="error-message"> {props.errorMessage} </div>
-                    : null
-                }
-            </form>
-        </Layout>
-    )
+        {props.errorMessage ? (
+          <div className="error-message"> {props.errorMessage} </div>
+        ) : null}
+      </form>
+    </Layout>
+  );
 }
 
 module.exports = ProfileForm;

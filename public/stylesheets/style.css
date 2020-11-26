@@ -5,7 +5,9 @@
 :root {
   --text-color: white;
 }
-
+svg {
+  background: linear-gradient(180deg, rgba(21, 66, 85, 0) 28.94%, #154255 50%);
+}
 body {
   background-color: black;
   color: white;
@@ -17,13 +19,18 @@ a {
   text-decoration: none;
 }
 button:focus {
-  outline:0;
+  outline: 0;
 }
 h1 {
   font-style: normal;
   font-weight: 500;
   font-size: 36px;
   margin-left: 25px;
+}
+h2 {
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
 }
 h3 {
   font-style: normal;
@@ -46,6 +53,18 @@ h3 {
 .calendarbar {
   display: flex;
 }
+.resultsSpan {
+  width: 20px;
+  font-style: normal;
+  font-size: 12px;
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
+  background-color: #ff0066;
+  border-radius: 20px;
+  border: none;
+}
+
 .datebox {
   display: flex;
   flex-direction: column;
@@ -59,7 +78,7 @@ h3 {
   text-align: center;
   text-transform: uppercase;
   color: black;
-  background-color: #FF0066;
+  background-color: #ff0066;
   border-radius: 20px;
   border: none;
   z-index: 1;
@@ -71,7 +90,7 @@ h3 {
   font-size: 12px;
   text-align: center;
   text-transform: uppercase;
-  color: #E5E5E5;
+  color: #e5e5e5;
   background-color: black;
   border-radius: 20px;
   border: none;
@@ -84,9 +103,6 @@ h3 {
 }
 .classname {
   font-weight: 700;
-}
-.classcontainer {
-  height: auto;
 }
 .btn-container {
   width: 100vw;
@@ -105,6 +121,74 @@ h3 {
   background: #c4c4c4;
   border-radius: 60px;
   border: none;
+}
+
+/* LOGIN FORM AND SOIGNUP FORM */
+.loginDiv,
+.signupDiv {
+  background-color: black;
+  margin-bottom: 1px;
+  height: 90px;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+}
+
+/* END OF LOGIN FORM AND SOIGNUP FORM */
+
+/* CLASS DETAIL STYLING-------------------------------------------------- */
+/* --same as above but used in class detail <a> link-- */
+.btn-container a {
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  width: 164px;
+  height: 60px;
+  border-radius: 60px;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 2px 2px 2px rgba(0, 0, 0, 0.2);
+}
+.ahref-btn-off {
+  color: #333;
+  background-color: #c4c4c4;
+}
+.ahref-btn-on {
+  color: white;
+  background-color: #ff0066;
+}
+.classcontainer {
+  height: 100vh;
+  background-color: #e5e5e5;
+  color: #333333;
+}
+.class-content{
+  margin: 16px;
+}
+.profile-hero {
+  height: 34vh;
+  width: 100vw;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+.profile-hero img {
+  height: 34vh;
+  width: auto;
+}
+.pink-h2{
+  color: #ff0066;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+}
+.close-button{
+  position: fixed;
+  top: 16px;
+  right: 16px;
 }
 /* HEADER STYLE ----------------------------------- */
 .header {
@@ -169,29 +253,88 @@ nav img {
 .class-card div {
   margin-left: 16px;
 }
-.class-card img {
+.profile-pic img {
   width: 72px;
   height: auto;
   background-color: white;
   clip-path: circle(36px at center);
 }
 .small-info {
+  width: 50vw;
   font-style: normal;
   font-weight: normal;
   font-size: 12px;
   text-transform: uppercase;
 }
+.flechita {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 32px;
+}
+.empty-class-card {
+  background-color: #333;
+  opacity: 50%;
+  margin-bottom: 1px;
+  height: 90px;
+  width: 100vw;
+}
 /* --------------------------- */
 
 .filterShow {
-  background-color: white;
-  display: block;
+  background-color: black;
+  color: #e5e5e5;
+  display: flex;
   width: 100%;
   height: 100%;
   position: absolute;
   top: 0;
   left: 0;
+  flex-wrap: wrap;
+  flex-direction: column;
 }
 .filterHidden {
   display: none;
+}
+
+.select-css {
+  display: block;
+  font-size: 16px;
+  font-family: sans-serif;
+  font-weight: 700;
+  color: #444;
+  line-height: 1.3;
+  padding: 0.6em 1.4em 0.5em 0.8em;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid #aaa;
+  box-shadow: 0 1px 0 1px rgba(0, 0, 0, 0.04);
+  border-radius: 0.5em;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  background-color: #fff;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%23007CB2%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E"),
+    linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
+  background-repeat: no-repeat, repeat;
+  background-position: right 0.7em top 50%, 0 0;
+  background-size: 0.65em auto, 100%;
+}
+.select-css::-ms-expand {
+  display: none;
+}
+.select-css:hover {
+  border-color: #888;
+}
+.select-css:focus {
+  border-color: #aaa;
+  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
+  box-shadow: 0 0 0 3px -moz-mac-focusring;
+  color: #222;
+  outline: none;
+}
+.select-css option {
+  font-weight: normal;
 }

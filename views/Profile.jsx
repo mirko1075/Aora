@@ -5,8 +5,7 @@ function Profile (props) {
     return(
         <Layout title="Profile">
             <form id="form" action="/private/profile" method="POST">
-                <i href="{props.user[0].picUrl}">PROFILE PICTURE</i>
-                
+                <img href="{props.user[0].picUrl}">PROFILE PICTURE</img>
                 <a href="/auth/logout">Log out</a>
                 <a href="/private/profileform">Edit profile</a>
                 <br/>
@@ -32,16 +31,12 @@ function Profile (props) {
                 <h2>COUNTRY</h2>
                 <p>{props.user.country}</p>
                 <br/>
-
-                {
-                props.errorMessage 
-                    ? <div className="error-message"> {props.errorMessage} </div>
-                    : null
-                }
-            </form>
-        </Layout>
-    )
+                {props.errorMessage ? (
+                <div className="error-message"> {props.errorMessage} </div>
+                ) : null}
+      </form>
+    </Layout>
+  );
 }
 
 module.exports = Profile;
-

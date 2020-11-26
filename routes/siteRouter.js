@@ -3,7 +3,12 @@ var siteRouter = express.Router();
 
 const bcrypt = require("bcrypt");
 const zxcvbn = require("zxcvbn");
-const { getUserBySession, isLoggedIn } = require("../utils/utils");
+const {
+  getUserBySession,
+  isLoggedIn,
+  isBooked,
+  isOnline,
+} = require("../utils/utils");
 const saltRound = 10;
 
 //LOADING
@@ -52,8 +57,17 @@ siteRouter.get("/calendar", isLoggedIn, (req, res, next) => {
 siteRouter.get("/classDetail/:idClass", isLoggedIn, (req, res, next) => {
   const idCLass = req.params.idClass;
   const idUser = req.session.currentUser._id;
-  let isBooked = null;
+  let isOnLineRes = null;
+  let isBookedRes = null;
   const pr = User.findById(idUser)
+    .populate([
+      {
+        path: "scheduledClasses",
+        populate: {
+          path: "trainer",
+        },
+      },
+    ])
     .then((foundUser) => {
       // console.log(
       //   "idCLass:",
@@ -61,14 +75,18 @@ siteRouter.get("/classDetail/:idClass", isLoggedIn, (req, res, next) => {
       //   "foundUser.scheduledClasses",
       //   foundUser.scheduledClasses
       // );
-      if (foundUser.scheduledClasses.indexOf(idCLass) != -1) {
+      if (isBooked(foundUser.scheduledClasses, idCLass)) {
         console.log("Found");
-        isBooked = true;
+        if (isOnline(foundUser.scheduledClasses, idCLass)) {
+          console.log("On line");
+          isOnLineRes = true;
+        }
+        isBookedRes = true;
       } else {
         console.log("Not found");
-        isBooked = false;
+        isBookedRes = false;
       }
-      return isBooked;
+      return isBookedRes;
     })
     .then((foundUser) => {
       Class.findById(idCLass)
@@ -76,9 +94,10 @@ siteRouter.get("/classDetail/:idClass", isLoggedIn, (req, res, next) => {
         .then((foundClass) => {
           const props = {
             foundClass: foundClass,
-            isBooked: isBooked,
+            isBookedRes: isBookedRes,
+            isOnLineRes: isOnLineRes,
           };
-          console.log("IsBooked:", props.isBooked);
+          //console.log("IsBooked:", props.isBooked);
           // console.log("Props from promise:", props);
           res.render("ClassDetail", props);
         });
@@ -130,15 +149,28 @@ siteRouter.get("/classDetail/delete/:idClass", isLoggedIn, (req, res, next) => {
 });
 
 // GET > LIVE-CLASS ROUTE
-siteRouter.get("/live-class/:idCLass", isLoggedIn, (req, res, next) => {
-  res.render("Liveclass");
+siteRouter.get("/liveClass/:idCLass", isLoggedIn, (req, res, next) => {
+  // const idClass = req.params.idClass;
+  const idClass = "5fbe496666f0236b4207d281";
+  // console.log("idClass", idClass, req);
+  Class.findById(idClass)
+    .then((foundClass) => {
+      const props = { foundClass: foundClass };
+      // console.log("Props from siteRouter:", props);
+      res.render("LiveClass", props);
+    })
+    .catch((error) =>
+      console.log(
+        "Something went wrong when finding a user id @ get schedule route",
+        error
+      )
+    );
 });
 
 // GET > SCHEDULE ROUTE
 siteRouter.get("/schedule", isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
   User.find({ _id: id })
-    //.populate("scheduledClasses").populate(["trainer"])
     .populate([
       {
         path: "scheduledClasses",
@@ -149,18 +181,7 @@ siteRouter.get("/schedule", isLoggedIn, (req, res, next) => {
     ])
 
     .then((user) => {
-      //console.log("user" + user)
-      console.log("USER.EMAIL: " + user[0].email);
-      console.log(
-        "USER classes duration: " + user[0].scheduledClasses[0].duration
-      );
-      console.log(
-        "///////USER classes trainer: " +
-          user[0].scheduledClasses[0].trainer[0].name
-      );
-      //const props = req.session.currentUser;
-      const props = { user: user };
-
+      const props = { user };
       res.render("Schedule", props);
     })
     .catch((error) =>
