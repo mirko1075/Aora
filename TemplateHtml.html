@@ -1,18 +1,32 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
   <head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home Page</title>
+    <link rel="stylesheet" href="/stylesheets/cssreset.css" />
+    <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <select id="practice" name="practice" multiple>
-      <option value="1">1</option>
-      <option value="2">2</option>
-      <option value="3">3</option>
-      <option value="4">4</option>
-      <option value="5">5</option>
-      <option value="6">6</option>
-      <option value="7">7</option>
-      <option value="8">8</option>
-      <option value="9">9</option>
-    </select>
+    <div id="home"><img src="/images/logo.svg" class="logo" /></div>
+    <script>
+      redirect_Page();
+    </script>
+    <div>
+      <nav>
+        <a href="/private/Calendar"
+          ><div id="nav-classes-btn">
+            <img src="/images/classes-off.svg" />classes
+          </div></a
+        ><a href="/private/schedule"
+          ><div><img src="/images/schedule-off.svg" />schedule</div></a
+        ><a href="/private/progress"
+          ><div><img src="/images/progress-off.svg" />progress</div></a
+        ><a href="/private/profile"
+          ><div><img src="/images/profile-off.svg" />profile</div></a
+        >
+      </nav>
+    </div>
+    <script type="text/javascript" src="/javascripts/common.js"></script>
   </body>
-</html>;
+</html>

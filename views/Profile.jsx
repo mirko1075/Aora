@@ -2,62 +2,35 @@ const React = require("react");
 const Layout = require("./Layout");
 
 function Profile(props) {
-  console.log(props);
   return (
     <Layout title="Profile">
       <form id="form" action="/private/profile" method="POST">
-        <i href="{props.user[0].picUrl}">PROFILE PICTURE</i>
-
+        <img src={props.user.picUrl}>PROFILE PICTURE</img>
         <a href="/auth/logout">Log out</a>
         <a href="/private/profileform">Edit profile</a>
         <br />
         <h2>NAME</h2>
-        <p>{props.user[0].name}</p>
+        <p>{props.user.name}</p>
         <br />
         <h2>LAST NAME</h2>
-        <p>{props.user[0].lastName}</p>
+        <p>{props.user.lastName}</p>
         <br />
         <h2>EMAIL</h2>
-        <p>{props.user[0].email}</p>
+        <p>{props.user.email}</p>
         <br />
         <h2>GENDER</h2>
-        <p>{props.user[0].gender}</p>
+        <p>{props.user.gender}</p>
         <br />
         <h2>BIRTHDATE</h2>
-        <p>{props.user[0].birthDate}</p>
+        {/* <p>{props.user.birthDate}</p> */}
+        {props.user.birthDate ? <p>{props.user.birthDate.toString()}</p> : null}
         <br />
         <h2>CITY</h2>
-        <p>{props.user[0].city}</p>
+        <p>{props.user.city}</p>
         <br />
         <h2>COUNTRY</h2>
-        <p>{props.user[0].country}</p>
+        <p>{props.user.country}</p>
         <br />
-
-        <a href="/auth/logout">Log out</a>
-        <a href="/private/profileform">Edit profile</a>
-        <br />
-        <h2>NAME</h2>
-        <p>{props.user[0].name}</p>
-        <br />
-        <h2>LAST NAME</h2>
-        <p>{props.user[0].lasName}</p>
-        <br />
-        <h2>EMAIL</h2>
-        <p>{props.user[0].email}</p>
-        <br />
-        <h2>GENDER</h2>
-        <p>{props.user[0].gender}</p>
-        <br />
-        <h2>BIRTHDATE</h2>
-        <p>{props.user[0].birthDate}</p>
-        <br />
-        <h2>CITY</h2>
-        <p>{props.user[0].city}</p>
-        <br />
-        <h2>COUNTRY</h2>
-        <p>{props.user[0].country}</p>
-        <br />
-
         {props.errorMessage ? (
           <div className="error-message"> {props.errorMessage} </div>
         ) : null}

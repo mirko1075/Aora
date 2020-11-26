@@ -22,16 +22,17 @@ function Layout(props) {
           <Footer title={props.title}></Footer>
         ) : null}
         {props.title === "Calendar" ? (
-          <script type="text/javascript" src="/javascripts/script.js"></script>
+          <script type="text/javascript" src="/javascripts/script.js" />
         ) : null}
         {props.title === "Signup" ? (
-          <script type="text/javascript" src="/javascripts/signup.js"></script>
+          <script type="text/javascript" src="/javascripts/signup.js" />
         ) : null}
         {props.title === "Class detail" ? (
-          <script type="text/javascript" src="/javascripts/classDetail.js"></script>
+          <script type="text/javascript" src="/javascripts/classDetail.js" />
         ) : null}
-        <script type="text/javascript" src="/javascripts/common.js"></script>
+        <script type="text/javascript" src="/javascripts/common.js" />
       </body>
+      {props.title === "Home page" ? <script>redirect_Page()</script> : null}
     </html>
   );
 }
