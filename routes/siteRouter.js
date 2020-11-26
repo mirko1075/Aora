@@ -193,8 +193,27 @@ siteRouter.get("/schedule", isLoggedIn, (req, res, next) => {
 
 // GET > PROGRESS ROUTE
 siteRouter.get("/progress", isLoggedIn, (req, res, next) => {
-  const props = req.session.currentUser;
-  res.render("Progress", props);
+  const id = req.session.currentUser;
+  User.findById(id)
+    .populate([
+      {
+        path: "scheduledClasses",
+        populate: {
+          path: "trainer",
+        },
+      },
+    ])
+
+    .then((userFound) => {
+      const props = { userFound };
+      res.render("Progress", props);
+    })
+    .catch((error) =>
+      console.log(
+        "Something went wrong when finding a user id @ get schedule route",
+        error
+      )
+    );
 });
 
 // GET > PROFILE ROUTE

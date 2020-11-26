@@ -5,8 +5,12 @@
 :root {
   --text-color: white;
 }
-svg {
+.Layer_1 {
   background: linear-gradient(180deg, rgba(21, 66, 85, 0) 28.94%, #154255 50%);
+}
+
+.Layer_2 {
+  background: linear-gradient(180deg, #ff0066 50%, rgba(255, 0, 102, 0) 72.35%);
 }
 body {
   background-color: black;
@@ -164,7 +168,7 @@ h3 {
   background-color: #e5e5e5;
   color: #333333;
 }
-.class-content{
+.class-content {
   margin: 16px;
 }
 .profile-hero {
@@ -179,13 +183,13 @@ h3 {
   height: 34vh;
   width: auto;
 }
-.pink-h2{
+.pink-h2 {
   color: #ff0066;
   position: fixed;
   top: 16px;
   left: 16px;
 }
-.close-button{
+.close-button {
   position: fixed;
   top: 16px;
   right: 16px;
