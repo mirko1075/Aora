@@ -278,6 +278,16 @@ h3 {
   top: 0;
   width: 100vw;
 }
+.profile-header {
+  height: 200px;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #666666;
+  position: fixed;
+  top: 0;
+  width: 100vw;
+}
 /* END of HEADER STYLE ----------------------------- */
 /* NAV / FOOTER STYLING---------------------- */
 nav {

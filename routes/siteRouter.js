@@ -1,6 +1,8 @@
 var express = require("express");
 var siteRouter = express.Router();
 
+const parser = require('./../config/cloudinary');
+
 const bcrypt = require("bcrypt");
 const zxcvbn = require("zxcvbn");
 const {
@@ -246,8 +248,9 @@ siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
 });
 
 // POST > PROFILE FORM EDIT ROUTE
-siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
+siteRouter.post("/profileform", parser.single('profilepic'), isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
+  const cloudImageUrl = req.file.secure_url;
   let {
     name,
     lastName,
@@ -301,7 +304,7 @@ siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
       const salt = bcrypt.genSaltSync(saltRound);
       const hashedPassword = bcrypt.hashSync(newPassword, salt);
 
-      //CREATE COOKIE & SEND TO HOME OR SHOW ERROR INSTEAD
+      //MAKE CHANGES TU THE USER DB & SEND TO PROFILE OR SHOW ERROR INSTEAD
       if (passwordCorrect) {
         // User.findByIdAndUpdate(id,{name, lastName, email, city, country, birthDate: req.body.birthDate ? req.body.birthDate : req.session.currentUser.birthDate , gender, height, weight, password},{new:true})
         let objToUpdate = new Object();
