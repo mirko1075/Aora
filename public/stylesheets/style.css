@@ -359,9 +359,14 @@ nav img {
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
 } */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 .select-css{
-
-  width: 86vw;
+  width: 92vw;
   height: 60px;
   border: none;
   border-radius: 30px;
@@ -379,12 +384,11 @@ nav img {
   border-color: #888;
 }
 .select-css:focus {
-  border-color: #aaa;
+  /* border-color: #aaa;
   box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
   box-shadow: 0 0 0 3px -moz-mac-focusring;
   color: #222;
-  outline: none;
+  outline: none; */
+  outline: 0;
 }
-.select-css option {
-  font-weight: normal;
-}
+

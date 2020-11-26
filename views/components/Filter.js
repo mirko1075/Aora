@@ -33,7 +33,6 @@ function Filter(props) {
       <h2 id="filter-title">Filter Results</h2>
       <img id="closeFilterBtn" class="close-button" src="/images/clsx.svg"></img>
       <br></br>
-      <br></br>
       <form action="/private/calendar" method="get" id="filterForm">
         <select name="classType" id="classType" className="select-css">
           <option value="" selected>
