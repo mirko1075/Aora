@@ -8,8 +8,7 @@ function LiveClass(props) {
     <Layout title="LiveClass">
       <h1>Go to LiveClass MF</h1>
       <iframe
-        width="560"
-        height="315"
+        className="iframe"
         src={data.url}
         frameBorder="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

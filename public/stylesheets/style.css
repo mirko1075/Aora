@@ -7,7 +7,8 @@
 }
 
 #home,
-#login {
+#login,
+#signup {
   background-image: url("/images/login.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -408,4 +409,10 @@ nav img {
 }
 .select-css option {
   font-weight: normal;
+}
+
+/* LIVE CLASS */
+.iframe {
+  width: 100vw;
+  height: 100vh;
 }
