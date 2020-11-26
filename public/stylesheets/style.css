@@ -7,7 +7,8 @@
 }
 
 #home,
-#login {
+#login,
+#signup {
   background-image: url("/images/login.png");
   background-repeat: no-repeat;
   background-position: center;
@@ -350,7 +351,21 @@ nav img {
   height: 90px;
   width: 100vw;
 }
-/* --------------------------- */
+/* --FILTER STYLING------------------------- */
+#filter{
+  background-color: white;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  z-index: 100;
+}
+#filter-title{
+  margin: 20px 16px;
+  color: #333;
+}
+
 
 .filterShow {
   background-color: black;
@@ -367,8 +382,39 @@ nav img {
 .filterHidden {
   display: none;
 }
+.input-container {
+  width: 100vw;
 
-.select-css {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 50px;
+}
+.apply-filter {
+  color: white;
+  background-color: #ff0066;
+  font-weight: 900;
+  font-size: 14px;
+  text-transform: uppercase;
+  width: 164px;
+  height: 60px;
+  border-radius: 60px;
+  border: none;
+  margin-right: 16px;
+}
+.reset-filter {
+  color: #ff0066;
+  background-color: white;
+  font-weight: 900;
+  font-size: 14px;
+  text-transform: uppercase;
+  border: none;
+  margin-right: 24px;
+}
+.reset-filter:focus{
+  outline: 0;
+}
+
+/* .select-css {
   display: block;
   font-size: 16px;
   font-family: sans-serif;
@@ -392,7 +438,28 @@ nav img {
   background-repeat: no-repeat, repeat;
   background-position: right 0.7em top 50%, 0 0;
   background-size: 0.65em auto, 100%;
+} */
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
+.select-css{
+  width: 92vw;
+  height: 60px;
+  border: none;
+  border-radius: 30px;
+  background-color:#E5E5E5;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+  text-transform: uppercase;
+  padding-left: 24px;
+  padding-right: 24px;
+
+}
+
 .select-css::-ms-expand {
   display: none;
 }
@@ -400,12 +467,13 @@ nav img {
   border-color: #888;
 }
 .select-css:focus {
-  border-color: #aaa;
-  box-shadow: 0 0 1px 3px rgba(59, 153, 252, 0.7);
-  box-shadow: 0 0 0 3px -moz-mac-focusring;
-  color: #222;
-  outline: none;
+  outline: 0;
 }
-.select-css option {
-  font-weight: normal;
+
+
+/* LIVE CLASS */
+.iframe {
+  width: 100vw;
+  height: 100vh;
 }
+

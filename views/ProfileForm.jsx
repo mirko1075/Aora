@@ -10,7 +10,7 @@ function ProfileForm(props) {
     return(
         <Layout title="Profile">
             <form id="form" action={`/private/profileform`} method="POST">
-                {/* <img src="">PROFILE PICTURE</img> */}
+                <img src="/images/JuanMiguelSansininea.jpg" alt="User Profile"></img>
                 <br/>
                 <a href="/auth/logout">Log out</a>
                 <br/>
@@ -25,34 +25,34 @@ function ProfileForm(props) {
                 <br/>
                 <h2>GENDER</h2>
                 {
-                 props.user.gender = "Male" ? (
-                <div>
-                <input type="radio" name="gender" value="Male" checked="checked" /> Male
-                <input type="radio" name="gender" value="Female" /> Female
-                <input type="radio" name="gender" value="Other" /> Other
-                </div>
-                  )
-                  : props.user.gender = "Female" ? (
-                <div>
-                <input type="radio" name="gender" value="Male" /> Male
-                <input type="radio" name="gender" value="Female" checked="checked" /> Female
-                <input type="radio" name="gender" value="Other" /> Other
-                </div>
-                   )
-                   : props.user.gender = "Other" ? (
-                <div>
-                <input type="radio" name="gender" value="Male" /> Male
-                <input type="radio" name="gender" value="Female" /> Female
-                <input type="radio" name="gender" value="Other" checked="checked" /> Other
-                </div>
-                    )
-                    : (
-                <div>
-                <input type="radio" name="gender" value="Male" /> Male
-                <input type="radio" name="gender" value="Female" /> Female
-                <input type="radio" name="gender" value="Other" /> Other
-                </div>
-                    )
+                  props.user.gender = "Male" ? (
+                    <div>
+                      <input type="radio" name="gender" value="Male" checked="checked" /> Male
+                      <input type="radio" name="gender" value="Female" /> Female
+                      <input type="radio" name="gender" value="Other" /> Other
+                    </div>
+                      )
+                      : props.user.gender = "Female" ? (
+                    <div>
+                      <input type="radio" name="gender" value="Male" /> Male
+                      <input type="radio" name="gender" value="Female" checked="checked" /> Female
+                      <input type="radio" name="gender" value="Other" /> Other
+                    </div>
+                      )
+                      : props.user.gender = "Other" ? (
+                    <div>
+                      <input type="radio" name="gender" value="Male" /> Male
+                      <input type="radio" name="gender" value="Female" /> Female
+                      <input type="radio" name="gender" value="Other" checked="checked" /> Other
+                    </div>
+                        )
+                        : (
+                    <div>
+                      <input type="radio" name="gender" value="Male" /> Male
+                      <input type="radio" name="gender" value="Female" /> Female
+                      <input type="radio" name="gender" value="Other" /> Other
+                    </div>
+                        )
                 }
                 <br/>
                 {/* <h2>BIRTHDATE</h2> */}
@@ -61,7 +61,7 @@ function ProfileForm(props) {
                 {/* {props.user.birthDate 
                     ? <input type="date" placeholder="dd-mm-yyyy" name="birthDate" defaultValue={dateString}/>
                     : <input type="date" placeholder="dd-mm-yyyy" name="birthDate"/>} */}
-                <br/>
+                {/* <br/> */}
                 <h2>CITY</h2>
                 <input type="text" name="city" defaultValue={props.user.city} />
                 <br/>
