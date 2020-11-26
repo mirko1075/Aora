@@ -5,6 +5,25 @@
 :root {
   --text-color: white;
 }
+
+#home {
+  background-image: url("/images/login.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100vw;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.logo {
+  width: 216px;
+  height: 94px;
+}
 .Layer_1 {
   background: linear-gradient(180deg, rgba(21, 66, 85, 0) 28.94%, #154255 50%);
 }
