@@ -4,8 +4,8 @@ const Layout = require("./Layout");
 function Profile(props) {
   return (
     <Layout title="Profile">
-      <form id="form" action="/private/profile" method="POST">
-        <img src={props.user.picUrl}>PROFILE PICTURE</img>
+        <form id="form" action="/private/profile" method="POST">
+        <img src="/images/JuanMiguelSansininea.jpg" alt="User Profile"></img>
         <a href="/auth/logout">Log out</a>
         <a href="/private/profileform">Edit profile</a>
         <br />
@@ -21,10 +21,9 @@ function Profile(props) {
         <h2>GENDER</h2>
         <p>{props.user.gender}</p>
         <br />
-        <h2>BIRTHDATE</h2>
-        {/* <p>{props.user.birthDate}</p> */}
+        {/* <h2>BIRTHDATE</h2>
         {props.user.birthDate ? <p>{props.user.birthDate.toString()}</p> : null}
-        <br />
+        <br /> */}
         <h2>CITY</h2>
         <p>{props.user.city}</p>
         <br />

@@ -62,15 +62,15 @@ function ClassDetail(props) {
 
         {isBookedRes === true ? (
           isOnLineRes == true ? (
-            <div class="btn-container">
-              <a class="ahref-btn-on" href={"/private/liveClass/" + props._id}>
+            <div className="btn-container">
+              <a className="ahref-btn-on" href={"/private/liveClass/" + props._id}>
                 Join
               </a>
             </div>
           ) : (
-            <div class="btn-container">
+            <div className="btn-container">
               <a
-                class="ahref-btn-off"
+                className="ahref-btn-off"
                 href={"/private/classDetail/delete/" + props._id}
               >
                 Unbook
@@ -78,9 +78,9 @@ function ClassDetail(props) {
             </div>
           )
         ) : (
-          <div class="btn-container">
+          <div className="btn-container">
             <a
-              class="ahref-btn-on"
+              className="ahref-btn-on"
               href={"/private/classDetail/add/" + props._id}
             >
               Book

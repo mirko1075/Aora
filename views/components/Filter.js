@@ -30,11 +30,10 @@ function Filter(props) {
   // console.log("classEquipmentArr", classEquipmentArr);
   return (
     <div id="filter" className="filterHidden">
-      <h3>Filter</h3>
-      <br></br>
+      <h2 id="filter-title">Filter Results</h2>
+      <img id="closeFilterBtn" class="close-button" src="/images/clsx.svg"></img>
       <br></br>
       <form action="/private/calendar" method="get" id="filterForm">
-        <label for="classType">Class type</label>
         <select name="classType" id="classType" className="select-css">
           <option value="" selected>
             Select class type
@@ -48,7 +47,6 @@ function Filter(props) {
           })}
         </select>
         <br></br>
-        <label for="trainer">Trainer</label>
         <select name="trainer" id="trainer" className="select-css">
           <option value="" selected>
             Select Trainer
@@ -62,7 +60,6 @@ function Filter(props) {
           })}
         </select>{" "}
         <br></br>
-        <label for="duration">Duration</label>
         <select name="duration" id="duration" className="select-css">
           <option value="" selected>
             Select duration
@@ -76,7 +73,6 @@ function Filter(props) {
           })}
         </select>{" "}
         <br></br>
-        <label for="difficulty">Difficulty</label>
         <select name="difficulty" id="difficulty" className="select-css">
           <option value="" selected>
             Select difficulty
@@ -93,7 +89,7 @@ function Filter(props) {
           <input type="button" id="applyFilterBtn" value="Apply filter" />
           <div id="resultsFound"></div>
           <input type="reset" id="removeFilterBtn" value="Reset filter" />
-          <input type="button" id="closeFilterBtn" value="Close filter" />
+          {/* <input type="button" id="closeFilterBtn" value="Close filter" /> */}
         </div>
       </form>
     </div>
