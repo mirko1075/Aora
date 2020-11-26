@@ -79,9 +79,8 @@ siteRouter.get("/classDetail/:idClass", isLoggedIn, (req, res, next) => {
         if (isOnline(foundUser.scheduledClasses, idCLass)) {
           console.log("On line");
           isOnLineRes = true;
-        } else {
-          isBookedRes = true;
         }
+        isBookedRes = true;
       } else {
         console.log("Not found");
         isBookedRes = false;

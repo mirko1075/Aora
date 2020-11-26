@@ -38,11 +38,15 @@ function getUserBySession(req) {
 }
 
 function isOnline(classesArr, idClass) {
+  // console.log("Params", classesArr, idClass);
   const date = new Date();
 
   for (let i = 0; i < classesArr.length; i++) {
+    console.log(classesArr[i]._id, idClass);
+    console.log(classesArr[i].scheduled, date);
     if (classesArr[i]._id == idClass) {
-      if (classesArr[i].sheduled > date) {
+      if (classesArr[i].scheduled < date) {
+        console.log("Found class online");
         return true;
       }
     }
@@ -51,8 +55,10 @@ function isOnline(classesArr, idClass) {
 }
 
 function isBooked(classesArr, idClass) {
+  // console.log("Params", classesArr, idClass);
   for (let i = 0; i < classesArr.length; i++) {
     if (classesArr[i]._id == idClass) {
+      console.log("Found class booked");
       return true;
     }
   }

@@ -131,6 +131,7 @@ function showFilter(div) {
 
 // Change the day in the calendarBar and apply a filter for scheduled
 function changeDay(day) {
+  console.log("Dat before parsing:", day);
   day = day.slice(day.indexOf("-", -1) + 1, day.length);
   day = day.slice(day.indexOf("-") + 1, day.length);
 
@@ -208,37 +209,38 @@ function applyFilter() {
   // CHECK IF THE FILTERS APPLY TO EACH DIV, IF YES I CREATE A divsToShow ARRAY THAT I'LL DISPLAY WITH SHOWDIV FUNCTION
   for (let i = 0; i < divsArr.length; i++) {
     console.log(divsArr[i]);
-    if (trainer) {
-      if (divsArr[i].attributes["data-trainer"].value === trainer) {
-        console.log("trainer filter");
-        divsToShow.push(divsArr[i]);
-        continue;
-      }
-    }
+
     if (scheduled) {
       if (divsArr[i].attributes["data-scheduled"].value === scheduled) {
+        if (trainer) {
+          if (divsArr[i].attributes["data-trainer"].value === trainer) {
+            console.log("trainer filter");
+            divsToShow.push(divsArr[i]);
+            continue;
+          }
+        }
+        if (classType) {
+          if (divsArr[i].attributes["data-classType"].value === classType) {
+            console.log("classType filter");
+            divsToShow.push(divsArr[i]);
+            continue;
+          }
+        }
+        if (duration) {
+          if (divsArr[i].attributes["data-duration"].value === duration) {
+            console.log("duration filter");
+            divsToShow.push(divsArr[i]);
+            continue;
+          }
+        }
+        if (difficulty) {
+          if (divsArr[i].attributes["data-difficulty"].value === difficulty) {
+            console.log("difficulty filter");
+            divsToShow.push(divsArr[i]);
+            continue;
+          }
+        }
         console.log("scheduled filter");
-        divsToShow.push(divsArr[i]);
-        continue;
-      }
-    }
-    if (classType) {
-      if (divsArr[i].attributes["data-classType"].value === classType) {
-        console.log("classType filter");
-        divsToShow.push(divsArr[i]);
-        continue;
-      }
-    }
-    if (duration) {
-      if (divsArr[i].attributes["data-duration"].value === duration) {
-        console.log("duration filter");
-        divsToShow.push(divsArr[i]);
-        continue;
-      }
-    }
-    if (difficulty) {
-      if (divsArr[i].attributes["data-difficulty"].value === difficulty) {
-        console.log("difficulty filter");
         divsToShow.push(divsArr[i]);
         continue;
       }

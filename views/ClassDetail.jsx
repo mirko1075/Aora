@@ -3,15 +3,16 @@ const Layout = require("./Layout");
 const { isBooked, getUserBySession } = require("../utils/utils");
 
 function ClassDetail(props) {
-  // console.log("!!!!!!!PROPS from ClassDetail:", props);
+  console.log("!!!!!!!PROPS from ClassDetail:", props);
   const isBookedRes = props.isBookedRes;
-  let isOnlineRes = props.isOnlineRes;
-  isOnlineRes = true;
+  let isOnLineRes = props.isOnLineRes;
+  // isOnlineRes = true;
   props = props.foundClass;
 
-  console.log("isBooked from ClassDetail", isBooked);
+  console.log("isBooked from ClassDetail", isBookedRes);
+  console.log("isOnline from ClassDetail", isOnLineRes);
   return (
-    <Layout title="Calendar">
+    <Layout title="Class detail">
       <div className="classcontainer">
         <div class="profile-hero">
           <img src="/images/face1.png"></img>
@@ -42,16 +43,10 @@ function ClassDetail(props) {
         <br></br>
         <br></br>
 
-        {isBooked === true ? (
-          isOnlineRes == true ? (
+        {isBookedRes === true ? (
+          isOnLineRes == true ? (
             <div class="btn-container">
               <a href={"/private/liveClass/" + props._id}>Join</a>
-              <a
-                class="ahref-btn-off"
-                href={"/private/classDetail/delete/" + props._id}
-              >
-                Unbook
-              </a>
             </div>
           ) : (
             <div class="btn-container">
