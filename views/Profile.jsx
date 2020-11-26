@@ -4,36 +4,55 @@ const Layout = require("./Layout");
 function Profile(props) {
   return (
     <Layout title="Profile">
-        <form id="form" action="/private/profile" method="POST">
-        <img src="/images/JuanMiguelSansininea.jpg" alt="User Profile"></img>
-        <a href="/auth/logout">Log out</a>
-        <a href="/private/profileform">Edit profile</a>
+      <div className="profile-header">
+        <h1>Profile</h1>
         <br />
-        <h2>NAME</h2>
-        <p>{props.user.name}</p>
+            <a href="/auth/logout">Log out</a>
         <br />
-        <h2>LAST NAME</h2>
-        <p>{props.user.lastName}</p>
-        <br />
-        <h2>EMAIL</h2>
-        <p>{props.user.email}</p>
-        <br />
-        <h2>GENDER</h2>
-        <p>{props.user.gender}</p>
-        <br />
-        {/* <h2>BIRTHDATE</h2>
-        {props.user.birthDate ? <p>{props.user.birthDate.toString()}</p> : null}
-        <br /> */}
-        <h2>CITY</h2>
-        <p>{props.user.city}</p>
-        <br />
-        <h2>COUNTRY</h2>
-        <p>{props.user.country}</p>
-        <br />
-        {props.errorMessage ? (
-          <div className="error-message"> {props.errorMessage} </div>
-        ) : null}
-      </form>
+            <a href="/private/profileform">Edit profile</a>
+          <div className="profile-pic">
+            <img src="/images/JuanMiguelSansininea.jpg" alt="User Profile"></img>
+          </div>
+      </div>
+      <div className="scroll-container">
+          <form id="form" action="/private/profile" method="POST">
+            <br />
+            <h3>NAME</h3>
+            <p>{props.user.name}</p>
+            <br />
+            <h3>LAST NAME</h3>
+            <p>{props.user.lastName}</p>
+            <br />
+            <h3>EMAIL</h3>
+            <p>{props.user.email}</p>
+            <br />
+            <h3>GENDER</h3>
+            <p>{props.user.gender}</p>
+            <br />
+            {/* <h3>BIRTHDATE</h3>
+            {props.user.birthDate ? <p>{props.user.birthDate.toString()}</p> : null}
+            <br /> */}
+            <h3>CITY</h3>
+            <p>{props.user.city}</p>
+            <br />
+            <h3>COUNTRY</h3>
+            <p>{props.user.country}</p>
+            <br />
+            <h3>HEIGHT</h3>
+            <p>{props.user.userHeight}</p>
+            <br />
+            <h3>WEIGHT</h3>
+            <p>{props.user.userWeight}</p>
+            <br />
+            {props.errorMessage ? (
+              <div className="error-message"> {props.errorMessage} </div>
+            ) : null}
+          </form>
+            <br />
+            <br />
+            <br />
+            <br />
+      </div>
     </Layout>
   );
 }
