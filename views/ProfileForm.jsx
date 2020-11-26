@@ -23,30 +23,27 @@ function ProfileForm(props) {
           </div>
         </div>
         <div class="header-profile-bottom">
-          <img src="/images/edit-on.svg"></img>
-          <img src="/images/logout-off.svg"></img>
+          <a href="/private/profile"><img src="/images/edit-on.svg"></img></a>
+          <a href="/auth/logout"><img src="/images/logout-off.svg"></img></a>
+          
         </div>
       </div>
-      <div class="scroll-container">
-        <form id="form" action={`/private/profileform`} method="POST">
-          <br />
-          <a href="/auth/logout">Log out</a>
-          <br />
-          <br />
-          <br />
-          <br />
-          <br />
-          <h2>NAME</h2>
+
+
+
+      <div class="profile-scroll-container">
+        <form id="form" class="profile-form" action={`/private/profileform`} method="POST">
+          <p class="label">name</p>
           <input type="text" name="name" defaultValue={props.user.name} />
           <br />
-          <h2>LAST NAME</h2>
+          <p class="label">last name</p>
           <input
             type="text"
             name="lastName"
             defaultValue={props.user.lastName}
           />
           <br />
-          <h2>EMAIL</h2>
+          <p class="label">email</p>
           <input
             type="email"
             name="email"
@@ -54,7 +51,7 @@ function ProfileForm(props) {
             required
           />
           <br />
-          <h2>GENDER</h2>
+          <p class="label">gender</p>
           {
             (props.user.gender = "Male" ? (
               <div>
@@ -112,28 +109,28 @@ function ProfileForm(props) {
                     ? <input type="date" placeholder="dd-mm-yyyy" name="birthDate" defaultValue={dateString}/>
                     : <input type="date" placeholder="dd-mm-yyyy" name="birthDate"/>} */}
           {/* <br/> */}
-          <h2>CITY</h2>
+          <p class="label">city</p>
           <input type="text" name="city" defaultValue={props.user.city} />
           <br />
-          <h2>COUNTRY</h2>
+          <p class="label">country</p>
           <input type="text" name="country" defaultValue={props.user.country} />
           <br />
           <br />
-          <h2>WEIGHT</h2>
+          <p class="label">weight</p>
           <input
             type="text"
             name="userWeight"
             defaultValue={props.user.userWeight}
           />
           <br />
-          <h2>HEIGHT</h2>
+          <p class="label">height</p>
           <input
             type="text"
             name="userHeight"
             defaultValue={props.user.userHeight}
           />
           <br />
-          <h2>CURRENT PASSWORD</h2>
+          <p class="label">current password</p>
           <input
             type="password"
             name="password"
@@ -141,16 +138,16 @@ function ProfileForm(props) {
             required
           />
           <br />
-          <h2>NEW PASSWORD</h2>
+          <p class="label">new password</p>
           <input
             type="password"
             name="newPassword"
             placeholder="Enter new password"
           />
           <br />
-          <h2>REPEAT NEW PASSWORD</h2>
+          <p class="label">repeat new password</p>
           <input type="password" name="repeat" placeholder="Repeat password" />
-          <button type="submit">UPDATE</button>
+          <button type="submit">update profile</button>
 
           {props.errorMessage ? (
             <div className="error-message"> {props.errorMessage} </div>
