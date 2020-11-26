@@ -10,6 +10,7 @@ function Progress(props) {
   let classTypeTemp = "";
   let attendedTemp = 0;
   const tempArr = [...data.scheduledClasses];
+  console.log(tempArr);
   for (i = 0; i < tempArr.length; i++) {
     if (tempArr[i] != classTypeTemp) {
       classTypeTemp = tempArr[i];
@@ -18,7 +19,7 @@ function Progress(props) {
       attendedTemp++;
     }
   }
-  console.log(data);
+  console.log("data", data);
   return (
     <Layout title="Progress">
       <div className="header">
