@@ -3,23 +3,27 @@ const Layout = require("./Layout");
 
 function Progress(props) {
   const data = props.userFound;
-  const classTypeObj = {
-    classtype: "",
-    attended: 0,
-  };
-  let classTypeTemp = "";
-  let attendedTemp = 0;
+  const classTypeArr = [];
+
   const tempArr = [...data.scheduledClasses];
-  console.log(tempArr);
-  for (i = 0; i < tempArr.length; i++) {
-    if (tempArr[i] != classTypeTemp) {
-      classTypeTemp = tempArr[i];
-      attendedTemp = 1;
+  let classTypeTemp = tempArr[0];
+  let attendedTemp = 0;
+  for (let i = 0; i < tempArr.length; i++) {
+    if (tempArr[i].name != classTypeTemp) {
+      classTypeTemp = tempArr[i].name;
+      attendedTemp++;
+      classTypeArr.push({
+        classType: classTypeTemp,
+        attended: attendedTemp,
+      });
+      attendedTemp = 0;
+      console.log("Change type");
     } else {
       attendedTemp++;
     }
+    console.log("tempArr[i]", tempArr[i].name);
   }
-  console.log("data", data);
+  console.log("classTypeTemp", classTypeTemp);
   return (
     <Layout title="Progress">
       <div className="header">

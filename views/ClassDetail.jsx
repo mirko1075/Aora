@@ -19,10 +19,10 @@ function ClassDetail(props) {
   return (
     <Layout title="Class detail">
       <div className="classcontainer">
-        <div class="profile-hero">
+        <div className="profile-hero">
           <img src="/images/face1.png"></img>
         </div>
-        <h2 class="pink-h2">
+        <h2 className="pink-h2">
           {humanizeDayMini(props.scheduled.getDay())}{" "}
           {addZeroBefore(props.scheduled.getDate())}
           <br />
@@ -31,10 +31,10 @@ function ClassDetail(props) {
         </h2>
         <img
           id="close-button"
-          class="close-button"
+          className="close-button"
           src="/images/clsx.svg"
         ></img>
-        <div class="class-content">
+        <div className="class-content">
           <h2 className="classname">{props.name}</h2>
           <p>
             <b>Trainer:</b>{" "}
@@ -63,7 +63,10 @@ function ClassDetail(props) {
         {isBookedRes === true ? (
           isOnLineRes == true ? (
             <div className="btn-container">
-              <a className="ahref-btn-on" href={"/private/liveClass/" + props._id}>
+              <a
+                className="ahref-btn-on"
+                href={"/private/liveClass/" + props._id}
+              >
                 Join
               </a>
             </div>

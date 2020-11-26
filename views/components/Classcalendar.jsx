@@ -63,7 +63,7 @@ function ClassCalendar(props) {
                   href={"/private/classDetail/" + obj._id}
                   className="class-card"
                 >
-                  <div class="profile-pic">
+                  <div className="profile-pic">
                     <img src="/images/face1.png"></img>
                   </div>
                   <div>
@@ -77,7 +77,7 @@ function ClassCalendar(props) {
                       {obj.trainer[0].lastName}
                     </p>
                   </div>
-                  <div class="flechita">
+                  <div className="flechita">
                     <div>
                       <img src="/images/flechita.svg"></img>
                     </div>

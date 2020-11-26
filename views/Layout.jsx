@@ -2,7 +2,6 @@ const React = require("react");
 const Footer = require("./components/Footer");
 
 function Layout(props) {
-  console.log("props from Calendar", props);
   return (
     <html lang="en">
       <head>

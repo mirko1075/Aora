@@ -24,13 +24,13 @@ function Login(props) {
               autocomplete="current-password"
             />
           </div>
-          <div class="loginBtnsDiv">
-            <div class="loginBtnsDiv-1">
+          <div className="loginBtnsDiv">
+            <div className="loginBtnsDiv-1">
               <a className="ahref-login" href="/auth/signup">
                 OR SIGN UP INSTEAD
               </a>
             </div>
-            <div class="loginBtnsDiv-1">
+            <div className="loginBtnsDiv-1">
               <button className="loginBtn" type="submit" id="signup-button">
                 LOG IN
               </button>
