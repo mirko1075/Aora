@@ -31,9 +31,11 @@ function Filter(props) {
   return (
     <div id="filter" className="filterHidden">
       <h3>Filter</h3>
+      <br></br>
+      <br></br>
       <form action="/private/calendar" method="get" id="filterForm">
         <label for="classType">Class type</label>
-        <select name="classType" id="classType">
+        <select name="classType" id="classType" className="select-css">
           <option value="" selected>
             Select class type
           </option>
@@ -46,9 +48,8 @@ function Filter(props) {
           })}
         </select>
         <br></br>
-        <br></br>
         <label for="trainer">Trainer</label>
-        <select name="trainer" id="trainer">
+        <select name="trainer" id="trainer" className="select-css">
           <option value="" selected>
             Select Trainer
           </option>
@@ -61,9 +62,8 @@ function Filter(props) {
           })}
         </select>{" "}
         <br></br>
-        <br></br>
         <label for="duration">Duration</label>
-        <select name="duration" id="duration">
+        <select name="duration" id="duration" className="select-css">
           <option value="" selected>
             Select duration
           </option>
@@ -76,9 +76,8 @@ function Filter(props) {
           })}
         </select>{" "}
         <br></br>
-        <br></br>
         <label for="difficulty">Difficulty</label>
-        <select name="difficulty" id="difficulty">
+        <select name="difficulty" id="difficulty" className="select-css">
           <option value="" selected>
             Select difficulty
           </option>
@@ -90,27 +89,12 @@ function Filter(props) {
             );
           })}
         </select>{" "}
-        <br></br>
-        <br></br>
-        {/* <label for="equipment">Required equipment</label>
-        <select name="equipment" id="equipment">
-          <option value="" selected>
-            Select equipment
-          </option>
-          {uniqueEquipment.map((elem, i) => {
-            return (
-              <option key={i} value={elem}>
-                {elem}
-              </option>
-            );
-          })}
-        </select> */}
-        <br></br>
-        <br></br>
-        <input type="button" id="applyFilterBtn" value="Apply filter" />{" "}
-        <div id="resultsFound"></div>
-        <input type="reset" id="removeFilterBtn" value="Reset filter" />
-        <input type="button" id="closeFilterBtn" value="Close filter" />
+        <div className="filterButtonsCont">
+          <input type="button" id="applyFilterBtn" value="Apply filter" />
+          <div id="resultsFound"></div>
+          <input type="reset" id="removeFilterBtn" value="Reset filter" />
+          <input type="button" id="closeFilterBtn" value="Close filter" />
+        </div>
       </form>
     </div>
   );
