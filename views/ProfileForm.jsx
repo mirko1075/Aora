@@ -64,7 +64,6 @@ function ProfileForm(props) {
             type="email"
             name="email"
             placeholder={props.user.email}
-
             defaultValue={props.user.email}
             disabled
           />
@@ -138,15 +137,6 @@ function ProfileForm(props) {
             name="userHeight"
             placeholder="i.e., 175cm"
             defaultValue={props.user.userHeight}
-          />
-          <br />
-          <p className="label">password</p>
-          <input
-            className="inputAuthForms"
-            type="password"
-            name="password"
-            placeholder="Enter current password"
-            required
           />
           <br />
           {props.errorMessage ? (
