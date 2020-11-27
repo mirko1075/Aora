@@ -248,109 +248,129 @@ siteRouter.get("/profileform", isLoggedIn, (req, res, next) => {
 });
 
 // POST > PROFILE FORM EDIT ROUTE
-siteRouter.post("/profileform", parser.single('profilepic'), isLoggedIn, (req, res, next) => {
+siteRouter.post("/profileform", isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
-  const cloudImageUrl = req.file.secure_url;
   let {
     name,
     lastName,
     email,
     city,
     country,
-    birthDate,
     gender,
     userHeight,
     userWeight,
     password,
-    newPassword,
   } = req.body;
-  console.log("req.body", req.body);
 
   // if (!birthDate) {
   //   birthDate = req.session.currentUser.birthDate;
   // }
 
+  //FIND USER IN DATABASE AND CHECK IF PASSWORD MATCHES
+  User.findById(id)
+  .then((user) => {
+    const props = { user: user };
+    //CHECK IF PASSWORD USED MATCHES THE ONE FOR THE USER SAVED IN THE DATABASE
+    const passwordCorrect = bcrypt.compareSync(password, user.password);
+
+      //MAKE CHANGES TO THE USER DB & SEND TO PROFILE OR SHOW ERROR INSTEAD
+      if (passwordCorrect) {
+        // User.findByIdAndUpdate(id,{name, lastName, email, city, country, birthDate: req.body.birthDate ? req.body.birthDate : req.session.currentUser.birthDate , gender, height, weight, password},{new:true})
+        User.findByIdAndUpdate(id,{name, lastName, email, city, country, gender, userHeight, userWeight},{new:true})
+        .then((updateUser) => {
+            res.redirect("/private/profile")
+          })
+        .catch((err) => console.log(err));
+        } else {
+          res.render("ProfileForm", { errorMessage: "Incorrect password", user });
+        }
+    })
+    .catch((err) => {
+      console.log(err);
+      // const props = { errorMessage: "Error finding user in database" + err };
+      // res.render("ProfileForm", props);
+    });
+  });
+  
+// GET > PASSWORD FORM ROUTE
+siteRouter.get("/passwordform", isLoggedIn, (req, res, next) => {
+  const id = req.session.currentUser._id;
+  User.findById({ _id: id })
+  
+  .then((user) => {
+    const props = { user: user };
+    res.render("PasswordForm", props);
+  })
+  .catch((err) => {
+    console.log("Something went wrong connecting to the DB");
+  });
+});
+
+// POST > PASSWORD FORM EDIT ROUTE
+siteRouter.post("/passwordform", isLoggedIn, (req, res, next) => {
+  const id = req.session.currentUser._id;
+  let {
+    password,
+    newPassword,
+    repeat,
+  } = req.body;
+  console.log("req.body", req.body);
+  
   // NEW PASSWORD STRENGTH
   // if (zxcvbn(password).score < 3) {    // TO UNCOMMENT, COMMENTED TO KEEP WORKING WITH CLASSES
   console.log("Score: ", zxcvbn(password));
   if (zxcvbn(newPassword).score > 0) {
-    //TO COMMENT
     const suggestions = zxcvbn(newPassword).feedback.suggestions;
     const props = { errorMessage: suggestions[0] };
-    res.render("ProfileForm", props);
+    res.render("PasswordForm", props);
     return;
   }
-
-  // // REQUIRE DATA INPUT ON ALL FIELDS
-  // if (newPassword === "" || repeat === "") {
-  //   const props = { errorMessage: "Please complete form" };
-  //   res.render("ProfileForm", props);
-  //   return;
-  // }
-
+  
+  // REQUIRE DATA INPUT ON ALL FIELDS
+  if (password === "" || newPassword === "" || repeat === "") {
+    const props = { errorMessage: "Please complete form" };
+    res.render("PasswordForm", props);
+    return;
+  }
+  
   // ENTER PASSWORD AND REPEAT PASSWORD FIELDS MATCH VALIDATION
-  // if (newPassword !== repeat) {
-  //   const props = { errorMessage: `New passwords don't match!` };
-  //   res.render("ProfileForm", props);
-  //   return;
-  // }
-
+  if (newPassword !== repeat) {
+    const props = { errorMessage: `New passwords don't match!` };
+    res.render("PasswordForm", props);
+    return;
+  }
+  
   //FIND USER IN DATABASE AND CHECK IF PASSWORD MATCHES
-  User.findById(id).then((user) => {
+  User.findById(id)
+  .then((user) => {
     const props = { user: user };
-    if (password && newPassword) {
-      //CHECK IF PASSWORD USED MATCHES THE ONE FOR THE USER SAVED IN THE DATABASE
-      const passwordCorrect = bcrypt.compareSync(password, user.password);
-      const salt = bcrypt.genSaltSync(saltRound);
-      const hashedPassword = bcrypt.hashSync(newPassword, salt);
-
-      //MAKE CHANGES TU THE USER DB & SEND TO PROFILE OR SHOW ERROR INSTEAD
-      if (passwordCorrect) {
-        // User.findByIdAndUpdate(id,{name, lastName, email, city, country, birthDate: req.body.birthDate ? req.body.birthDate : req.session.currentUser.birthDate , gender, height, weight, password},{new:true})
-        let objToUpdate = new Object();
-        console.log(newPassword);
-        if (newPassword) {
-          objToUpdate = {
-            name,
-            lastName,
-            email,
-            city,
-            country,
-            birthDate,
-            gender,
-            userHeight,
-            userWeight,
-            password: hashedPassword,
-          };
-        } else {
-          objToUpdate = {
-            name,
-            lastName,
-            email,
-            city,
-            country,
-            birthDate,
-            gender,
-            userWeight,
-            userHeight,
-          };
-        }
-        console.log("objectUpdated", objToUpdate);
-        User.findByIdAndUpdate(id, objToUpdate, { new: true }).then(
-          (updateUser) => {
+    
+    
+    //CHECK IF PASSWORD USED MATCHES THE ONE FOR THE USER SAVED IN THE DATABASE
+    const passwordCorrect = bcrypt.compareSync(password, user.password);
+    const salt = bcrypt.genSaltSync(saltRound);
+    const hashedPassword = bcrypt.hashSync(newPassword, salt);
+    
+    //MAKE CHANGES TU THE USER DB & SEND TO PROFILE OR SHOW ERROR INSTEAD
+    if (passwordCorrect) {
+      if (newPassword) {
+        User.findByIdAndUpdate(id,{password: hashedPassword},{new:true})
+        .then((updateUser) => {
             res.redirect("/private/profile").catch((err) => console.log(err));
-          }
-        );
-      } else {
-        res.render("ProfileForm", { errorMessage: "Incorrect password", user });
-      }
+          });
+        } else if (!newPassword) {
+            res.render("PasswordForm", { errorMessage: "You need to provide the new password", user });
+        }
     } else {
-      res.render("ProfileForm", {
-        errorMessage: "You need to provide the new password",
-        user,
-      });
+      res.render("PasswordForm", { errorMessage: "Incorrect password", user });
     }
+  })
+  .catch((err) => {
+    console.log(err);
+    const props = { errorMessage: "Error creating conecting to the database" + err };
+    res.render("PasswordForm", props);
   });
 });
-
-module.exports = siteRouter;
+    
+    module.exports = siteRouter;
+      
