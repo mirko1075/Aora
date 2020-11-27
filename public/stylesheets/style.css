@@ -23,8 +23,9 @@
 }
 
 .logo {
-  width: 216px;
-  height: 94px;
+  width: 300px;
+  height: auto;
+  margin-bottom: 40px;
 }
 .Layer_1 {
   background: linear-gradient(180deg, rgba(21, 66, 85, 0) 28.94%, #154255 50%);
