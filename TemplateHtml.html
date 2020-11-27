@@ -3,20 +3,117 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>LiveClass</title>
+    <title>Profile</title>
     <link rel="stylesheet" href="/stylesheets/cssreset.css" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
   <body>
-    <h1>Go to LiveClass MF</h1>
-    <iframe
-      width="560"
-      height="315"
-      src="https://www.youtube.com/embed/qWy_aOlB45Y"
-      frameborder="0"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen=""
-    ></iframe>
+    <div class="header-profile">
+      <div class="header-profile-top">
+        <div class="profile-pic-big">
+          <img src="/images/Juanmi.jpg" alt="User Profile" />
+        </div>
+        <div class="header-profile-top-right">
+          <h2>Mirko Siddi</h2>
+          <p class="small-info">Barcelona, Spagna</p>
+        </div>
+      </div>
+      <div class="header-profile-bottom">
+        <a href="/private/profile"><img src="/images/edit-on.svg" /></a
+        ><a href="/auth/logout"><img src="/images/logout-off.svg" /></a>
+      </div>
+    </div>
+    <div class="profile-scroll-container">
+      <br />
+      <form
+        id="form"
+        class="profile-form"
+        action="/private/profileform"
+        method="POST"
+      >
+        <p class="label">name</p>
+        <input
+          type="text"
+          class="inputAuthForms"
+          name="name"
+          value="Mirko"
+        /><br />
+        <p class="label">last name</p>
+        <input
+          type="text"
+          class="inputAuthForms"
+          name="lastName"
+          value="Siddi"
+        /><br />
+        <p class="label">email</p>
+        <input
+          type="email"
+          class="inputAuthForms"
+          name="email"
+          disabled=""
+          value="mirko@mirko.com"
+        /><br /><br />
+        <div>
+          <a class="change-password" href="/private/passwordform"
+            >CHANGE PASSWORD</a
+          >
+        </div>
+        <br /><br />
+        <p class="label">gender</p>
+        <div>
+          <input type="radio" name="gender" value="Male" checked="" />
+          Male<input type="radio" name="gender" value="Female" /> Female<input
+            type="radio"
+            name="gender"
+            value="Other"
+          />
+          Other
+        </div>
+        <br />
+        <p class="label">city</p>
+        <input
+          type="text"
+          class="inputAuthForms"
+          name="city"
+          value="Barcelona"
+        /><br />
+        <p class="label">country</p>
+        <input
+          type="text"
+          class="inputAuthForms"
+          name="country"
+          value="Spagna"
+        /><br />
+        <p class="label">weight</p>
+        <input
+          type="text"
+          class="inputAuthForms"
+          name="userWeight"
+          value="72"
+        /><br />
+        <p class="label">height</p>
+        <input
+          type="text"
+          class="inputAuthForms"
+          name="userHeight"
+          value="178"
+        /><br />
+        <p class="label">password</p>
+        <input
+          type="password"
+          class="inputAuthForms"
+          name="password"
+          placeholder="Enter current password"
+          required=""
+        /><br /><br /><br /><button class="profile-submit" type="submit">
+          update profile
+        </button>
+        <div class="error-message">
+          Add another word or two. Uncommon words are better.
+        </div>
+        <br /><br /><br /><br /><br /><br /><br /><br />
+      </form>
+    </div>
     <div>
       <nav>
         <a href="/private/Calendar"
@@ -28,7 +125,7 @@
         ><a href="/private/progress"
           ><div><img src="/images/progress-off.svg" />progress</div></a
         ><a href="/private/profile"
-          ><div><img src="/images/profile-off.svg" />profile</div></a
+          ><div><img src="/images/profile-on.svg" />profile</div></a
         >
       </nav>
     </div>

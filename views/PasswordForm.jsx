@@ -2,6 +2,7 @@ const React = require("react");
 const Layout = require("./Layout");
 
 function PasswordForm(props) {
+  console.log("props from PasswordForm", props);
   return (
     <Layout title="Profile">
       <div className="header-profile">

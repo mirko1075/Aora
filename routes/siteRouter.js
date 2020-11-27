@@ -322,36 +322,42 @@ siteRouter.get("/passwordform", isLoggedIn, (req, res, next) => {
 siteRouter.post("/passwordform", isLoggedIn, (req, res, next) => {
   const id = req.session.currentUser._id;
   let { password, newPassword, repeat } = req.body;
-  console.log("req.body", req.body);
+  // console.log("req.body", req.body);
 
   // NEW PASSWORD STRENGTH
   // if (zxcvbn(password).score < 3) {    // TO UNCOMMENT, COMMENTED TO KEEP WORKING WITH CLASSES
-  console.log("Score: ", zxcvbn(password));
-  if (zxcvbn(newPassword).score > 0) {
-    const suggestions = zxcvbn(newPassword).feedback.suggestions;
-    const props = { errorMessage: suggestions[0] };
-    res.render("PasswordForm", props);
-    return;
-  }
-
-  // REQUIRE DATA INPUT ON ALL FIELDS
-  if (password === "" || newPassword === "" || repeat === "") {
-    const props = { errorMessage: "Please complete form" };
-    res.render("PasswordForm", props);
-    return;
-  }
-
-  // ENTER PASSWORD AND REPEAT PASSWORD FIELDS MATCH VALIDATION
-  if (newPassword !== repeat) {
-    const props = { errorMessage: `New passwords don't match!` };
-    res.render("PasswordForm", props);
-    return;
-  }
+  // console.log("Score: ", zxcvbn(password));
 
   //FIND USER IN DATABASE AND CHECK IF PASSWORD MATCHES
   User.findById(id)
     .then((user) => {
-      const props = { user: user };
+      if (zxcvbn(newPassword).score > 0) {
+        const suggestions = zxcvbn(newPassword).feedback.suggestions;
+        const props = { errorMessage: suggestions[0], user: user };
+        console.log("Rendering after encrypt");
+        res.render("ProfileForm", props);
+        return;
+      }
+
+      // REQUIRE DATA INPUT ON ALL FIELDS
+      if (password === "" || newPassword === "" || repeat === "") {
+        const props = { errorMessage: "Please complete form", user: user };
+        console.log("Rendering after password check");
+        res.render("ProfileForm", props);
+        return;
+      }
+
+      // ENTER PASSWORD AND REPEAT PASSWORD FIELDS MATCH VALIDATION
+      if (newPassword !== repeat) {
+        const props = {
+          errorMessage: `New passwords don't match!`,
+          user: user,
+        };
+        console.log("Rendering after repeat pwd check");
+        res.render("ProfileForm", props);
+        return;
+      }
+      const props = {};
 
       //CHECK IF PASSWORD USED MATCHES THE ONE FOR THE USER SAVED IN THE DATABASE
       const passwordCorrect = bcrypt.compareSync(password, user.password);
@@ -362,22 +368,27 @@ siteRouter.post("/passwordform", isLoggedIn, (req, res, next) => {
       if (passwordCorrect) {
         if (newPassword) {
           User.findByIdAndUpdate(id, { password: hashedPassword })
-            .then((updateUser) => {
-              const props = { updateUser: updateUser };
+            .then((user) => {
+              const props = { user: user };
+              console.log("Rendering after updating user");
               res.render("profileform", props);
             })
             .catch((err) => console.log(err));
-        } else if (!newPassword) {
-          res.render("PasswordForm", {
-            errorMessage: "You need to provide the new password",
-            user,
-          });
+        } else {
+          const props = {
+            errorMessage: `You need to provide the new password`,
+            user: user,
+          };
+          console.log("Rendering after not providing new pwd");
+          res.render("ProfileForm", props);
         }
       } else {
-        res.render("PasswordForm", {
-          errorMessage: "Incorrect old password",
-          user,
-        });
+        const props = {
+          errorMessage: `Incorrect old password`,
+          user: user,
+        };
+        console.log("Rendering after old pwd incorrect");
+        res.render("ProfileForm", props);
       }
     })
     .catch((err) => {
@@ -385,7 +396,8 @@ siteRouter.post("/passwordform", isLoggedIn, (req, res, next) => {
       const props = {
         errorMessage: "Error creating conecting to the database" + err,
       };
-      res.render("PasswordForm", props);
+      console.log("Rendering after error connecting to DB");
+      res.render("ProfileForm", props);
     });
 });
 
