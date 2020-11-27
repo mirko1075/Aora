@@ -69,6 +69,15 @@ function ProfileForm(props) {
           />
           <br />
           <br />
+          <div >
+            <a className="change-password" href="/private/passwordform">CHANGE PASSWORD</a>
+          <div>
+            <a className="change-password" href="/private/passwordform">
+              CHANGE PASSWORD
+            </a>
+          </div>
+          <br />
+          <br />
           <p className="label">gender</p>
           {props.user.gender == "Male" ? (
             <div>
