@@ -5,6 +5,8 @@ const bcrypt = require("bcrypt");
 const User = require("../models/User.model");
 const zxcvbn = require("zxcvbn");
 
+const parser = require('./../config/cloudinary');
+
 const { isLoggedIn } = require("./../utils/utils");
 const saltRound = 10;
 
@@ -70,7 +72,7 @@ authRouter.post("/signup", (req, res, next) => {
 
       User.create({ email: email, password: hashedPassword })
         .then((createdUser) => {
-          res.redirect("/private/Calendar/");
+          res.redirect("/private/Calendar");
         })
         .catch((err) => {
           console.log(err);
