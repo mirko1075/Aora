@@ -2,10 +2,6 @@ const React = require("react");
 const Layout = require("./Layout");
 
 function ProfileForm(props) {
-  // const dateObj = new Date(props.user.birthDate)
-  // const dateString = `${dateObj.getFullYear()}-${dateObj.getMonth()}-${dateObj.getDay()}`
-  // const dateString = dateObj.toISOString().substr(0,10)
-  // console.log(dateString)
   return (
     <Layout title="Profile">
       <div className="header-profile">

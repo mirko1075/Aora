@@ -548,3 +548,22 @@ form {
   color: white;
   background-color: #ff0066;
 }
+
+.profile-rectangle {
+  border: 1px solid #666666;
+  width: 80%;
+  padding: 1px;
+  display: block;
+}
+
+.profile-container {
+  display: block;
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: 300;
+  color: #C4C4C4;
+  width: 85vw;
+  box-sizing: border-box;
+  padding: 21px;
+  padding-left: 32px;
+}
