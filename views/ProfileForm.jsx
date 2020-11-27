@@ -2,6 +2,10 @@ const React = require("react");
 const Layout = require("./Layout");
 
 function ProfileForm(props) {
+  // const dateObj = new Date(props.user.birthDate)
+  // const dateString = `${dateObj.getFullYear()}-${dateObj.getMonth()}-${dateObj.getDay()}`
+  // const dateString = dateObj.toISOString().substr(0,10)
+  // console.log(dateString)
   return (
     <Layout title="Profile">
       <div className="header-profile">
@@ -61,6 +65,14 @@ function ProfileForm(props) {
             disabled
           />
           <br />
+          <br />
+          <div>
+            <a className="change-password" href="/private/passwordform">
+              CHANGE PASSWORD
+            </a>
+          </div>
+          <br />
+          <br />
           <p className="label">gender</p>
           {props.user.gender == "Male" ? (
             <div>
@@ -111,7 +123,6 @@ function ProfileForm(props) {
             defaultValue={props.user.country}
           />
           <br />
-          <br />
           <p className="label">weight</p>
           <input
             className="inputAuthForms"
@@ -127,26 +138,16 @@ function ProfileForm(props) {
             name="userHeight"
             defaultValue={props.user.userHeight}
           />
-          {/* <br />
-          <p className="label">current password</p>
-          <input className="inputAuthForms"
+          <br />
+          <p className="label">password</p>
+          <input
+            className="inputAuthForms"
             type="password"
             name="password"
             placeholder="Enter current password"
             required
           />
           <br />
-          <p className="label">new password</p>
-          <input className="inputAuthForms"
-            type="password"
-            name="newPassword"
-            placeholder="Enter new password"
-          />
-          <br />
-          <p className="label">repeat new password</p>
-          <input className="inputAuthForms" type="password" name="repeat" placeholder="Repeat password" />
-          <br />
-          <br /> */}
           <br />
           <br />
           <button className="profile-submit" type="submit">
