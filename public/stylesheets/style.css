@@ -595,3 +595,37 @@ form {
   padding: 21px;
   padding-left: 32px;
 }
+/* PROGRESS---------------- */
+#hiit {
+  background-image: url("/images/hiit.png");
+  background-repeat: none;
+  width: 100vw;
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+#stretch {
+  background-image: url("/images/stretch.png");
+  background-repeat: none;
+  width: 100vw;
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
+#strength {
+  background-image: url("/images/strength.png");
+  background-repeat: none;
+  width: 100vw;
+  height: 190px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid black;
+}
