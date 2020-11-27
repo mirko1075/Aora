@@ -45,6 +45,7 @@ function ProfileForm(props) {
             className="inputAuthForms"
             type="text"
             name="name"
+            placeholder="Please enter your name"
             defaultValue={props.user.name}
           />
           <br />
@@ -53,6 +54,7 @@ function ProfileForm(props) {
             className="inputAuthForms"
             type="text"
             name="lastName"
+            placeholder="Enter your last name here"
             defaultValue={props.user.lastName}
           />
           <br />
@@ -61,6 +63,8 @@ function ProfileForm(props) {
             className="inputAuthForms"
             type="email"
             name="email"
+            placeholder={props.user.email}
+
             defaultValue={props.user.email}
             disabled
           />
@@ -112,6 +116,7 @@ function ProfileForm(props) {
             className="inputAuthForms"
             type="text"
             name="city"
+            placeholder="Enter your city"
             defaultValue={props.user.city}
           />
           <br />
@@ -120,6 +125,7 @@ function ProfileForm(props) {
             className="inputAuthForms"
             type="text"
             name="country"
+            placeholder="Enter your country"
             defaultValue={props.user.country}
           />
           <br />
@@ -128,6 +134,7 @@ function ProfileForm(props) {
             className="inputAuthForms"
             type="text"
             name="userWeight"
+            placeholder="i.e., 75kg"
             defaultValue={props.user.userWeight}
           />
           <br />
@@ -136,6 +143,7 @@ function ProfileForm(props) {
             className="inputAuthForms"
             type="text"
             name="userHeight"
+            placeholder="i.e., 175cm"
             defaultValue={props.user.userHeight}
           />
           <br />
@@ -148,17 +156,15 @@ function ProfileForm(props) {
             required
           />
           <br />
-          <br />
-          <br />
-          <button className="profile-submit" type="submit">
-            update profile
-          </button>
-
           {props.errorMessage ? (
             <div className="error-message"> {props.errorMessage} </div>
           ) : null}
           <br />
           <br />
+          <br />
+          <button className="profile-submit" type="submit">
+            update profile
+          </button>
           <br />
           <br />
           <br />
