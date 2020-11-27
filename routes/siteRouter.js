@@ -356,7 +356,7 @@ siteRouter.post("/passwordform", isLoggedIn, (req, res, next) => {
       if (newPassword) {
         User.findByIdAndUpdate(id,{password: hashedPassword},{new:true})
         .then((updateUser) => {
-            res.redirect("/private/profile").catch((err) => console.log(err));
+            res.redirect("/private/profileform").catch((err) => console.log(err));
           });
         } else if (!newPassword) {
             res.render("PasswordForm", { errorMessage: "You need to provide the new password", user });
