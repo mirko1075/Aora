@@ -19,7 +19,7 @@ function Profile(props) {
           </div>
         </div>
         <div className="header-profile-bottom">
-          <a href="/private/profile"><img src="/images/edit-off.svg"></img></a>
+          <a href="/private/profileform"><img src="/images/edit-off.svg"></img></a>
           <a href="/auth/logout"><img src="/images/logout-off.svg"></img></a>
           
         </div>
