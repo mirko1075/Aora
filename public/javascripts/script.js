@@ -265,7 +265,6 @@ function filter(field, fieldValue) {
 function applyFilter() {
   hideAllDivs(actualDate, true);
   displayAllDivs(actualDate, true);
-  bubble ++;
 }
 function applyFilterFromBtn() {
   filterDiv.classList.add("filterHidden");
@@ -349,6 +348,3 @@ duration.addEventListener("change", function () {
 difficulty.addEventListener("change", function () {
   filter(difficulty.id, difficulty.value);
 });
-
-
-
