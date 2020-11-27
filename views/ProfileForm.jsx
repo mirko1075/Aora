@@ -69,8 +69,6 @@ function ProfileForm(props) {
           />
           <br />
           <br />
-          <div >
-            <a className="change-password" href="/private/passwordform">CHANGE PASSWORD</a>
           <div>
             <a className="change-password" href="/private/passwordform">
               CHANGE PASSWORD
