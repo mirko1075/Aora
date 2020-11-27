@@ -486,7 +486,6 @@ form {
   display: flex;
   justify-content: center;
   align-items: center;
-  
 }
 .profile-pic-big img {
   width: 90px;
@@ -579,7 +578,7 @@ form {
   font-size: 18px;
   font-family: sans-serif;
   font-weight: 300;
-  color: #C4C4C4;
+  color: #c4c4c4;
   width: 85vw;
   box-sizing: border-box;
   padding: 21px;
