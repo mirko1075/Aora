@@ -2,6 +2,10 @@ const React = require("react");
 const Layout = require("./Layout");
 
 function ProfileForm(props) {
+  // const dateObj = new Date(props.user.birthDate)
+  // const dateString = `${dateObj.getFullYear()}-${dateObj.getMonth()}-${dateObj.getDay()}`
+  // const dateString = dateObj.toISOString().substr(0,10)
+  // console.log(dateString)
   return (
     <Layout title="Profile">
       <div className="header-profile">
@@ -112,7 +116,6 @@ function ProfileForm(props) {
           <p className="label">country</p>
           <input  className="inputAuthForms"type="text" name="country" defaultValue={props.user.country} />
           <br />
-          <br />
           <p className="label">weight</p>
           <input className="inputAuthForms"
             type="text"
@@ -127,23 +130,13 @@ function ProfileForm(props) {
             defaultValue={props.user.userHeight}
           />
           <br />
-          <p className="label">current password</p>
+          <p className="label">password</p>
           <input className="inputAuthForms"
             type="password"
             name="password"
             placeholder="Enter current password"
             required
           />
-          <br />
-          <p className="label">new password</p>
-          <input className="inputAuthForms"
-            type="password"
-            name="newPassword"
-            placeholder="Enter new password"
-          />
-          <br />
-          <p className="label">repeat new password</p>
-          <input className="inputAuthForms" type="password" name="repeat" placeholder="Repeat password" />
           <br />
           <br />
           <br />
