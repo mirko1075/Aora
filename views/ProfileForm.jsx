@@ -23,6 +23,9 @@ function ProfileForm(props) {
           </div>
         </div>
         <div className="header-profile-bottom">
+          {props.errorMessage ? (
+            <div className="error-message"> {props.errorMessage} </div>
+          ) : null}
           <a href="/private/profile">
             <img src="/images/edit-on.svg"></img>
           </a>
@@ -146,9 +149,7 @@ function ProfileForm(props) {
             defaultValue={props.user.userHeight}
           />
           <br />
-          {props.errorMessage ? (
-            <div className="error-message"> {props.errorMessage} </div>
-          ) : null}
+         
           <br />
           <br />
           <br />
