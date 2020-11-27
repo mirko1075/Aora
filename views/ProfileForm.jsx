@@ -23,91 +23,82 @@ function ProfileForm(props) {
           </div>
         </div>
         <div className="header-profile-bottom">
-          <a href="/private/profile"><img src="/images/edit-on.svg"></img></a>
-          <a href="/auth/logout"><img src="/images/logout-off.svg"></img></a>
-          
+          <a href="/private/profile">
+            <img src="/images/edit-on.svg"></img>
+          </a>
+          <a href="/auth/logout">
+            <img src="/images/logout-off.svg"></img>
+          </a>
         </div>
       </div>
 
-
-
       <div className="profile-scroll-container">
-      <br />
-        <form id="form" className="profile-form" action={`/private/profileform`} method="POST">
+        <br />
+        <form
+          id="form"
+          className="profile-form"
+          action={`/private/profileform`}
+          method="POST"
+        >
           <p className="label">name</p>
-          <input className="inputAuthForms" type="text" name="name" defaultValue={props.user.name} />
+          <input
+            className="inputAuthForms"
+            type="text"
+            name="name"
+            defaultValue={props.user.name}
+          />
           <br />
           <p className="label">last name</p>
-          <input className="inputAuthForms"
+          <input
+            className="inputAuthForms"
             type="text"
             name="lastName"
             defaultValue={props.user.lastName}
           />
           <br />
           <p className="label">email</p>
-          <input className="inputAuthForms"
+          <input
+            className="inputAuthForms"
             type="email"
             name="email"
             defaultValue={props.user.email}
-            required
+            disabled
           />
           <br />
           <br />
-          <div >
-            <a className="change-password" href="/private/passwordform">CHANGE PASSWORD</a>
+          <div>
+            <a className="change-password" href="/private/passwordform">
+              CHANGE PASSWORD
+            </a>
           </div>
           <br />
           <br />
           <p className="label">gender</p>
-          {
-            (props.user.gender = "Male" ? (
-              <div>
-                <input 
-                  type="radio"
-                  name="gender"
-                  value="Male"
-                  checked="checked"
-                />{" "}
-                Male
-                <input type="radio" name="gender" value="Female" /> Female
-                <input type="radio" name="gender" value="Other" /> Other
-              </div>
-            ) : (
-              (props.user.gender = "Female" ? (
-                <div>
-                  <input type="radio" name="gender" value="Male" /> Male
-                  <input
-                    type="radio"
-                    name="gender"
-                    value="Female"
-                    checked="checked"
-                  />{" "}
-                  Female
-                  <input type="radio" name="gender" value="Other" /> Other
-                </div>
-              ) : (
-                (props.user.gender = "Other" ? (
-                  <div>
-                    <input type="radio" name="gender" value="Male" /> Male
-                    <input type="radio" name="gender" value="Female" /> Female
-                    <input
-                      type="radio"
-                      name="gender"
-                      value="Other"
-                      checked="checked"
-                    />{" "}
-                    Other
-                  </div>
-                ) : (
-                  <div>
-                    <input type="radio" name="gender" value="Male" /> Male
-                    <input type="radio" name="gender" value="Female" /> Female
-                    <input type="radio" name="gender" value="Other" /> Other
-                  </div>
-                ))
-              ))
-            ))
-          }
+          {props.user.gender == "Male" ? (
+            <div>
+              <input type="radio" name="gender" value="Male" checked /> Male
+              <input type="radio" name="gender" value="Female" /> Female
+              <input type="radio" name="gender" value="Other" /> Other
+            </div>
+          ) : props.user.gender == "Female" ? (
+            <div>
+              <input type="radio" name="gender" value="Male" /> Male
+              <input type="radio" name="gender" value="Female" checked /> Female
+              <input type="radio" name="gender" value="Other" /> Other
+            </div>
+          ) : props.user.gender == "Other" ? (
+            <div>
+              <input type="radio" name="gender" value="Male" /> Male
+              <input type="radio" name="gender" value="Female" /> Female
+              <input type="radio" name="gender" value="Other" checked /> Other
+            </div>
+          ) : (
+            <div>
+              <input type="radio" name="gender" value="Male" /> Male
+              <input type="radio" name="gender" value="Female" /> Female
+              <input type="radio" name="gender" value="Other" /> Other
+            </div>
+          )}
           <br />
           {/* <h2>BIRTHDATE</h2> */}
           {/* <input type="date" name="birthDate" min="1900-01-01" max="2020-06-30" dateformat="YYYY-MM-DD" defaultValue={props.user.birthDate} required/> */}
@@ -117,27 +108,40 @@ function ProfileForm(props) {
                     : <input type="date" placeholder="dd-mm-yyyy" name="birthDate"/>} */}
           {/* <br/> */}
           <p className="label">city</p>
-          <input className="inputAuthForms" type="text" name="city" defaultValue={props.user.city} />
+          <input
+            className="inputAuthForms"
+            type="text"
+            name="city"
+            defaultValue={props.user.city}
+          />
           <br />
           <p className="label">country</p>
-          <input  className="inputAuthForms"type="text" name="country" defaultValue={props.user.country} />
+          <input
+            className="inputAuthForms"
+            type="text"
+            name="country"
+            defaultValue={props.user.country}
+          />
           <br />
           <p className="label">weight</p>
-          <input className="inputAuthForms"
+          <input
+            className="inputAuthForms"
             type="text"
             name="userWeight"
             defaultValue={props.user.userWeight}
           />
           <br />
           <p className="label">height</p>
-          <input className="inputAuthForms"
+          <input
+            className="inputAuthForms"
             type="text"
             name="userHeight"
             defaultValue={props.user.userHeight}
           />
           <br />
           <p className="label">password</p>
-          <input className="inputAuthForms"
+          <input
+            className="inputAuthForms"
             type="password"
             name="password"
             placeholder="Enter current password"
@@ -146,8 +150,9 @@ function ProfileForm(props) {
           <br />
           <br />
           <br />
-          <br />
-          <button className="profile-submit" type="submit">update profile</button>
+          <button className="profile-submit" type="submit">
+            update profile
+          </button>
 
           {props.errorMessage ? (
             <div className="error-message"> {props.errorMessage} </div>
