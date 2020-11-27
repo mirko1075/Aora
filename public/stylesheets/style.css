@@ -528,10 +528,14 @@ form {
   justify-content: left;
 }
 .label {
+  width: 80vw;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
   text-transform: uppercase;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2px;
 }
 
 .profile-submit {
@@ -568,8 +572,6 @@ form {
 .profile-rectangle {
   border: 1px solid #666666;
   width: 80%;
-  padding: 1px;
-  display: block;
 }
 
 .profile-container {
@@ -580,6 +582,17 @@ form {
   color: #C4C4C4;
   width: 85vw;
   box-sizing: border-box;
+  padding: 21px;
+  padding-left: 32px;
+}
+
+.error-message {
+  display: block;
+  font-size: 18px;
+  font-family: sans-serif;
+  font-weight: 300;
+  color: #ff0066;
+  text-transform: uppercase;
   padding: 21px;
   padding-left: 32px;
 }
