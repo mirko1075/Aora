@@ -528,10 +528,14 @@ form {
   justify-content: left;
 }
 .label {
+  width: 80vw;
   font-weight: normal;
   font-size: 14px;
   line-height: 20px;
   text-transform: uppercase;
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 2px;
 }
 
 .profile-submit {

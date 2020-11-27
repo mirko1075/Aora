@@ -265,6 +265,7 @@ function filter(field, fieldValue) {
 function applyFilter() {
   hideAllDivs(actualDate, true);
   displayAllDivs(actualDate, true);
+  bubble ++;
 }
 function applyFilterFromBtn() {
   filterDiv.classList.add("filterHidden");
