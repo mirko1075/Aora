@@ -366,22 +366,13 @@ siteRouter.post("/passwordform", isLoggedIn, (req, res, next) => {
 
       //MAKE CHANGES TU THE USER DB & SEND TO PROFILE OR SHOW ERROR INSTEAD
       if (passwordCorrect) {
-        if (newPassword) {
-          User.findByIdAndUpdate(id, { password: hashedPassword })
-            .then((user) => {
-              const props = { user: user };
-              console.log("Rendering after updating user");
-              res.render("profileform", props);
-            })
-            .catch((err) => console.log(err));
-        } else {
-          const props = {
-            errorMessage: `You need to provide the new password`,
-            user: user,
-          };
-          console.log("Rendering after not providing new pwd");
-          res.render("ProfileForm", props);
-        }
+        User.findByIdAndUpdate(id, { password: hashedPassword })
+          .then((user) => {
+            const props = { user: user };
+            console.log("Rendering after updating user");
+            res.render("profileform", props);
+          })
+          .catch((err) => console.log(err));
       } else {
         const props = {
           errorMessage: `Incorrect old password`,
