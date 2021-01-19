@@ -97,7 +97,7 @@ CLASSES
 
 [Repository Link](https://github.com/mirko1075/Aora)
 
-[Deploy Link](https://why-so-serial.herokuapp.com/)
+[Deploy Link](https://https://aora.herokuapp.com//)
 
 #### Trello
 
