@@ -361,7 +361,7 @@ const classes = [
       "Incididunt commodo reprehenderit nisi dolore commodo tempor est nulla sint duis nostrud consequat culpa ea. Eiusmod quis excepteur anim duis laboris. Nisi dolor pariatur veniam et nulla excepteur consectetur ullamco dolor aute ipsum.",
     closureMessage:
       "Quis dolor do et magna reprehenderit. Tempor cillum voluptate sint proident laboris magna fugiat duis consectetur labore irure proident eu laborum. Esse irure commodo in magna ipsum eiusmod eu incididunt pariatur velit. Deserunt officia non dolore sit elit magna in exercitation enim.",
-    scheduled: new Date("2020/12/01"),
+    scheduled: new Date("2021/12/01"),
     duration: 120,
     classType: "Stretch",
     difficulty: "Hard",
@@ -375,7 +375,7 @@ const classes = [
       "Incididunt commodo reprehenderit nisi dolore commodo tempor est nulla sint duis nostrud consequat culpa ea. Eiusmod quis excepteur anim duis laboris. Nisi dolor pariatur veniam et nulla excepteur consectetur ullamco dolor aute ipsum.",
     closureMessage:
       "Quis dolor do et magna reprehenderit. Tempor cillum voluptate sint proident laboris magna fugiat duis consectetur labore irure proident eu laborum. Esse irure commodo in magna ipsum eiusmod eu incididunt pariatur velit. Deserunt officia non dolore sit elit magna in exercitation enim.",
-    scheduled: new Date("2020/12/01"),
+    scheduled: new Date("2021/12/01"),
     duration: 120,
     classType: "Stretch",
     difficulty: "Hard",
@@ -389,7 +389,7 @@ const classes = [
       "Incididunt commodo reprehenderit nisi dolore commodo tempor est nulla sint duis nostrud consequat culpa ea. Eiusmod quis excepteur anim duis laboris. Nisi dolor pariatur veniam et nulla excepteur consectetur ullamco dolor aute ipsum.",
     closureMessage:
       "Quis dolor do et magna reprehenderit. Tempor cillum voluptate sint proident laboris magna fugiat duis consectetur labore irure proident eu laborum. Esse irure commodo in magna ipsum eiusmod eu incididunt pariatur velit. Deserunt officia non dolore sit elit magna in exercitation enim.",
-    scheduled: new Date("2020/12/01"),
+    scheduled: new Date("2021/12/01"),
     duration: 120,
     classType: "Stretch",
     difficulty: "Hard",

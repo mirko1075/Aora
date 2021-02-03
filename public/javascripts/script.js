@@ -348,6 +348,3 @@ duration.addEventListener("change", function () {
 difficulty.addEventListener("change", function () {
   filter(difficulty.id, difficulty.value);
 });
-
-
-

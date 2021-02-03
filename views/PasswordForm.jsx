@@ -2,6 +2,7 @@ const React = require("react");
 const Layout = require("./Layout");
 
 function PasswordForm(props) {
+  console.log("props from PasswordForm", props);
   return (
     <Layout title="Profile">
       <div className="header-profile">
@@ -19,19 +20,26 @@ function PasswordForm(props) {
           </div>
         </div>
         <div className="header-profile-bottom">
-          <a href="/private/profile"><img src="/images/edit-on.svg"></img></a>
-          <a href="/auth/logout"><img src="/images/logout-off.svg"></img></a>
-          
+          <a href="/private/profile">
+            <img src="/images/edit-on.svg"></img>
+          </a>
+          <a href="/auth/logout">
+            <img src="/images/logout-off.svg"></img>
+          </a>
         </div>
       </div>
 
-
-
       <div className="profile-scroll-container">
-      <br />
-        <form id="form" className="profile-form" action={`/private/profileform`} method="POST">
+        <br />
+        <form
+          id="form"
+          className="profile-form"
+          action={`/private/passwordform`}
+          method="POST"
+        >
           <p className="label">current password</p>
-          <input className="inputAuthForms"
+          <input
+            className="inputAuthForms"
             type="password"
             name="password"
             placeholder="Enter current password"
@@ -39,19 +47,29 @@ function PasswordForm(props) {
           />
           <br />
           <p className="label">new password</p>
-          <input className="inputAuthForms"
+          <input
+            className="inputAuthForms"
             type="password"
             name="newPassword"
             placeholder="Enter new password"
+            required
           />
           <br />
           <p className="label">repeat new password</p>
-          <input className="inputAuthForms" type="password" name="repeat" placeholder="Repeat password" />
+          <input
+            className="inputAuthForms"
+            type="password"
+            name="repeat"
+            placeholder="Repeat password"
+            required
+          />
           <br />
           <br />
           <br />
           <br />
-          <button className="profile-submit" type="submit">update password</button>
+          <button className="profile-submit" type="submit">
+            update password
+          </button>
 
           {props.errorMessage ? (
             <div className="error-message"> {props.errorMessage} </div>

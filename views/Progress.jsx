@@ -25,15 +25,27 @@ function Progress(props) {
   }
   console.log("classTypeTemp", classTypeTemp);
   return (
-    <Layout title="Progress">
+    <Layout title="My progress">
       <div className="header">
         <h1>My Progress</h1>
       </div>
 
       <div className="scroll-container">
-        {data.scheduledClasses.map((oneScheduledClass, i) => {
+        {/* {data.scheduledClasses.map((oneScheduledClass, i) => {
           return <div>{data.scheduledClasses.classType}</div>;
-        })}
+        })} */}
+        <div id="hiit">
+          <h2>HIIT</h2>
+          <p>0 classes</p>
+        </div>
+        <div id="stretch">
+          <h2>Stretching</h2>
+          <p>0 classes</p>
+        </div>
+        <div id="strength">
+          <h2>Strength</h2>
+          <p>0 classes</p>
+        </div>
       </div>
     </Layout>
   );
